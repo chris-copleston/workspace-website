@@ -1,0 +1,484 @@
+---
+
+---
+
+<div class="phone-sketch-container" id="phoneSketch">
+  <div class="container">
+    <div class="phone-shape">
+      <div class="phone-display">
+        <div class="graphic-guides">
+          <div class="top"></div>
+          <div class="right"></div>
+          <div class="bottom"></div>
+          <div class="left"></div>
+
+        </div>
+        <div class="iframe-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5536.2989261672055!2d23.56705255046746!3d46.06806086604069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb47811d961ca559c!2sThe+Union+Hall!5e0!3m2!1sen!2sro!4v1474132282233"
+            width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="graphic-guides">
+        <div class="top"></div>
+        <div class="right"></div>
+        <div class="bottom"></div>
+        <div class="left"></div>
+        <div class="center"></div>
+      </div>
+      <div class="phone-hole"></div>
+      <div class="phone-button"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const observeElement = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          element.classList.add('animate');
+        } else {
+          element.classList.remove('animate');
+        }
+      });
+    }, {
+      threshold: 0.2 // Start animation when 20% of the element is visible
+    });
+
+    observer.observe(element);
+  };
+
+  // Initialize the observer when the document is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    observeElement('phoneSketch');
+  });
+</script>
+
+<style>
+  :root {
+    --sketch-color: rgba(255, 255, 255, 0.95);
+    --sketch-width: 2px;
+    --sketch-style: solid;
+    --sketch-border: var(--sketch-width) var(--sketch-style) var(--sketch-color);
+    --hole-size: 14px;
+    --button-size: 60px;
+    --sketch-fade-length: 60px;
+    --guides-color: rgba(255, 255, 255, 0.4);
+    --display-thickness: 4px;
+  }
+
+  @keyframes phone-shape {
+    0% {
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+    25% {
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: var(--sketch-color);
+    }
+    50% {
+      border-top-color: var(--sketch-color);
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: var(--sketch-color);
+    }
+    75% {
+      border-top-color: var(--sketch-color);
+      border-right-color: var(--sketch-color);
+      border-bottom-color: transparent;
+      border-left-color: var(--sketch-color);
+    }
+    100% {
+      border-top-color: var(--sketch-color);
+      border-right-color: var(--sketch-color);
+      border-bottom-color: var(--sketch-color);
+      border-left-color: var(--sketch-color);
+    }
+  }
+
+  @keyframes stroke-vertical {
+    0% {
+      height: 0%;
+      opacity: 0;
+    }
+    100% {
+      height: calc(100% + var(--sketch-width) * 2);
+      opacity: 1;
+    }
+  }
+
+  @keyframes stroke-horizontal {
+    0% {
+      width: 0%;
+      opacity: 0;
+    }
+    100% {
+      width: calc(100% + var(--sketch-width) * 2);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes phone-rotate {
+    0% {
+      transform: rotateX(0) rotateY(0) rotateZ(0);
+    }
+    100% {
+      transform: rotateX(50deg) rotateY(0) rotateZ(-42deg);
+    }
+  }
+
+  @keyframes show-display {
+    0% {
+      transform: translateZ(0);
+      box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+      transform: translateZ(75px);
+      box-shadow: -50px 40px 50px 0 rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  div {
+    box-sizing: border-box;
+  }
+
+  .phone-sketch-container *,
+  .phone-sketch-container *::before,
+  .phone-sketch-container *::after {
+    transform-style: preserve-3d;
+  }
+
+  .phone-sketch-container .phone-shape,
+  .phone-sketch-container .phone-display,
+  .phone-sketch-container .phone-hole,
+  .phone-sketch-container .phone-button,
+  .phone-sketch-container .graphic-guides > div {
+    animation-fill-mode: forwards !important;
+  }
+
+  .phone-sketch-container .iframe-container {
+    animation-fill-mode: forwards !important;
+    transition: transform 0.3s ease-out;
+  }
+
+  .phone-sketch-container {
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(rgb(0, 194, 234), rgb(0, 88, 167));
+    height: 100%;
+    min-height: 900px;
+  }
+
+  .phone-sketch-container .container {
+    perspective: 2400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 979px) {
+    .phone-sketch-container .container .phone-shape {
+      transform: scale(0.8);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .phone-sketch-container .container .phone-shape {
+      transform: scale(0.6);
+    }
+  }
+
+  @media (max-width: 479px) {
+    .phone-sketch-container .container .phone-shape {
+      transform: scale(0.45);
+    }
+  }
+
+  .phone-sketch-container .container .phone-shape {
+    transform-style: preserve-3d;
+    transform: rotateX(0) rotateY(0) rotateZ(0);
+    position: relative;
+    border: var(--sketch-border);
+    border-color: transparent;
+    border-radius: 56px;
+    width: 428px;
+    height: 869px;
+    margin: 0 auto;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape {
+    transform: rotateX(50deg) rotateY(0) rotateZ(-42deg);
+    animation: phone-shape 0.6s 4.2s, phone-rotate 8.4s;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .phone-display {
+    animation: phone-shape 0.6s 4.8s;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .phone-display .iframe-container {
+    animation: fade-in 1.8s 6.6s, show-display 1.8s 7.2s;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .phone-hole {
+    animation: phone-shape 0.6s 5.4s;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .phone-button {
+    animation: phone-shape 0.6s 6s;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .graphic-guides .top {
+    animation: stroke-horizontal 0.6s 0.6s forwards;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .graphic-guides .right {
+    animation: stroke-vertical 0.6s 3s forwards;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .graphic-guides .bottom {
+    animation: stroke-horizontal 0.6s 1.2s forwards;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .graphic-guides .left {
+    animation: stroke-vertical 0.6s 1.8s forwards;
+  }
+
+  .phone-sketch-container.animate .container .phone-shape .graphic-guides .center {
+    animation: stroke-vertical 0.6s 2.4s forwards;
+  }
+
+  .phone-sketch-container .container .phone-shape .phone-display {
+    z-index: 99;
+    position: absolute;
+    border: var(--sketch-border);
+    border-color: transparent;
+    top: 100px;
+    bottom: 100px;
+    right: 25px;
+    left: 25px;
+    padding: 0;
+  }
+
+  .phone-sketch-container .container .phone-shape .phone-display .iframe-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.001;
+  }
+
+  .phone-sketch-container .container .phone-shape .phone-display .iframe-container iframe {
+    position: absolute;
+    border: none;
+    background: transparent;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: all;
+    margin: 0;
+    padding: 0;
+    transform: translateZ(1px);
+    box-shadow: 0px 0px 50px 0 rgba(0, 0, 0, 0);
+  }
+
+  .phone-sketch-container .container .phone-shape .phone-display .iframe-container::before {
+    content: " ";
+    font-size: 0;
+    position: absolute;
+    top: 0;
+    left: calc(-1 * var(--display-thickness));
+    width: var(--display-thickness);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotateY(90deg) translateX(calc(var(--display-thickness) / 2)) translateZ(calc(var(--display-thickness) / 2));
+  }
+
+  .phone-sketch-container .container .phone-shape .phone-display .iframe-container::after {
+    content: " ";
+    font-size: 0;
+    position: absolute;
+    left: 0;
+    bottom: calc(-1 * var(--display-thickness));
+    height: var(--display-thickness);
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotateX(90deg) translateY(calc(-1 * var(--display-thickness) / 2)) translateX(0) translateZ(calc(var(--display-thickness) / 2));
+  }
+
+  .phone-sketch-container .container .phone-shape .circles {
+    position: absolute;
+    width: var(--hole-size);
+    height: var(--hole-size);
+    left: 50%;
+    margin-left: calc(-1 * var(--hole-size) / 2);
+    border: var(--sketch-border);
+    border-color: transparent;
+    border-radius: 50%;
+  }
+
+  .phone-sketch-container .container .phone-shape .phone-hole {
+    top: 46px;
+  }
+
+  .phone-sketch-container .container .phone-shape .phone-button {
+    bottom: 24px;
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides .top,
+  .phone-sketch-container .container .phone-shape .graphic-guides .right,
+  .phone-sketch-container .container .phone-shape .graphic-guides .bottom,
+  .phone-sketch-container .container .phone-shape .graphic-guides .center,
+  .phone-sketch-container .container .phone-shape .graphic-guides .left {
+    position: absolute;
+    background: var(--guides-color);
+    opacity: 0;
+    animation-fill-mode: forwards !important;
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides .top {
+    height: var(--sketch-width);
+    left: calc(-1 * var(--sketch-width));
+    top: calc(-1 * var(--sketch-width));
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides .right {
+    height: calc(100% + var(--sketch-width) * 2);
+    width: var(--sketch-width);
+    right: calc(-1 * var(--sketch-width));
+    top: calc(-1 * var(--sketch-width));
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides .bottom {
+    height: var(--sketch-width);
+    left: calc(-1 * var(--sketch-width));
+    bottom: calc(-1 * var(--sketch-width));
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides .left {
+    height: calc(100% + var(--sketch-width) * 2);
+    width: var(--sketch-width);
+    left: calc(-1 * var(--sketch-width));
+    top: calc(-1 * var(--sketch-width));
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides .center {
+    width: var(--sketch-width);
+    left: 50%;
+    margin-left: calc(-1 * var(--sketch-width) / 2);
+    top: calc(-1 * var(--sketch-width));
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides .top,
+  .phone-sketch-container .container .phone-shape .graphic-guides .bottom {
+    ::before {
+      content: " ";
+      font-size: 0;
+      position: absolute;
+      top: 0;
+      left: calc(-1 * var(--sketch-fade-length));
+      width: var(--sketch-fade-length);
+      height: inherit;
+      background: linear-gradient(to right, transparent, var(--guides-color));
+    }
+    ::after {
+      content: " ";
+      font-size: 0;
+      position: absolute;
+      top: 0;
+      right: calc(-1 * var(--sketch-fade-length));
+      width: var(--sketch-fade-length);
+      height: inherit;
+      background: linear-gradient(to right, var(--guides-color), transparent);
+    }
+  }
+
+  .phone-sketch-container .container .phone-shape .graphic-guides .right,
+  .phone-sketch-container .container .phone-shape .graphic-guides .center,
+  .phone-sketch-container .container .phone-shape .graphic-guides .left {
+    ::before {
+      content: " ";
+      font-size: 0;
+      position: absolute;
+      right: 0;
+      top: calc(-1 * var(--sketch-fade-length));
+      height: var(--sketch-fade-length);
+      width: inherit;
+      background: linear-gradient(to bottom, transparent, var(--guides-color));
+    }
+    ::after {
+      content: " ";
+      font-size: 0;
+      position: absolute;
+      right: 0;
+      bottom: calc(-1 * var(--sketch-fade-length));
+      height: var(--sketch-fade-length);
+      width: inherit;
+      background: linear-gradient(to bottom, var(--guides-color), transparent);
+    }
+  }
+
+  .phone-sketch-container.flat .container {
+    perspective: 2400px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .phone-sketch-container.flat .container .phone-shape {
+    transform: rotateX(0) rotateY(0) rotateZ(0) !important;
+  }
+
+  .phone-sketch-container.flat .container .phone-shape .phone-display iframe {
+  }
+
+  .phone-sketch-container.flat .controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .phone-sketch-container.flat .controls span {
+    cursor: default;
+    font-family: sans-serif;
+    padding: 8px 20px;
+    border-radius: 2px;
+    background: #fff;
+    color: #333;
+  }
+</style>

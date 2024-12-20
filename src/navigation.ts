@@ -2,154 +2,117 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
 export const headerData = {
   links: [
+    
     {
-      text: 'Homes',
+      text: 'Solutions',
       links: [
         {
-          text: 'SaaS',
+          text: 'Banking',
+          icon: 'tabler:bank',
           href: getPermalink('/homes/saas'),
         },
         {
-          text: 'Startup',
+          text: 'Legal',
           href: getPermalink('/homes/startup'),
         },
         {
-          text: 'Mobile App',
+          text: 'Universities',
           href: getPermalink('/homes/mobile-app'),
         },
         {
-          text: 'Personal',
+          text: 'Hospitality',
+          href: getPermalink('/homes/personal'),
+        },
+        {
+          text: 'Healthcare',
+          href: getPermalink('/homes/personal'),
+        },
+        {
+          text: 'Enterprise',
           href: getPermalink('/homes/personal'),
         },
       ],
     },
+
     {
-      text: 'Pages',
+      text: 'Modules',
+      href: '#',
+    },
+
+    {
+      text: 'Integrations',
       links: [
         {
-          text: 'Features (Anchor Link)',
+          text: 'Video Conferencing',
           href: getPermalink('/#features'),
         },
         {
-          text: 'Services',
+          text: 'Access Control',
           href: getPermalink('/services'),
         },
         {
-          text: 'Pricing',
+          text: 'HAVC / Electricity',
           href: getPermalink('/pricing'),
         },
         {
-          text: 'About us',
+          text: 'Building Management Systems',
           href: getPermalink('/about'),
         },
         {
-          text: 'Contact',
+          text: 'Smart Lockers',
           href: getPermalink('/contact'),
         },
         {
-          text: 'Terms',
+          text: 'ITSM',
           href: getPermalink('/terms'),
         },
         {
-          text: 'Privacy policy',
+          text: 'IoT Sensors',
           href: getPermalink('/privacy'),
         },
       ],
     },
     {
-      text: 'Landing',
-      links: [
-        {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
-    },
-    {
       text: 'Blog',
-      links: [
-        {
-          text: 'Blog List',
-          href: getBlogPermalink(),
-        },
-        {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
-        },
-        {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
-        },
-        {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
-        },
-      ],
-    },
-    {
-      text: 'Widgets',
-      href: '#',
+      href: getBlogPermalink(),
     },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [{ text: 'Book a Demo', href: '#', target: '_blank' }],
 };
 
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'Solutions',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
+        { text: 'Banking', href: '#' },
+        { text: 'Legal', href: '#' },
+        { text: 'Universities', href: '#' },
+        { text: 'Hospitality', href: '#' },
+        { text: 'Healthcare', href: '#' },
         { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        
       ],
     },
     {
       title: 'Platform',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        { text: 'Modules', href: '#' },
+        { text: 'Video Conferencing', href: '#' },
+        { text: 'Access Control', href: '#' },
+        { text: 'HAVC / Electricity', href: '#' },
+        { text: 'BMS', href: '#' },
+        { text: 'Smart Lockers', href: '#' },
+        { text: 'ITSM', href: '#' },
+        { text: 'IoT Sensors', href: '#' },
       ],
     },
     {
       title: 'Support',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
+        { text: 'Hive Concierge Support', href: '#' },
+        { text: 'Partner Portal', href: '#' },
+        { text: 'API Docs', href: '#' },
       ],
     },
     {
@@ -158,10 +121,7 @@ export const footerData = {
         { text: 'About', href: '#' },
         { text: 'Blog', href: '#' },
         { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: 'Become a Partner', href: '#' },
       ],
     },
   ],
@@ -170,14 +130,9 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
+    { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: '#' },
+    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://linkedin.com/company/newwaveworkspace' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
   ],
-  footNote: `
-    <img class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm" src="https://onwidget.com/favicon/favicon-32x32.png" alt="onWidget logo" loading="lazy"></img>
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://onwidget.com/"> onWidget</a> · All rights reserved.
-  `,
+  footNote: '',
 };
