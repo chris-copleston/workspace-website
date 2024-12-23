@@ -1,13 +1,12 @@
 ---
 const phones = [
-
-{
+  {
     id: '01',
     color: 'yellow',
     title: 'One App',
     subtitle: 'Digital',
     boldText: 'Services',
-    description: ['Digital Hub', 'Seamless Tech', 'Connected Solutions']
+    description: ['Digital Hub', 'Seamless Tech', 'Connected Solutions'],
   },
   {
     id: '02',
@@ -15,7 +14,7 @@ const phones = [
     title: 'One App',
     subtitle: 'Resource',
     boldText: 'Booking',
-    description: ['Smart Scheduling', 'Effortless Access', 'Streamlined Workflows']
+    description: ['Smart Scheduling', 'Effortless Access', 'Streamlined Workflows'],
   },
   {
     id: '03',
@@ -23,7 +22,7 @@ const phones = [
     title: 'One App',
     subtitle: '',
     boldText: 'ESG',
-    description: ['Sustainable Practices', 'Green Impact', 'Eco Progress']
+    description: ['Sustainable Practices', 'Green Impact', 'Eco Progress'],
   },
   {
     id: '04',
@@ -31,7 +30,7 @@ const phones = [
     title: 'One App',
     subtitle: 'Smart',
     boldText: 'Analytics',
-    description: ['Data-Driven', 'Actionable Insights', 'Smart Metrics']
+    description: ['Data-Driven', 'Actionable Insights', 'Smart Metrics'],
   },
   {
     id: '05',
@@ -39,7 +38,7 @@ const phones = [
     title: 'One App',
     subtitle: '',
     boldText: 'Catering ',
-    description: ['Tailored Meals', 'Integrated', 'Quick Bites']
+    description: ['Tailored Meals', 'Integrated', 'Quick Bites'],
   },
   {
     id: '06',
@@ -47,7 +46,7 @@ const phones = [
     title: 'One App',
     subtitle: 'Ticket',
     boldText: 'Tracker',
-    description: ['Work Orders', 'Progress status', 'Ownership']
+    description: ['Work Orders', 'Progress status', 'Ownership'],
   },
   {
     id: '07',
@@ -55,7 +54,7 @@ const phones = [
     title: 'One App',
     subtitle: 'Visitor',
     boldText: 'Management',
-    description: ['Guest Experience', 'Secure Check-in', 'Seamless Entry']
+    description: ['Guest Experience', 'Secure Check-in', 'Seamless Entry'],
   },
   {
     id: '08',
@@ -63,43 +62,60 @@ const phones = [
     title: 'One App',
     subtitle: '',
     boldText: 'Integrations',
-    description: ['API Harmony', 'Connected Workflows', 'Unified Systems']
+    description: ['API Harmony', 'Connected Workflows', 'Unified Systems'],
   },
 ];
 ---
 
 <div class="outer-container">
   <div class="container text-black bg-blue-100 dark:bg-slate-800">
-    {phones.map(phone => (
-      <div class="trigger">
-        <div class={`phone ${phone.color}`}>
-          <div class="phone-top"></div>
-          <div class="phone-screen">
-            <h2>{phone.id}</h2>
-            <p>{phone.title}</p>
-            <h3>
-              {phone.subtitle} <b>{phone.boldText}</b>
-              <span class="dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </h3>
-            <hr />
-            <p>{phone.description.map(line => <>{line}<br /></>)}</p>
-          </div>
-          <div class="phone-bottom">
-            <div class="speakers speakers-left">
-              {Array(8).fill('').map(() => <span></span>)}
+    {
+      phones.map((phone, index) => (
+        <div class={`trigger trigger-${index + 1}`}>
+          <div class={`phone ${phone.color}`}>
+            <div class="phone-top" />
+            <div class="phone-screen">
+              <h2>{phone.id}</h2>
+              <p>{phone.title}</p>
+              <h3>
+                {phone.subtitle} <b>{phone.boldText}</b>
+                <span class="dots">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              </h3>
+              <hr />
+              <p>
+                {phone.description.map((line) => (
+                  <>
+                    {line}
+                    <br />
+                  </>
+                ))}
+              </p>
             </div>
-            <span class="charge"></span>
-            <div class="speakers speakers-right">
-              {Array(8).fill('').map(() => <span></span>)}
+            <div class="phone-bottom">
+              <div class="speakers speakers-left">
+                {Array(8)
+                  .fill('')
+                  .map(() => (
+                    <span />
+                  ))}
+              </div>
+              <span class="charge" />
+              <div class="speakers speakers-right">
+                {Array(8)
+                  .fill('')
+                  .map(() => (
+                    <span />
+                  ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </div>
 
@@ -134,7 +150,7 @@ const phones = [
   .outer-container {
     width: 100%;
     margin-top: -160px;
-    padding-left:80px;
+    padding-left: 80px;
     overflow: hidden;
   }
 
@@ -667,5 +683,109 @@ const phones = [
   .red .speakers span,
   .red .charge {
     background: linear-gradient(to top, #e53935, #ef5350);
+  }
+
+  // 4 phones per row
+  .trigger-1 {
+    z-index: 7;
+  }
+
+  .trigger-2 { 
+    z-index: 6;
+  }
+
+  .trigger-3 {
+    z-index: 5;
+  }
+
+  .trigger-4 {
+    z-index: 4;
+  }
+
+  .trigger-5 {
+    z-index: 70;
+  }
+
+  .trigger-6 {
+    z-index: 60;
+  }
+
+  .trigger-7 {
+    z-index: 50;
+  }
+
+  .trigger-8 {
+    z-index: 40;
+  }
+
+  // 3 phones per row
+  @media (max-width: 1535px) {
+    .trigger-1 {
+      z-index: 7;
+    }
+
+    .trigger-2 {
+      z-index: 6;
+    }
+
+    .trigger-3 {
+      z-index: 5;
+    }
+
+    .trigger-4 {
+      z-index: 70;
+    }
+
+    .trigger-5 {
+      z-index: 60;
+    }
+
+    .trigger-6 {
+      z-index: 50;
+    }
+
+    .trigger-7 {
+      z-index: 170;
+      margin-right: 400px;
+    }
+
+    .trigger-8 {
+      z-index: 160;
+    }
+  }
+
+  // 2 phones per row
+  @media (max-width: 1279px) {
+    .trigger-1 {
+      z-index: 7;
+    }
+
+    .trigger-2 {
+      z-index: 6;
+    }
+
+    .trigger-3 {
+      z-index: 70;
+    }
+
+    .trigger-4 {
+      z-index: 60;
+    }
+
+    .trigger-5 {
+      z-index: 170;
+    }
+
+    .trigger-6 {
+      z-index: 160;
+    }
+
+    .trigger-7 {
+      z-index: 270;
+    }
+
+    .trigger-8 {
+      z-index: 260;
+    }
   }
 </style>
