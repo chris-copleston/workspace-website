@@ -24,7 +24,7 @@ export const headerData = {
           href: getPermalink('/homes/personal'),
         },
         {
-          text: 'Healthcare',
+          text: 'Health and Life Sciences',
           href: getPermalink('/homes/personal'),
         },
         {
@@ -89,7 +89,7 @@ export const footerData = {
         { text: 'Legal', href: '#' },
         { text: 'Universities', href: '#' },
         { text: 'Hospitality', href: '#' },
-        { text: 'Healthcare', href: '#' },
+        { text: 'Health and Life Sciences', href: '#' },
         { text: 'Enterprise', href: '#' },
         
       ],
