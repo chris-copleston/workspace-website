@@ -86,7 +86,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         class="flex flex-col min-[930px]:flex-row min-[930px]:self-center w-full min-[930px]:w-auto text-xl min-[930px]:text-[0.9375rem] tracking-[0.01rem] font-medium min-[930px]:justify-center"
       >
         {
-          links.map(({ text, href, links }) => (
+          links.map(({ text, href, links, icon }) => (
             <li class={links?.length ? 'dropdown' : ''}>
               {links?.length ? (
                 <>
@@ -94,19 +94,21 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     type="button"
                     class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
                   >
+                    {icon && <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />}
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden min-[930px]:inline" />
                   </button>
                   <ul class="dropdown-menu min-[930px]:backdrop-blur-md dark:min-[930px]:bg-dark rounded min-[930px]:absolute pl-4 min-[930px]:pl-0 min-[930px]:hidden font-medium min-[930px]:bg-white/90 min-[930px]:min-w-[200px] border border-gray-100/20 min-[930px]:opacity-0">
-                    {links.map(({ text: text2, href: href2 }) => (
+                    {links.map(({ text: text2, href: href2, icon: icon2 }) => (
                       <li>
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b min-[930px]:hover:bg-blue-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
+                            'first:rounded-t last:rounded-b min-[930px]:hover:bg-blue-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap flex items-center',
                             { 'aw-link-active': href2 === currentPath },
                           ]}
                           href={href2}
                         >
+                          {icon2 && <Icon name={icon2} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />}
                           {text2}
                         </a>
                       </li>
@@ -121,6 +123,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                   ]}
                   href={href}
                 >
+                  {icon && <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />}
                   {text}
                 </a>
               )}

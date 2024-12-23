@@ -8,27 +8,32 @@ export const headerData = {
       links: [
         {
           text: 'Banking',
-          icon: 'tabler:bank',
+          icon: 'tabler:pig-money',
           href: getPermalink('/homes/saas'),
         },
         {
           text: 'Legal',
+          icon: 'tabler:gavel',
           href: getPermalink('/homes/startup'),
         },
         {
           text: 'Universities',
+          icon: 'tabler:school',
           href: getPermalink('/homes/mobile-app'),
         },
         {
           text: 'Hospitality',
+          icon: 'tabler:coffee',
           href: getPermalink('/homes/personal'),
         },
         {
           text: 'Health and Life Sciences',
+          icon: 'tabler:heartbeat',
           href: getPermalink('/homes/personal'),
         },
         {
           text: 'Enterprise',
+          icon: 'tabler:buildings',
           href: getPermalink('/homes/personal'),
         },
       ],
@@ -44,30 +49,37 @@ export const headerData = {
       links: [
         {
           text: 'Video Conferencing',
+          icon: 'tabler:video',
           href: getPermalink('/#features'),
         },
         {
           text: 'Access Control',
+          icon: 'tabler:door-off',
           href: getPermalink('/services'),
         },
         {
-          text: 'HAVC / Electricity',
+          text: 'HVAC / Electricity',
+          icon: 'tabler:air-conditioning',
           href: getPermalink('/pricing'),
         },
         {
           text: 'Building Management Systems',
+          icon: 'tabler:home-hand',
           href: getPermalink('/about'),
         },
         {
           text: 'Smart Lockers',
+          icon: 'tabler:cooker',
           href: getPermalink('/contact'),
         },
         {
           text: 'ITSM',
+          icon: 'tabler:server',
           href: getPermalink('/terms'),
         },
         {
           text: 'IoT Sensors',
+          icon: 'tabler:alarm-smoke',
           href: getPermalink('/privacy'),
         },
       ],
