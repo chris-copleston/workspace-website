@@ -92,12 +92,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <>
                   <button
                     type="button"
-                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap max-[929px]:font-bold"
+                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
                   >
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden min-[930px]:inline" />
                   </button>
-                  <ul class="dropdown-menu min-[930px]:backdrop-blur-md dark:min-[930px]:bg-dark rounded min-[930px]:absolute pl-4 min-[930px]:pl-0 min-[930px]:hidden font-medium min-[930px]:bg-white/90 min-[930px]:min-w-[200px] min-[930px]:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] border border-gray-100/20">
+                  <ul class="dropdown-menu min-[930px]:backdrop-blur-md dark:min-[930px]:bg-dark rounded min-[930px]:absolute pl-4 min-[930px]:pl-0 min-[930px]:hidden font-medium min-[930px]:bg-white/90 min-[930px]:min-w-[200px] border border-gray-100/20 min-[930px]:opacity-0">
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
@@ -116,7 +116,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap max-[929px]:font-bold',
+                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
                     { 'aw-link-active': href === currentPath },
                   ]}
                   href={href}
@@ -165,3 +165,33 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<style>
+  @media (max-width: 929px) {
+    .dropdown button,
+    nav a[href]:not(.dropdown-menu a) {
+      width: 100%;
+      font-weight: bold;
+      border-top: 1px solid rgb(219 234 254);
+    }
+  }
+  @media (min-width: 930px) {
+    .dropdown:hover .dropdown-menu {
+      animation: dropdownAnimation 0.3s ease-out forwards;
+      display: block;
+    }
+    .dropdown-menu {
+      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.35);
+    }
+    @keyframes dropdownAnimation {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+</style>
