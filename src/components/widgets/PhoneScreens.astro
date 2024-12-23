@@ -1,285 +1,104 @@
+---
+const phones = [
+  {
+    id: '01',
+    color: 'pink',
+    title: 'One App',
+    subtitle: 'Resource',
+    boldText: 'Booking',
+    description: ['rooms', 'desks', 'lockers', 'parking spaces']
+  },
+  {
+    id: '04',
+    color: 'blue',
+    title: 'One App',
+    subtitle: 'Booking',
+    boldText: 'Management',
+    description: ['manage all your bookings', 'from one place']
+  },
+  {
+    id: '02',
+    color: 'green',
+    title: 'One App',
+    subtitle: 'Meeting',
+    boldText: 'Productivity',
+    description: ['work smarter', 'optimise staff time']
+  },
+  {
+    id: '03',
+    color: 'yellow',
+    title: 'One App',
+    subtitle: 'Digital',
+    boldText: 'Services',
+    description: ['refresh your', 'mobile app showcase']
+  },
+  {
+    id: '05',
+    color: 'purple',
+    title: 'One App',
+    subtitle: 'Smart',
+    boldText: 'Analytics',
+    description: ['insights', 'reports', 'trends', 'data']
+  },
+  {
+    id: '06',
+    color: 'orange',
+    title: 'One App',
+    subtitle: 'Team',
+    boldText: 'Collaboration',
+    description: ['chat', 'share', 'connect', 'collaborate']
+  },
+  {
+    id: '07',
+    color: 'teal',
+    title: 'One App',
+    subtitle: 'Resource',
+    boldText: 'Tracking',
+    description: ['monitor', 'track', 'optimize', 'manage']
+  },
+  {
+    id: '08',
+    color: 'red',
+    title: 'One App',
+    subtitle: 'Security',
+    boldText: 'Control',
+    description: ['access', 'protect', 'secure', 'monitor']
+  }
+];
+---
+
 <div class="outer-container">
   <div class="container text-black bg-blue-100 dark:bg-slate-800">
-    <div class="trigger">
-      <div class="phone pink">
-        <div class="phone-top"></div>
-        <div class="phone-screen">
-          <h2>01</h2>
-          <p>One App</p>
-          <h3>
-            Resource <b>Booking</b>
-            <span class="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </h3>
-          <hr />
-          <p>rooms<br />desks<br />lockers<br />parking spaces</p>
-        </div>
-        <div class="phone-bottom">
-          <div class="speakers speakers-left">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+    {phones.map(phone => (
+      <div class="trigger">
+        <div class={`phone ${phone.color}`}>
+          <div class="phone-top"></div>
+          <div class="phone-screen">
+            <h2>{phone.id}</h2>
+            <p>{phone.title}</p>
+            <h3>
+              {phone.subtitle} <b>{phone.boldText}</b>
+              <span class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </h3>
+            <hr />
+            <p>{phone.description.map(line => <>{line}<br /></>)}</p>
           </div>
-          <span class="charge"></span>
-          <div class="speakers speakers-right">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+          <div class="phone-bottom">
+            <div class="speakers speakers-left">
+              {Array(8).fill('').map(() => <span></span>)}
+            </div>
+            <span class="charge"></span>
+            <div class="speakers speakers-right">
+              {Array(8).fill('').map(() => <span></span>)}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="trigger">
-      <div class="phone blue">
-        <div class="phone-top"></div>
-        <div class="phone-screen">
-          <h2>04</h2>
-          <p>One App</p>
-          <h3>
-            Booking <b>Management</b>
-            <span class="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </h3>
-          <hr />
-          <p>manage all your bookings <br /> from one place</p>
-        </div>
-        <div class="phone-bottom">
-          <div class="speakers speakers-left">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <span class="charge"></span>
-          <div class="speakers speakers-right">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="trigger">
-      <div class="phone green">
-        <div class="phone-top"></div>
-        <div class="phone-screen">
-          <h2>02</h2>
-          <p>One App</p>
-          <h3>
-            Meeting <b>Productivity</b>
-            <span class="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </h3>
-          <hr />
-          <p>work smarter <br /> optimise staff time</p>
-        </div>
-        <div class="phone-bottom">
-          <div class="speakers speakers-left">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <span class="charge"></span>
-          <div class="speakers speakers-right">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="trigger">
-      <div class="phone yellow">
-        <div class="phone-top"></div>
-        <div class="phone-screen">
-          <h2>03</h2>
-          <p>One App</p>
-          <h3>
-            Digital <b>Services</b>
-            <span class="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </h3>
-          <hr />
-          <p>refresh your <br /> mobile app showcase</p>
-        </div>
-        <div class="phone-bottom">
-          <div class="speakers speakers-left">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <span class="charge"></span>
-          <div class="speakers speakers-right">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="trigger">
-      <div class="phone purple">
-        <div class="phone-top"></div>
-        <div class="phone-screen">
-          <h2>05</h2>
-          <p>One App</p>
-          <h3>
-            Smart <b>Analytics</b>
-            <span class="dots">
-              <span></span><span></span><span></span>
-            </span>
-          </h3>
-          <hr />
-          <p>insights<br />reports<br />trends<br />data</p>
-        </div>
-        <div class="phone-bottom">
-          <div class="speakers speakers-left">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-          <span class="charge"></span>
-          <div class="speakers speakers-right">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="trigger">
-      <div class="phone orange">
-        <div class="phone-top"></div>
-        <div class="phone-screen">
-          <h2>06</h2>
-          <p>One App</p>
-          <h3>
-            Team <b>Collaboration</b>
-            <span class="dots">
-              <span></span><span></span><span></span>
-            </span>
-          </h3>
-          <hr />
-          <p>chat<br />share<br />connect<br />collaborate</p>
-        </div>
-        <div class="phone-bottom">
-          <div class="speakers speakers-left">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-          <span class="charge"></span>
-          <div class="speakers speakers-right">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="trigger">
-      <div class="phone teal">
-        <div class="phone-top"></div>
-        <div class="phone-screen">
-          <h2>07</h2>
-          <p>One App</p>
-          <h3>
-            Resource <b>Tracking</b>
-            <span class="dots">
-              <span></span><span></span><span></span>
-            </span>
-          </h3>
-          <hr />
-          <p>monitor<br />track<br />optimize<br />manage</p>
-        </div>
-        <div class="phone-bottom">
-          <div class="speakers speakers-left">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-          <span class="charge"></span>
-          <div class="speakers speakers-right">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="trigger">
-      <div class="phone red">
-        <div class="phone-top"></div>
-        <div class="phone-screen">
-          <h2>08</h2>
-          <p>One App</p>
-          <h3>
-            Security <b>Control</b>
-            <span class="dots">
-              <span></span><span></span><span></span>
-            </span>
-          </h3>
-          <hr />
-          <p>access<br />protect<br />secure<br />monitor</p>
-        </div>
-        <div class="phone-bottom">
-          <div class="speakers speakers-left">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-          <span class="charge"></span>
-          <div class="speakers speakers-right">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
-    </div>
+    ))}
   </div>
 </div>
 
