@@ -2,7 +2,6 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
 export const headerData = {
   links: [
-    
     {
       text: 'Solutions',
       links: [
@@ -40,8 +39,21 @@ export const headerData = {
     },
 
     {
-      text: 'Modules',
+      text: 'Features',
       href: '#',
+      links: [
+        {
+          text: 'Resource Booking',
+          icon: 'tabler:calendar',
+          href: getPermalink('/booking'),
+        },
+        {
+          text: 'Visitor Management',
+          icon: 'tabler:users',
+          href: getPermalink('/vms'),
+        },
+
+      ]
     },
 
     {
