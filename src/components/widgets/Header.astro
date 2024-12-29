@@ -7,6 +7,7 @@ import Button from '~/components/ui/Button.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
+
 import type { CallToAction } from '~/types';
 
 interface Link {
@@ -94,7 +95,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     type="button"
                     class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
                   >
-                    {icon && <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />}
+                    {icon && (
+                      <div class="icon-wrapper">
+                        <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />
+                      </div>
+                    )}
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden min-[930px]:inline" />
                   </button>
@@ -108,7 +113,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                           ]}
                           href={href2}
                         >
-                          {icon2 && <Icon name={icon2} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />}
+                          {icon2 && (
+                            <div class="icon-wrapper">
+                              <Icon name={icon2} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />
+                            </div>
+                          )}
                           {text2}
                         </a>
                       </li>
@@ -123,7 +132,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                   ]}
                   href={href}
                 >
-                  {icon && <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />}
+                  {icon && (
+                    <div class="icon-wrapper">
+                      <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />
+                    </div>
+                  )}
                   {text}
                 </a>
               )}
@@ -180,21 +193,52 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   }
   @media (min-width: 930px) {
     .dropdown:hover .dropdown-menu {
-      animation: dropdownAnimation 0.3s ease-out forwards;
       display: block;
-    }
-    .dropdown-menu {
-      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.35);
-    }
-    @keyframes dropdownAnimation {
-      from {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      opacity: 1;
     }
   }
+
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center;
+  }
 </style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // Select all icon elements within menu items
+  const menuIcons = document.querySelectorAll('nav a .w-5, nav button .w-5');
+  
+  // Wrap each icon in a container div
+  menuIcons.forEach(icon => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'icon-wrapper';
+    icon.parentNode.insertBefore(wrapper, icon);
+    wrapper.appendChild(icon);
+  });
+
+  // Add hover animations for each icon wrapper
+  const iconWrappers = document.querySelectorAll('.icon-wrapper');
+  iconWrappers.forEach(wrapper => {
+    const parentElement = wrapper.closest('a, button');
+    
+    parentElement?.addEventListener('mouseenter', () => {
+      gsap.to(wrapper, {
+        scale: 1.2,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+
+    parentElement?.addEventListener('mouseleave', () => {
+      gsap.to(wrapper, {
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+  });
+</script>
