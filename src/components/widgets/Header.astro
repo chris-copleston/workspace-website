@@ -207,16 +207,23 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </style>
 
 <script>
-  import { gsap } from 'gsap';
+  document.addEventListener(
+  "astro:page-load",
+  () => {
+    console.log('header');
+    initIconAnimations();
+  },
+  { once: false }
+);
 
-  // Select all icon elements within menu items
+const initIconAnimations = () => {  // Select all icon elements within menu items
   const menuIcons = document.querySelectorAll('nav a .w-5, nav button .w-5');
   
   // Wrap each icon in a container div
   menuIcons.forEach(icon => {
     const wrapper = document.createElement('div');
     wrapper.className = 'icon-wrapper';
-    icon.parentNode.insertBefore(wrapper, icon);
+    icon.parentNode?.insertBefore(wrapper, icon);
     wrapper.appendChild(icon);
   });
 
@@ -228,6 +235,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     parentElement?.addEventListener('mouseenter', () => {
       gsap.to(wrapper, {
         scale: 1.2,
+        rotate: -4,
         duration: 0.3,
         ease: 'power2.out'
       });
@@ -236,9 +244,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     parentElement?.addEventListener('mouseleave', () => {
       gsap.to(wrapper, {
         scale: 1,
+        rotate: 0,
         duration: 0.3,
         ease: 'power2.out'
       });
     });
   });
+}
 </script>
