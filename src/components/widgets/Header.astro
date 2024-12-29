@@ -198,6 +198,13 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     }
   }
 
+  /* Add transitions for menu items */
+  nav a,
+  .dropdown button,
+  .dropdown-menu a {
+    transition: background-color 0.3s ease-in-out;
+  }
+
   .icon-wrapper {
     display: inline-flex;
     align-items: center;
