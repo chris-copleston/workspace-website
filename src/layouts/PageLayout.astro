@@ -24,6 +24,10 @@ const { metadata } = Astro.props;
   </slot>
   <main>
     <slot />
+    <script>
+      import gsap from "gsap";
+      window.gsap = gsap;
+    </script>
   </main>
   <slot name="footer">
     <Footer {...footerData} />
