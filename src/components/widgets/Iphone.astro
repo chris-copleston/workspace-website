@@ -1,0 +1,195 @@
+---
+interface Props {
+  item: {
+    img: string;
+    color: string[];
+  };
+}
+
+const { item } = Astro.props;
+---
+
+<div id="iphone-container" class="w-full h-[600px] relative" data-img={item.img} data-color={item.color[0]}>
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="w-full h-full" id="canvas-container"></div>
+  </div>
+</div>
+
+<script>
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+  import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+  
+  class IPhoneRenderer {
+    constructor(container) {
+      console.log('Initializing iPhone renderer');
+      
+      // Initialize Three.js scene
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf5f5f5);
+      
+      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+      camera.position.set(0, 0, 10);
+      
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.shadowMap.enabled = true;
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      container.appendChild(renderer.domElement);
+      
+      // Add OrbitControls
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      
+      console.log('Container size:', container.clientWidth, container.clientHeight);
+      
+      // Set up DRACO loader
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+      
+      // Load model
+      const loader = new GLTFLoader();
+      loader.setDRACOLoader(dracoLoader);
+      
+      console.log('Loading model from:', '/models/scene.glb');
+      
+      loader.load('/models/scene.glb', 
+        // Success callback
+        (gltf) => {
+          console.log('Model loaded successfully');
+          const model = gltf.scene;
+          
+          // Center the model
+          const box = new THREE.Box3().setFromObject(model);
+          const center = box.getCenter(new THREE.Vector3());
+          const size = box.getSize(new THREE.Vector3());
+          
+          // Adjust scale based on size
+          const maxDim = Math.max(size.x, size.y, size.z);
+          const scale = 5 / maxDim;
+          model.scale.setScalar(scale);
+          
+          // Center the model
+          model.position.sub(center.multiplyScalar(scale));
+          
+          // Update materials
+          model.traverse((child) => {
+            if (child.isMesh) {
+              console.log('Processing mesh:', child.name);
+              const materialName = child.material.name;
+              if (
+                materialName !== "zFdeDaGNRwzccye" &&
+                materialName !== "ujsvqBWRMnqdwPx" &&
+                materialName !== "hUlRcbieVuIiOXG" &&
+                materialName !== "jlzuBkUzuJqgiAK" &&
+                materialName !== "xNrofRCqOXXHVZt"
+              ) {
+                child.material.color = new THREE.Color(container.dataset.color);
+              }
+              
+              // Apply texture to specific mesh
+              if (child.name === "xXDHkMplTIDAXLN") {
+                console.log('Applying screen texture');
+                const textureLoader = new THREE.TextureLoader();
+                textureLoader.load(container.dataset.img, 
+                  // Texture loaded callback
+                  (texture) => {
+                    console.log('Screen texture loaded');
+                    child.material = new THREE.MeshStandardMaterial({
+                      map: texture,
+                      roughness: 1
+                    });
+                  },
+                  // Texture progress callback
+                  undefined,
+                  // Texture error callback
+                  (error) => {
+                    console.error('Error loading texture:', error);
+                  }
+                );
+              }
+              
+              // Enable shadows
+              child.castShadow = true;
+              child.receiveShadow = true;
+            }
+          });
+          
+          scene.add(model);
+          
+          // Auto-rotate the model
+          function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            model.rotation.y += 0.003;
+            renderer.render(scene, camera);
+          }
+          animate();
+        }, 
+        // Progress callback
+        (progress) => {
+          console.log('Loading model:', (progress.loaded / progress.total * 100) + '%');
+        },
+        // Error callback
+        (error) => {
+          console.error('Error loading model:', error);
+        }
+      );
+      
+      // Add lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+      
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(5, 5, 5);
+      directionalLight.castShadow = true;
+      scene.add(directionalLight);
+      
+      // Add fill lights
+      const fillLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+      fillLight1.position.set(-5, 0, 2);
+      scene.add(fillLight1);
+      
+      const fillLight2 = new THREE.DirectionalLight(0xffffff, 0.8);
+      fillLight2.position.set(5, 0, -2);
+      scene.add(fillLight2);
+      
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+    }
+  }
+  
+  // Initialize the renderer when the DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('canvas-container');
+    if (container) {
+      console.log('Found container, initializing renderer');
+      new IPhoneRenderer(container);
+    } else {
+      console.error('Container not found');
+    }
+  });
+</script>
+
+<style>
+  #iphone-container {
+    display: block;
+    background-color: #f5f5f5;
+  }
+  
+  #canvas-container {
+    position: relative;
+  }
+  
+  #canvas-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>

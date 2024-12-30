@@ -144,23 +144,6 @@ const getZIndex = (index: number) => {
     easing: 'easeInOutQuad',
     duration: 800,
   });
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('.outer-container');
-    if (!container) return;
-
-    const checkIfClipped = () => {
-      const rect = container.getBoundingClientRect();
-      if (rect.top < 0) {
-        console.log('Container top is clipped', rect.top);
-      }
-    };
-
-    // Check on scroll
-    window.addEventListener('scroll', checkIfClipped, { passive: true });
-
-    // Initial check
-    checkIfClipped();
-  });
 </script>
 
 <script>
