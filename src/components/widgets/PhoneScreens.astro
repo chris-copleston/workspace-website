@@ -7,6 +7,7 @@ const phones = [
     subtitle: 'Digital',
     boldText: 'Services',
     description: ['Digital Hub', 'Seamless Tech', 'Connected Solutions'],
+    url: '/services/digital'
   },
   {
     id: '02',
@@ -15,30 +16,34 @@ const phones = [
     subtitle: 'Resource',
     boldText: 'Booking',
     description: ['Smart Scheduling', 'Effortless Access', 'Streamlined Workflows'],
+    url: '/services/booking'
   },
   {
     id: '03',
-    color: 'blue',
+    color: 'pink',
     title: 'One App',
     subtitle: '',
     boldText: 'ESG',
     description: ['Sustainable Practices', 'Green Impact', 'Eco Progress'],
+    url: '/services/esg'
   },
   {
     id: '04',
-    color: 'pink',
+    color: 'red',
     title: 'One App',
     subtitle: 'Smart',
     boldText: 'Analytics',
     description: ['Data-Driven', 'Actionable Insights', 'Smart Metrics'],
+    url: '/services/analytics'
   },
   {
     id: '05',
-    color: 'red',
+    color: 'blue',
     title: 'One App',
     subtitle: '',
     boldText: 'Catering ',
     description: ['Tailored Meals', 'Integrated', 'Quick Bites'],
+    url: '/services/catering'
   },
   {
     id: '06',
@@ -47,6 +52,7 @@ const phones = [
     subtitle: 'Ticket',
     boldText: 'Tracker',
     description: ['Work Orders', 'Progress status', 'Ownership'],
+    url: '/services/tickets'
   },
   {
     id: '07',
@@ -55,6 +61,7 @@ const phones = [
     subtitle: 'Visitor',
     boldText: 'Management',
     description: ['Guest Experience', 'Secure Check-in', 'Seamless Entry'],
+    url: '/services/visitors'
   },
   {
     id: '08',
@@ -63,6 +70,7 @@ const phones = [
     subtitle: '',
     boldText: 'Integrations',
     description: ['API Harmony', 'Connected Workflows', 'Unified Systems'],
+    url: '/services/integrations'
   },
 ];
 
@@ -89,47 +97,49 @@ const getZIndex = (index: number) => {
     {
       phones.map((phone, index) => (
         <div class={`trigger trigger-${index + 1}`} style={`z-index: ${getZIndex(index)};`} data-index={index + 1}>
-          <div class={`phone ${phone.color}`}>
-            <div class="phone-top" />
-            <div class="phone-screen">
-              <h2>{phone.id}</h2>
-              <p>{phone.title}</p>
-              <h3>
-                {phone.subtitle} <b>{phone.boldText}</b>
-                <span class="dots">
-                  <span />
-                  <span />
-                  <span />
-                </span>
-              </h3>
-              <hr />
-              <p>
-                {phone.description.map((line) => (
-                  <>
-                    {line}
-                    <br />
-                  </>
-                ))}
-              </p>
-            </div>
-            <div class="phone-bottom">
-              <div class="speakers speakers-left">
-                {Array(8)
-                  .fill('')
-                  .map(() => (
+          <a href={phone.url} class="block">
+            <div class={`phone ${phone.color}`}>
+              <div class="phone-top" />
+              <div class="phone-screen">
+                <h2>{phone.id}</h2>
+                <p>{phone.title}</p>
+                <h3>
+                  {phone.subtitle} <b>{phone.boldText}</b>
+                  <span class="dots">
                     <span />
-                  ))}
-              </div>
-              <span class="charge" />
-              <div class="speakers speakers-right">
-                {Array(8)
-                  .fill('')
-                  .map(() => (
                     <span />
+                    <span />
+                  </span>
+                </h3>
+                <hr />
+                <p>
+                  {phone.description.map((line) => (
+                    <>
+                      {line}
+                      <br />
+                    </>
                   ))}
+                </p>
+              </div>
+              <div class="phone-bottom">
+                <div class="speakers speakers-left">
+                  {Array(8)
+                    .fill('')
+                    .map(() => (
+                      <span />
+                    ))}
+                </div>
+                <span class="charge" />
+                <div class="speakers speakers-right">
+                  {Array(8)
+                    .fill('')
+                    .map(() => (
+                      <span />
+                    ))}
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       ))
     }
@@ -229,6 +239,12 @@ const getZIndex = (index: number) => {
     transform: rotateY(15deg) rotateX(55deg) rotateZ(-30deg);
     margin: 25px;
     pointer-events: all;
+  }
+
+  .trigger a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
 
   .phone {
