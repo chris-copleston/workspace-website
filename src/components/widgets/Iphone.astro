@@ -9,9 +9,14 @@ interface Props {
 const { item } = Astro.props;
 ---
 
-<div id="iphone-container" class="w-full h-[600px] relative" data-img={item.img} data-color={item.color[0]}>
+<div id="iphone-container" class="w-full h-[600px] relative">
   <div class="absolute inset-0 flex items-center justify-center">
-    <div class="w-full h-full" id="canvas-container"></div>
+    <div 
+      class="w-full h-full" 
+      id="canvas-container" 
+      data-screen-img={item.img} 
+      data-phone-color={item.color[0]}
+    ></div>
   </div>
 </div>
 
@@ -24,17 +29,20 @@ const { item } = Astro.props;
   class IPhoneRenderer {
     constructor(container) {
       console.log('Initializing iPhone renderer');
+      console.log('Screen image path:', container.dataset.screenImg);
+      console.log('Phone color:', container.dataset.phoneColor);
       
       // Initialize Three.js scene
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xf5f5f5);
       
+      // Create camera
       const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-      camera.position.set(0, 0, 10);
+      camera.position.z = 10;
       
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
+      // Create renderer
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
       renderer.shadowMap.enabled = true;
       renderer.outputEncoding = THREE.sRGBEncoding;
       container.appendChild(renderer.domElement);
@@ -44,11 +52,16 @@ const { item } = Astro.props;
       controls.enableDamping = true;
       controls.dampingFactor = 0.05;
       
-      console.log('Container size:', container.clientWidth, container.clientHeight);
-      
       // Set up DRACO loader
       const dracoLoader = new DRACOLoader();
       dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+      
+      // Add environment map
+      const pmremGenerator = new THREE.PMREMGenerator(renderer);
+      pmremGenerator.compileEquirectangularShader();
+      
+      const cubeRenderTarget = pmremGenerator.fromScene(new THREE.Scene());
+      const envMap = cubeRenderTarget.texture;
       
       // Load model
       const loader = new GLTFLoader();
@@ -80,6 +93,16 @@ const { item } = Astro.props;
             if (child.isMesh) {
               console.log('Processing mesh:', child.name);
               const materialName = child.material.name;
+              
+              // Create titanium material for the edges
+              const titaniumMaterial = new THREE.MeshStandardMaterial({
+                color: 0xD3D3D3,  // Light gray base color
+                metalness: 0.9,    // High metalness for metallic look
+                roughness: 0.3,    // Lower roughness for slight shine
+                envMap: envMap,    // Add environment map
+                envMapIntensity: 1.2  // Enhance environment reflections
+              });
+              
               if (
                 materialName !== "zFdeDaGNRwzccye" &&
                 materialName !== "ujsvqBWRMnqdwPx" &&
@@ -87,40 +110,38 @@ const { item } = Astro.props;
                 materialName !== "jlzuBkUzuJqgiAK" &&
                 materialName !== "xNrofRCqOXXHVZt"
               ) {
-                child.material.color = new THREE.Color(container.dataset.color);
+                // Apply titanium material to the edges
+                child.material = titaniumMaterial;
               }
               
               // Apply texture to specific mesh
               if (child.name === "xXDHkMplTIDAXLN") {
-                console.log('Applying screen texture');
+                console.log('Found screen mesh:', child.name);
                 const textureLoader = new THREE.TextureLoader();
-                textureLoader.load(container.dataset.img, 
-                  // Texture loaded callback
-                  (texture) => {
-                    console.log('Screen texture loaded');
-                    child.material = new THREE.MeshStandardMaterial({
-                      map: texture,
-                      roughness: 1
-                    });
-                  },
-                  // Texture progress callback
-                  undefined,
-                  // Texture error callback
-                  (error) => {
-                    console.error('Error loading texture:', error);
-                  }
-                );
+                const screenImagePath = container.dataset.screenImg;
+                
+                if (screenImagePath) {
+                  textureLoader.load(
+                    screenImagePath,
+                    (texture) => {
+                      texture.encoding = THREE.sRGBEncoding;
+                      texture.flipY = false;
+                      child.material = new THREE.MeshStandardMaterial({
+                        map: texture,
+                        roughness: 0.2,
+                        metalness: 0.0,
+                        transparent: true,
+                        opacity: 1,
+                      });
+                    }
+                  );
+                }
               }
-              
-              // Enable shadows
-              child.castShadow = true;
-              child.receiveShadow = true;
             }
           });
           
           scene.add(model);
           
-          // Auto-rotate the model
           function animate() {
             requestAnimationFrame(animate);
             controls.update();
@@ -128,14 +149,6 @@ const { item } = Astro.props;
             renderer.render(scene, camera);
           }
           animate();
-        }, 
-        // Progress callback
-        (progress) => {
-          console.log('Loading model:', (progress.loaded / progress.total * 100) + '%');
-        },
-        // Error callback
-        (error) => {
-          console.error('Error loading model:', error);
         }
       );
       
@@ -148,7 +161,7 @@ const { item } = Astro.props;
       directionalLight.castShadow = true;
       scene.add(directionalLight);
       
-      // Add fill lights
+      // Add fill lights for better metal reflection
       const fillLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
       fillLight1.position.set(-5, 0, 2);
       scene.add(fillLight1);
@@ -181,7 +194,6 @@ const { item } = Astro.props;
 <style>
   #iphone-container {
     display: block;
-    background-color: #f5f5f5;
   }
   
   #canvas-container {
