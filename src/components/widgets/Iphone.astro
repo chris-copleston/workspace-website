@@ -4,9 +4,11 @@ interface Props {
     img: string;
     color: string[];
   };
+  enableOrbitControls?: boolean;
+  enableAutoRotation?: boolean;
 }
 
-const { item } = Astro.props;
+const { item, enableOrbitControls = false, enableAutoRotation = false } = Astro.props;
 ---
 
 <div class="relative w-full h-full">
@@ -16,6 +18,8 @@ const { item } = Astro.props;
       id="canvas-container" 
       data-screen-img={item.img} 
       data-phone-color={item.color[0]}
+      data-enable-orbit-controls={enableOrbitControls}
+      data-enable-auto-rotation={enableAutoRotation}
     ></div>
   </div>
 </div>
@@ -48,9 +52,15 @@ const { item } = Astro.props;
       container.appendChild(renderer.domElement);
       
       // Add OrbitControls
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.05;
+      const enableOrbitControls = container.dataset.enableOrbitControls === 'true';
+      const enableAutoRotation = container.dataset.enableAutoRotation === 'true';
+      let controls;
+      if (enableOrbitControls) {
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = false;
+      }
       
       // Set up DRACO loader
       const dracoLoader = new DRACOLoader();
@@ -87,6 +97,9 @@ const { item } = Astro.props;
           
           // Center the model
           model.position.sub(center.multiplyScalar(scale));
+          
+          // Rotate the model to show screen side
+          model.rotation.y = Math.PI;
           
           // Update materials
           model.traverse((child) => {
@@ -142,12 +155,19 @@ const { item } = Astro.props;
           
           scene.add(model);
           
-          function animate() {
+          // Animation loop
+          const animate = () => {
             requestAnimationFrame(animate);
-            controls.update();
-            model.rotation.y += 0.003;
+            
+            if (enableOrbitControls && controls) {
+              controls.update();
+            } else if (enableAutoRotation && model) {
+              // Auto rotation only when enabled and no orbit controls
+              model.rotation.y += 0.005;
+            }
+            
             renderer.render(scene, camera);
-          }
+          };
           animate();
         }
       );
