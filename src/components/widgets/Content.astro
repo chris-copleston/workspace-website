@@ -90,7 +90,11 @@ const {
                 )}
                 {iphone && (
                   <div class="absolute inset-0 w-full h-full">
-                    <Iphone item={iphone} />
+                    <Iphone 
+                      item={iphone} 
+                      enableOrbitControls={iphone.enableOrbitControls}
+                      enableAutoRotation={iphone.enableAutoRotation}
+                    />
                   </div>
                 )}
               </div>

@@ -158,6 +158,7 @@ const { item, enableOrbitControls = false, enableAutoRotation = false } = Astro.
           // Animation loop
           const animate = () => {
             requestAnimationFrame(animate);
+            console.log('enableOrbitControls', enableOrbitControls);
             
             if (enableOrbitControls && controls) {
               controls.update();
