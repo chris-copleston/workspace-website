@@ -273,9 +273,15 @@ export interface Steps extends Omit<Headline, 'classes'>, Widget {
   isReversed?: boolean;
 }
 
+export interface IphoneConfig {
+  img: string;
+  color: string[];
+}
+
 export interface Content extends Omit<Headline, 'classes'>, Widget {
   content?: string;
   image?: string | unknown;
+  iphone?: IphoneConfig;
   items?: Array<Item>;
   columns?: number;
   isReversed?: boolean;

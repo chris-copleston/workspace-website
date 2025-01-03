@@ -5,6 +5,7 @@ import WidgetWrapper from '../ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
 import ItemGrid from '../ui/ItemGrid.astro';
+import Iphone from './Iphone.astro';
 
 const {
   title = await Astro.slots.render('title'),
@@ -15,6 +16,7 @@ const {
   items = [],
   columns,
   image = await Astro.slots.render('image'),
+  iphone,
   isReversed = false,
   isAfterContent = false,
 
@@ -69,25 +71,32 @@ const {
         />
       </div>
       <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
-        {
-          image && (
-            <div class="relative m-auto max-w-4xl">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
-              ) : (
-                <Image
-                  class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
-                  width={500}
-                  height={500}
-                  widths={[400, 768]}
-                  sizes="(max-width: 768px) 100vw, 432px"
-                  layout="responsive"
-                  {...image}
-                />
-              )}
-            </div>
-          )
-        }
+        <div class="relative m-auto max-w-4xl">
+          {
+            image && (
+              <div class="relative">
+                {typeof image === 'string' ? (
+                  <Fragment set:html={image} />
+                ) : (
+                  <Image
+                    class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
+                    width={500}
+                    height={500}
+                    widths={[400, 768]}
+                    sizes="(max-width: 768px) 100vw, 432px"
+                    layout="responsive"
+                    {...image}
+                  />
+                )}
+                {iphone && (
+                  <div class="absolute inset-0 w-full h-full">
+                    <Iphone item={iphone} />
+                  </div>
+                )}
+              </div>
+            )
+          }
+        </div>
       </div>
     </div>
   </div>
