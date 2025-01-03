@@ -43,15 +43,45 @@ export const headerData = {
       href: '#',
       links: [
         {
+          text: 'Digital Services',
+          icon: 'tabler:automation',
+          href: getPermalink('/services'),
+        },
+        {
           text: 'Resource Booking',
           icon: 'tabler:calendar',
           href: getPermalink('/booking'),
+        },
+        {
+          text: 'ESG' ,
+          icon: 'tabler:leaf',
+          href: getPermalink('/esg'),
+        },
+        {
+          text: 'Smart Analytics',
+          icon: 'tabler:chart-histogram',
+          href: getPermalink('/analytics'),
+        },
+        {
+          text: 'Catering',
+          icon: 'tabler:tools-kitchen-2',
+          href: getPermalink('/catering'),
+        },
+        {
+          text: 'Ticket Tracker',
+          icon: 'tabler:ticket',
+          href: getPermalink('/ticket-tracker'),
         },
         {
           text: 'Visitor Management',
           icon: 'tabler:users',
           href: getPermalink('/vms'),
         },
+        {
+          text: 'Integrations',
+          icon: 'tabler:plug',
+          href: getPermalink('/integrations'),
+        }
 
       ]
     },
