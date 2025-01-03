@@ -4,11 +4,21 @@ interface Props {
     img: string;
     color: string[];
   };
+  start?: {
+    x: number;
+    y: number;
+    z: number;
+  };
+  end?: {
+    x: number;
+    y: number;
+    z: number;
+  };
   enableOrbitControls?: boolean;
   enableAutoRotation?: boolean;
 }
 
-const { item, enableOrbitControls = false, enableAutoRotation = false } = Astro.props;
+const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enableOrbitControls = false, enableAutoRotation = false } = Astro.props;
 ---
 
 <div class="relative w-full h-full">
@@ -18,6 +28,12 @@ const { item, enableOrbitControls = false, enableAutoRotation = false } = Astro.
       id="canvas-container" 
       data-screen-img={item.img} 
       data-phone-color={item.color[0]}
+      data-start-x={start.x}
+      data-start-y={start.y}
+      data-start-z={start.z}
+      data-end-x={end.x}
+      data-end-y={end.y}
+      data-end-z={end.z}
       data-enable-orbit-controls={enableOrbitControls}
       data-enable-auto-rotation={enableAutoRotation}
     ></div>
@@ -29,7 +45,12 @@ const { item, enableOrbitControls = false, enableAutoRotation = false } = Astro.
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
   import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-  
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  // Register ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
+
   class IPhoneRenderer {
     constructor(container) {
       console.log('Initializing iPhone renderer');
@@ -83,6 +104,35 @@ const { item, enableOrbitControls = false, enableAutoRotation = false } = Astro.
           });
         });
       }
+
+      // Set up scroll-based animation
+      const startPos = { 
+        x: parseFloat(container.dataset.startX || '0'),
+        y: parseFloat(container.dataset.startY || '0'),
+        z: parseFloat(container.dataset.startZ || '10')
+      };
+      const endPos = {
+        x: parseFloat(container.dataset.endX || '0'),
+        y: parseFloat(container.dataset.endY || '0'),
+        z: parseFloat(container.dataset.endZ || '10')
+      };
+
+      // Create scroll trigger animation
+      gsap.to(camera.position, {
+        scrollTrigger: {
+          trigger: container,
+          start: "top center",
+          end: "bottom center",
+          scrub: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            camera.position.x = startPos.x + (endPos.x - startPos.x) * progress;
+            camera.position.y = startPos.y + (endPos.y - startPos.y) * progress;
+            camera.position.z = startPos.z + (endPos.z - startPos.z) * progress;
+            console.log('Animation Progress:', progress.toFixed(2));
+          }
+        }
+      });
       
       // Set up DRACO loader
       const dracoLoader = new DRACOLoader();

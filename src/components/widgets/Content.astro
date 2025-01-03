@@ -7,6 +7,39 @@ import Button from '~/components/ui/Button.astro';
 import ItemGrid from '../ui/ItemGrid.astro';
 import Iphone from './Iphone.astro';
 
+interface Props {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  content?: string;
+  callToAction?: string;
+  items?: Array<any>;
+  columns?: number;
+  image?: any;
+  iphone?: {
+    img: string;
+    color: string[];
+    enableOrbitControls?: boolean;
+    enableAutoRotation?: boolean;
+    start?: {
+      x: number;
+      y: number;
+      z: number;
+    };
+    end?: {
+      x: number;
+      y: number;
+      z: number;
+    };
+  };
+  isReversed?: boolean;
+  isAfterContent?: boolean;
+  id?: string;
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+}
+
 const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
@@ -94,6 +127,8 @@ const {
                       item={iphone} 
                       enableOrbitControls={iphone.enableOrbitControls}
                       enableAutoRotation={iphone.enableAutoRotation}
+                      start={iphone.start}
+                      end={iphone.end}
                     />
                   </div>
                 )}
