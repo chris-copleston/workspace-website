@@ -13,8 +13,7 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Customers from '~/components/widgets/Customers.astro';
-import brownOfficeImage from '~/assets/images/bg/brown-office.jpg';
-import bagCoffeeImage from '~/assets/images/bg/bag-coffee.jpg';
+import homeBackground from '~/assets/images/bg/home-bg.jpg';
 
 const metadata = {
   title: 'New Wave Workspace — The Super App for Hybrid Work',
@@ -102,13 +101,7 @@ const metadata = {
       },
     ]}
   />
-  
-    <!-- Customers Widget **************** -->
 
-  <Customers 
-    title="Companies that trust us" 
-    subtitle="Join these industry leaders who rely on our solutions" 
-  />
 
   <!-- Content Widget **************** -->
 
@@ -116,11 +109,12 @@ const metadata = {
     isReversed
     tagline=""
     title="Why just One App?"
+    subtitle="There are so many mini-apps needed for hybrid work that people no longer want to use or install them on their personal devices."
     items={[
       {
         title: 'One App: to learn and use',
         description:
-          'People engage more effectively with One App to login and use. If they don\'t want to install apps, no problem, they can simply use a web browser.',
+          'People engage more effectively with only One App to login and use. If they don\'t want to install apps, no problem, they can simply use a web browser.',
       },
       {
         title: 'One App: for insights',
@@ -134,7 +128,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: bagCoffeeImage,
+      src: homeBackground,
       alt: 'One App',
     }}
     iphone={{
@@ -142,13 +136,12 @@ const metadata = {
       color: ['#000000'], 
       enableOrbitControls: true, 
       enableAutoRotation: true,
-      start: { x: 9.17, y: -3.10, z: 10 },
-      end: { x: -9, y: 2, z: 8 }
+      start: { x: 9.17, y: -13.10, z: 12 },
+      end: { x: -9, y: 13, z: 8 }
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Too many mini-apps</h3>
-      There are so many mini-apps needed for hybrid work that people no longer want to use or install them on their personal devices.
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">The One App Advantage</h3>
     </Fragment>
 
     <Fragment slot="bg">
@@ -234,25 +227,25 @@ const metadata = {
   <!-- Steps Widget ****************** -->
 
   <Steps
-    title="Get your dream website up and running in no time with New Wave Workspace."
+    title="Get your dream hybrid workspace experience up and running in no time with New Wave Workspace."
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Download</span>',
+        title: 'Step 1: <span class="font-medium"><a class="underline hover:text-primary" href="/book-a-demo">Book a Demo</a></span>',
         description:
-          "Kickstart with GitHub! Either fork the New Wave Workspace template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
+          "Seeing is believing. Book a demo now and experience the magic for yourself. We'll show you how New Wave Workspace can transform your hybrid work experience, from the basics to advanced features.",
+        icon: 'tabler:presentation',
       },
       {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
+        title: 'Step 2: <span class="font-medium">Preparation</span>',
         description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
+          "We work closely with your procurement and security teams to ensure a smooth transition.",
+        icon: 'tabler:list-check',
       },
       {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
+        title: 'Step 3: <span class="font-medium">Onboarding</span>',
         description:
-          'Give it your personal touch. Tailor colours, fonts, and layouts until it feels just right. Your unique flair, amplified by New Wave Workspace! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
+          'We\'ll onboard your digital twin based on your needs. All part of our concierge service.',
+        icon: 'tabler:transfer-in',
       },
       {
         title: 'Ready!',
@@ -265,9 +258,16 @@ const metadata = {
     }}
   />
 
+    <!-- Customers Widget **************** -->
+
+    <Customers 
+    title="Companies that trust us" 
+    subtitle="Join these industry leaders who rely on our solutions" 
+  />
+
   <!-- Features2 Widget ************** -->
 
-  <Features2
+  <!-- <Features2
     title="Most used widgets"
     subtitle="Provides frequently used components for building websites using Tailwind CSS"
     tagline="Components"
@@ -327,7 +327,7 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Features2>
+  </Features2> -->
 
   <!-- HighlightedPosts Widget ******* -->
 

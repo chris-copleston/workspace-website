@@ -1,7 +1,10 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 const phones = [
   {
     id: '01',
+    icon: 'tabler:automation',
     color: 'yellow',
     title: 'One App',
     subtitle: 'Digital',
@@ -11,6 +14,7 @@ const phones = [
   },
   {
     id: '02',
+    icon: 'tabler:calendar',
     color: 'green',
     title: 'One App',
     subtitle: 'Resource',
@@ -20,6 +24,7 @@ const phones = [
   },
   {
     id: '03',
+    icon: 'tabler:leaf',
     color: 'pink',
     title: 'One App',
     subtitle: '',
@@ -29,6 +34,7 @@ const phones = [
   },
   {
     id: '04',
+    icon: 'tabler:chart-histogram',
     color: 'red',
     title: 'One App',
     subtitle: 'Smart',
@@ -38,6 +44,7 @@ const phones = [
   },
   {
     id: '05',
+    icon: 'tabler:tools-kitchen-2',
     color: 'blue',
     title: 'One App',
     subtitle: '',
@@ -47,6 +54,7 @@ const phones = [
   },
   {
     id: '06',
+    icon: 'tabler:ticket',
     color: 'purple',
     title: 'One App',
     subtitle: 'Ticket',
@@ -56,6 +64,7 @@ const phones = [
   },
   {
     id: '07',
+    icon: 'tabler:users',
     color: 'orange',
     title: 'One App',
     subtitle: 'Visitor',
@@ -65,6 +74,7 @@ const phones = [
   },
   {
     id: '08',
+    icon: 'tabler:plug',
     color: 'teal',
     title: 'One App',
     subtitle: '',
@@ -101,7 +111,9 @@ const getZIndex = (index: number) => {
             <div class={`phone ${phone.color}`}>
               <div class="phone-top" />
               <div class="phone-screen">
-                <h2>{phone.id}</h2>
+                <div class="icon-container">
+                  <Icon name={phone.icon} class="icon" />
+                </div>
                 <p>{phone.title}</p>
                 <h3>
                   {phone.subtitle}<br /><b>{phone.boldText}</b>
@@ -302,11 +314,6 @@ const getZIndex = (index: number) => {
       -8px 8px 0px #bcbcbc;
   }
 
-  .phone-screen h2 {
-    font-weight: 100;
-    font-size: 80px;
-  }
-
   .phone-screen p {
     margin: 10px 0;
     text-transform: uppercase;
@@ -358,6 +365,25 @@ const getZIndex = (index: number) => {
     border: none;
     height: 1px;
     margin: 20px 0;
+  }
+
+  .icon-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #ccc;
+    border: 1px solid rgb(147 197 253 / var(--tw-border-opacity, 1));
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+
+  .icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: currentColor;
   }
 
   .designer {
