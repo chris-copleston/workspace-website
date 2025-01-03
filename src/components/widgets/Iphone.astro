@@ -53,9 +53,9 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
 
   class IPhoneRenderer {
     constructor(container) {
-      console.log('Initializing iPhone renderer');
-      console.log('Screen image path:', container.dataset.screenImg);
-      console.log('Phone color:', container.dataset.phoneColor);
+      // console.log('Initializing iPhone renderer');
+      // console.log('Screen image path:', container.dataset.screenImg);
+      // console.log('Phone color:', container.dataset.phoneColor);
       
       // Initialize Three.js scene
       const scene = new THREE.Scene();
@@ -90,26 +90,26 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
         controls.enableZoom = false;
         
         // Log initial control settings
-        console.log('Orbital Controls Settings:', {
-          enableDamping: controls.enableDamping,
-          dampingFactor: controls.dampingFactor,
-          enableZoom: controls.enableZoom,
-          enabled: controls.enabled
-        });
+        // console.log('Orbital Controls Settings:', {
+        //   enableDamping: controls.enableDamping,
+        //   dampingFactor: controls.dampingFactor,
+        //   enableZoom: controls.enableZoom,
+        //   enabled: controls.enabled
+        // });
 
         // Add event listeners for control changes
-        controls.addEventListener('change', () => {
-          console.log('Camera Position:', {
-            x: camera.position.x.toFixed(2),
-            y: camera.position.y.toFixed(2),
-            z: camera.position.z.toFixed(2)
-          });
-          console.log('Controls Target:', {
-            x: controls.target.x.toFixed(2),
-            y: controls.target.y.toFixed(2),
-            z: controls.target.z.toFixed(2)
-          });
-        });
+        // controls.addEventListener('change', () => {
+        //   console.log('Camera Position:', {
+        //     x: camera.position.x.toFixed(2),
+        //     y: camera.position.y.toFixed(2),
+        //     z: camera.position.z.toFixed(2)
+        //   });
+        //   console.log('Controls Target:', {
+        //     x: controls.target.x.toFixed(2),
+        //     y: controls.target.y.toFixed(2),
+        //     z: controls.target.z.toFixed(2)
+        //   });
+        // });
       }
 
       // Set up scroll-based animation
@@ -123,15 +123,14 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
       gsap.to(camera.position, {
         scrollTrigger: {
           trigger: container,
-          start: "top center",
-          end: "bottom center",
-          scrub: true,
+          start: "top bottom", // start when top of container hits bottom of viewport
+          end: "bottom top",   // end when bottom of container hits top of viewport
+          scrub: 2,
           onUpdate: (self) => {
             const progress = self.progress;
             camera.position.x = startPos.x + (endPos.x - startPos.x) * progress;
             camera.position.y = startPos.y + (endPos.y - startPos.y) * progress;
             camera.position.z = startPos.z + (endPos.z - startPos.z) * progress;
-            console.log('Animation Progress:', progress.toFixed(2));
           }
         }
       });
@@ -151,12 +150,12 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       
-      console.log('Loading model from:', '/models/scene.glb');
+      // console.log('Loading model from:', '/models/scene.glb');
       
       loader.load('/models/scene.glb', 
         // Success callback
         (gltf) => {
-          console.log('Model loaded successfully');
+          // console.log('Model loaded successfully');
           const model = gltf.scene;
           
           // Center the model
@@ -178,7 +177,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
           // Update materials
           model.traverse((child) => {
             if (child.isMesh) {
-              console.log('Processing mesh:', child.name);
+              // console.log('Processing mesh:', child.name);
               const materialName = child.material.name;
               
               // Create titanium material for the edges
@@ -203,7 +202,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
               
               // Apply texture to specific mesh
               if (child.name === "xXDHkMplTIDAXLN") {
-                console.log('Found screen mesh:', child.name);
+                // console.log('Found screen mesh:', child.name);
                 const textureLoader = new THREE.TextureLoader();
                 const screenImagePath = container.dataset.screenImg;
                 
@@ -236,7 +235,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
           // Animation loop
           const animate = () => {
             requestAnimationFrame(animate);
-            console.log('enableOrbitControls', enableOrbitControls);
+            // console.log('enableOrbitControls', enableOrbitControls);
             
             if (enableOrbitControls && controls) {
               controls.update();
@@ -282,7 +281,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('canvas-container');
     if (container) {
-      console.log('Found container, initializing renderer');
+      // console.log('Found container, initializing renderer');
       new IPhoneRenderer(container);
     } else {
       console.error('Container not found');
