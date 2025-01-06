@@ -8,12 +8,12 @@ export const headerData = {
         {
           text: 'Banking',
           icon: 'tabler:pig-money',
-          href: getPermalink('/homes/saas'),
+          href: getPermalink('/solutions/banking'),
         },
         {
           text: 'Legal',
           icon: 'tabler:gavel',
-          href: getPermalink('/homes/startup'),
+          href: getPermalink('/solutions/legal'),
         },
         {
           text: 'Universities',

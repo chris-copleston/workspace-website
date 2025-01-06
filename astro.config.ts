@@ -24,6 +24,10 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
 
+  image: {
+    domains: ['cdn.pixabay.com', 'images.unsplash.com'],
+  },
+
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -70,10 +74,6 @@ export default defineConfig({
       config: './src/config.yaml',
     }),
   ],
-
-  image: {
-    domains: ['cdn.pixabay.com'],
-  },
 
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],

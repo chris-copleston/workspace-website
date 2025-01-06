@@ -15,6 +15,7 @@ export interface Props extends Widget {
   linkUrl?: string | URL;
   information?: string;
   count?: number;
+  tags?: string[];
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   linkUrl = getBlogPermalink(),
   information = await Astro.slots.render('information'),
   count = 4,
+  tags,
 
   id,
   isDark = false,
@@ -31,6 +33,8 @@ const {
 } = Astro.props;
 
 const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
+const filteredPosts = tags ? posts.filter(post => post.tags?.some(tag => tags.includes(tag.slug))) : posts;
+
 ---
 
 {
@@ -55,7 +59,7 @@ const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
         {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
       </div>
 
-      <Grid posts={posts} />
+      <Grid posts={filteredPosts} />
     </WidgetWrapper>
   ) : (
     <Fragment />
