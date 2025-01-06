@@ -14,7 +14,20 @@ interface Props {
     y: number;
     z: number;
   };
-  timeline?: gsap.core.Timeline;
+  timeline?: {
+    scrollTrigger: {
+      trigger: string;
+      start: string;
+      end: string;
+      scrub?: number | boolean;
+      markers?: boolean;
+    };
+    keyframes: Array<{
+      position: { x: number; y: number; z: number };
+      rotation?: { x: number; y: number; z: number };
+      duration: number;
+    }>;
+  };
   enableOrbitControls?: boolean;
   enableAutoRotation?: boolean;
 }
@@ -34,7 +47,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
       data-end-x={end.x}
       data-end-y={end.y}
       data-end-z={end.z}
-      data-has-timeline={!!timeline}
+      data-timeline={JSON.stringify(timeline)}
       data-enable-orbit-controls={enableOrbitControls}
       data-enable-auto-rotation={enableAutoRotation}
     ></div>
@@ -46,8 +59,8 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
   import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
 
   // Register ScrollTrigger plugin
   gsap.registerPlugin(ScrollTrigger);
@@ -121,9 +134,51 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
       };
 
       // Check if a timeline is provided
-      const hasTimeline = container.dataset.hasTimeline === 'true';
+      const timelineData = container.dataset.timeline ? JSON.parse(container.dataset.timeline) : null;
 
-      if (!hasTimeline) {
+      if (timelineData) {
+        console.log('Timeline data:', timelineData);
+        console.log('Trigger element:', document.querySelector(timelineData.scrollTrigger.trigger));
+
+        // Create timeline animation using provided configuration
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: document.querySelector(timelineData.scrollTrigger.trigger),
+            start: timelineData.scrollTrigger.start,
+            end: timelineData.scrollTrigger.end,
+            scrub: timelineData.scrollTrigger.scrub,
+            markers: timelineData.scrollTrigger.markers || false,
+            onEnter: () => console.log('Timeline entered'),
+            onLeave: () => console.log('Timeline left'),
+            onUpdate: (self) => console.log('Timeline progress:', self.progress)
+          }
+        });
+
+        // Add keyframe animations
+        timelineData.keyframes.forEach((keyframe, index) => {
+          console.log('Adding keyframe:', index, keyframe);
+          const position = {
+            x: keyframe.position.x,
+            y: keyframe.position.y,
+            z: keyframe.position.z,
+            duration: keyframe.duration,
+            ease: "power1.inOut"
+          };
+
+          tl.to(camera.position, position);
+
+          if (keyframe.rotation) {
+            const rotation = {
+              x: THREE.MathUtils.degToRad(keyframe.rotation.x),
+              y: THREE.MathUtils.degToRad(keyframe.rotation.y),
+              z: THREE.MathUtils.degToRad(keyframe.rotation.z),
+              duration: keyframe.duration,
+              ease: "power1.inOut"
+            };
+            tl.to(camera.rotation, rotation, "<");
+          }
+        });
+      } else {
         // Create default scroll trigger animation using start/end positions
         gsap.to(camera.position, {
           scrollTrigger: {
@@ -139,9 +194,6 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
             }
           }
         });
-      } else {
-        // Set initial camera position
-        camera.position.set(startPos.x, startPos.y, startPos.z);
       }
       
       // Set up DRACO loader

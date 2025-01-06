@@ -152,6 +152,7 @@ const metadata = {
   <!-- Content Widget **************** -->
 
   <Content
+    id="resource-booking"
     isAfterContent
     title="Resource Booking"
     items={[
@@ -185,12 +186,39 @@ const metadata = {
       alt: 'Blueprint Image',
     }}
     iphone={{
-      img: 'images/screens/home.jpg', 
+      img: 'images/screens/mini_scheduler.jpg', 
       color: ['#000000'], 
       enableOrbitControls: true, 
       enableAutoRotation: true,
-      start: { x: 9.17, y: -13.10, z: 12 },
-      end: { x: -9, y: 13, z: 8 }
+      timeline: {
+        scrollTrigger: {
+          trigger: '#resource-booking',
+          start: 'top center',
+          end: 'bottom center',
+          scrub: false,
+          markers: true
+        },
+        keyframes: [
+          {
+            position: { x: 90, y: 90, z: 10 },
+            duration: 1
+          },
+          {
+            position: { x: 0, y: 0, z: 10 },
+            duration: 1
+          },
+          {
+            position: { x: 0, y: 0, z: 10 },
+            rotation: { x: 0, y: 0, z: 0 },
+            duration: 1
+          },
+          {
+            position: { x: 0, y: 0, z: 5 },
+            rotation: { x: Math.PI * 0.25, y: Math.PI * 0.1, z: 0 },
+            duration: 1
+          }
+        ]
+      }
     }}
   >
 
