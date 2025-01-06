@@ -277,8 +277,8 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
     }
   }
   
-  // Initialize the renderer when the DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
+  // Initialize the renderer when the page loads
+  document.addEventListener('astro:page-load', () => {
     const container = document.getElementById('canvas-container');
     if (container) {
       // console.log('Found container, initializing renderer');
