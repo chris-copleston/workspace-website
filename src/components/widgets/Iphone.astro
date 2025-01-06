@@ -14,18 +14,18 @@ interface Props {
     y: number;
     z: number;
   };
+  timeline?: gsap.core.Timeline;
   enableOrbitControls?: boolean;
   enableAutoRotation?: boolean;
 }
 
-const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enableOrbitControls = false, enableAutoRotation = false } = Astro.props;
+const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeline, enableOrbitControls = false, enableAutoRotation = false } = Astro.props;
 ---
 
 <div class="relative w-full h-full">
   <div class="absolute inset-0 flex items-center justify-center">
     <div 
-      class="w-full h-full" 
-      id="canvas-container" 
+      class="w-full h-full iphone-canvas-container" 
       data-screen-img={item.img} 
       data-phone-color={item.color[0]}
       data-start-x={start.x}
@@ -34,6 +34,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
       data-end-x={end.x}
       data-end-y={end.y}
       data-end-z={end.z}
+      data-has-timeline={!!timeline}
       data-enable-orbit-controls={enableOrbitControls}
       data-enable-auto-rotation={enableAutoRotation}
     ></div>
@@ -119,21 +120,29 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
         z: parseFloat(container.dataset.endZ || '10')
       };
 
-      // Create scroll trigger animation
-      gsap.to(camera.position, {
-        scrollTrigger: {
-          trigger: container,
-          start: "top bottom", // start when top of container hits bottom of viewport
-          end: "bottom top",   // end when bottom of container hits top of viewport
-          scrub: 2,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            camera.position.x = startPos.x + (endPos.x - startPos.x) * progress;
-            camera.position.y = startPos.y + (endPos.y - startPos.y) * progress;
-            camera.position.z = startPos.z + (endPos.z - startPos.z) * progress;
+      // Check if a timeline is provided
+      const hasTimeline = container.dataset.hasTimeline === 'true';
+
+      if (!hasTimeline) {
+        // Create default scroll trigger animation using start/end positions
+        gsap.to(camera.position, {
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 2,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              camera.position.x = startPos.x + (endPos.x - startPos.x) * progress;
+              camera.position.y = startPos.y + (endPos.y - startPos.y) * progress;
+              camera.position.z = startPos.z + (endPos.z - startPos.z) * progress;
+            }
           }
-        }
-      });
+        });
+      } else {
+        // Set initial camera position
+        camera.position.set(startPos.x, startPos.y, startPos.z);
+      }
       
       // Set up DRACO loader
       const dracoLoader = new DRACOLoader();
@@ -279,13 +288,12 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
   
   // Initialize the renderer when the page loads
   document.addEventListener('astro:page-load', () => {
-    const container = document.getElementById('canvas-container');
-    if (container) {
-      // console.log('Found container, initializing renderer');
-      new IPhoneRenderer(container);
-    } else {
-      console.error('Container not found');
-    }
+    const containers = document.querySelectorAll('.iphone-canvas-container');
+    containers.forEach(container => {
+      if (container) {
+        new IPhoneRenderer(container);
+      }
+    });
   });
 </script>
 
@@ -296,13 +304,13 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, enable
     height: 100%;
   }
   
-  #canvas-container {
+  .iphone-canvas-container {
     position: relative;
     width: 100%;
     height: 100%;
   }
   
-  #canvas-container canvas {
+  .iphone-canvas-container canvas {
     width: 100% !important;
     height: 100% !important;
   }
