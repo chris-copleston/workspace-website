@@ -196,17 +196,19 @@ const metadata = {
           start: 'top center',
           end: 'bottom center',
           scrub: false,
-          markers: true
+          markers: true,
+          resetOnLeave: true
         },
         keyframes: [
+
           {
             from: {
-              position: { x: 90, y: 90, z: 10 },
+              position: { x: 90, y: 90, z: 0 },
             },
             to: {
               position: { x: 0, y: 0, z: 10 },
             },
-            duration: 2
+            duration: 1.5
           },
           {
             from: {

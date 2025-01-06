@@ -21,6 +21,7 @@ interface Props {
       end: string;
       scrub?: number | boolean;
       markers?: boolean;
+      resetOnLeave?: boolean;
     };
     keyframes: Array<{
       from?: {
@@ -157,7 +158,28 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
             scrub: timelineData.scrollTrigger.scrub,
             markers: timelineData.scrollTrigger.markers || false,
             onEnter: () => console.log('Timeline entered'),
-            onLeave: () => console.log('Timeline left'),
+            onLeave: () => {
+              console.log('Timeline left');
+              if (timelineData.scrollTrigger.resetOnLeave) {
+                console.log('Resetting animation');
+                tl.progress(0);
+                tl.pause();
+              }
+            },
+            onEnterBack: () => {
+              console.log('Timeline entered back');
+              if (timelineData.scrollTrigger.resetOnLeave) {
+                tl.play();
+              }
+            },
+            onLeaveBack: () => {
+              console.log('Timeline left back');
+              if (timelineData.scrollTrigger.resetOnLeave) {
+                console.log('Resetting animation');
+                tl.progress(0);
+                tl.pause();
+              }
+            },
             onUpdate: (self) => console.log('Timeline progress:', self.progress)
           }
         });
