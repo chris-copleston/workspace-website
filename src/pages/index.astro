@@ -14,6 +14,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Customers from '~/components/widgets/Customers.astro';
 import homeBackground from '~/assets/images/bg/home-bg.jpg';
+import bookingBackground from '~/assets/images/bg/booking-bg.jpg';
 
 const metadata = {
   title: 'New Wave Workspace — The Super App for Hybrid Work',
@@ -109,7 +110,7 @@ const metadata = {
     isReversed
     tagline=""
     title="Why just One App?"
-    subtitle="There are so many mini-apps needed for hybrid work that people no longer want to use or install them on their personal devices."
+    subtitle="With so many hybrid work mini-apps, people no longer want to use or install them on their personal devices."
     items={[
       {
         title: 'One App: to learn and use',
@@ -171,19 +172,14 @@ const metadata = {
           'Foster better collaboration with workplace rules that ensure employees always find the best desk to suit their tasks.',
       },
       {
-        title: 'Smart Locker Booking',
+        title: 'Book Smart Lockers and Parking',
         description:
-          'From visitors to IT equipment, our Smart Locker Booking system keeps storage safe, flexible, and easily accessible.',
-      },
-      {
-        title: 'Parking Management',
-        description:
-          'Maximize parking efficiency with intelligent slot bookings.',
+          'Ensure your visitors have a safe and secure experience, with smart lockers and parking options to meet your needs.',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
+      src: bookingBackground,
+      alt: 'Resource Booking',
     }}
     iphone={{
       img: 'images/screens/mini_scheduler.jpg', 
@@ -194,9 +190,9 @@ const metadata = {
         scrollTrigger: {
           trigger: '#resource-booking',
           start: 'top center',
-          end: 'bottom center',
+          end: 'bottom top',
           scrub: false,
-          markers: true,
+          markers: false,
           resetOnLeave: true
         },
         keyframes: [
