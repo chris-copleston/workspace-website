@@ -38,13 +38,17 @@ const metadata = {
     ]}
   >
     <Fragment slot="title">
-      Get ready, our 
-      <span class="bg-gradient-to-r from-blue-600 via-pink-500 to-indigo-600 inline-block text-transparent bg-clip-text selection:text-primary">One App</span>
+      Get ready, our
+      <span
+        class="bg-gradient-to-r from-blue-600 via-pink-500 to-indigo-600 inline-block text-transparent bg-clip-text selection:text-primary"
+        >One App</span
+      >
       is about to transform your hybrid work forever.
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="font-semibold">New Wave Workspace One App</span>&trade; simplifies hybrid work by bringing all your essential tools, services and connections into one seamless workspace platform.
+      <span class="font-semibold">New Wave Workspace One App</span>&trade; simplifies hybrid work by bringing all your
+      essential tools, services and connections into one seamless workspace platform.
     </Fragment>
   </Hero>
 
@@ -91,7 +95,7 @@ const metadata = {
       {
         title: 'Ticket Tracker',
         description:
-          "Streamline work order management with our intuitive Ticket Tracker. Capture, track, and resolve requests effortlessly while keeping everyone in the loop.",
+          'Streamline work order management with our intuitive Ticket Tracker. Capture, track, and resolve requests effortlessly while keeping everyone in the loop.',
         icon: 'tabler:ticket',
       },
       {
@@ -102,7 +106,6 @@ const metadata = {
       },
     ]}
   />
-
 
   <!-- Content Widget **************** -->
 
@@ -115,7 +118,7 @@ const metadata = {
       {
         title: 'One App: to learn and use',
         description:
-          'People engage more effectively with only One App to login and use. If they don\'t want to install apps on their personal devices, no problem, they can simply use a web browser.',
+          "People engage more effectively with only One App to login and use. If they don't want to install apps on their personal devices, no problem, they can simply use a web browser.",
       },
       {
         title: 'One App: for insights',
@@ -133,12 +136,12 @@ const metadata = {
       alt: 'One App',
     }}
     iphone={{
-      img: 'images/screens/home.jpg', 
-      color: ['#000000'], 
-      enableOrbitControls: true, 
+      img: 'images/screens/home.jpg',
+      color: ['#000000'],
+      enableOrbitControls: true,
       enableAutoRotation: true,
-      start: { x: 9.17, y: -13.10, z: 12 },
-      end: { x: -9, y: 13, z: 8 }
+      start: { x: 9.17, y: -13.1, z: 12 },
+      end: { x: -9, y: 13, z: 8 },
     }}
   >
     <Fragment slot="content">
@@ -164,7 +167,7 @@ const metadata = {
       {
         title: 'Find People Easily',
         description:
-          "Bring teams together and collaborate more effectively by ensuring colleagues are in the office when you need them.",
+          'Bring teams together and collaborate more effectively by ensuring colleagues are in the office when you need them.',
       },
       {
         title: 'Desk Booking with Workplace Rules',
@@ -182,9 +185,9 @@ const metadata = {
       alt: 'Resource Booking',
     }}
     iphone={{
-      img: 'images/screens/mini_scheduler.jpg', 
-      color: ['#000000'], 
-      enableOrbitControls: true, 
+      img: 'images/screens/mini_scheduler.jpg',
+      color: ['#000000'],
+      enableOrbitControls: true,
       enableAutoRotation: true,
       timeline: {
         scrollTrigger: {
@@ -193,10 +196,9 @@ const metadata = {
           end: 'bottom top',
           scrub: false,
           markers: false,
-          resetOnLeave: true
+          resetOnLeave: true,
         },
         keyframes: [
-
           {
             from: {
               position: { x: 90, y: 90, z: 0 },
@@ -204,7 +206,7 @@ const metadata = {
             to: {
               position: { x: 0, y: 0, z: 10 },
             },
-            duration: 1.5
+            duration: 1.5,
           },
           {
             from: {
@@ -214,48 +216,130 @@ const metadata = {
               position: { x: 0, y: 0, z: 5 },
               rotation: { x: Math.PI * 0.25, y: Math.PI * 0.1, z: 0 },
             },
-            duration: 1.5
-          }
-        ]
-      }
+            duration: 1.5,
+          },
+        ],
+      },
     }}
   >
-
-  <Fragment slot="bg">
-    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-  </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
   </Content>
 
   <!-- Content Widget **************** -->
 
   <Content
+    id="visitor-management"
     isReversed
     isAfterContent
+    title="Visitor Management"
+    subtitle="Deliver a premium visitor experience with end-to-end digital workflows. From pre-registration to real-time tracking, keep your building secure and welcoming. Know who’s in your building past, present, and future."
     items={[
       {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+        title: 'Effortless Invitations',
+        description: 'Hosts can invite visitors through an intuitive interface by simply entering their details.',
       },
       {
-        title: 'Continuous improvement',
+        title: 'Seamless Check-In Experience',
         description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+          'Visitors enjoy a frictionless, receptionist-less check-in process. Using a self-service kiosk, QR code, or pre-sent digital pass.',
       },
       {
-        title: 'Time and resource efficiency',
+        title: 'Real-Time Notifications',
         description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with New Wave Workspace.',
+          'Hosts are instantly notified when visitors check in. Additional stakeholders, such as security personnel or meeting co-hosts can also be alerted, ensuring the visitor is guided and attended to promptly.',
       },
       {
-        title: 'Community support',
-        description: `Join the growing New Wave Workspace community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+        title: 'Emergency and Departure Management',
+        description: `In emergencies, the system supports quick headcounts and instant communication with visitors for safety protocols. When visitors leave, the check-out process ensures accurate tracking of their time on-site.`,
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: homeBackground,
       alt: 'Astronauts Image',
     }}
+    iphone={{
+      img: 'images/screens/vms_register.jpg',
+      color: ['#000000'],
+      enableOrbitControls: true,
+      enableAutoRotation: true,
+      timeline: {
+        scrollTrigger: {
+          trigger: '#visitor-management',
+          start: 'top center',
+          end: 'bottom top',
+          scrub: false,
+          markers: false,
+          resetOnLeave: true,
+        },
+        keyframes: [
+          {
+            from: {
+              position: { x: 90, y: 90, z: 4 },
+            },
+            to: {
+              position: { x: 0, y: 0, z: 10 },
+            },
+            duration: 1.5,
+          },
+          {
+            from: {
+              position: { x: 0, y: 0, z: 10 },
+            },
+            to: {
+              position: { x: -3, y: -2, z: 9 },
+              rotation: { x: Math.PI * 0.25, y: Math.PI * 0.1, z: 0 },
+            },
+            duration: 1.5,
+          },
+        ],
+      },
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    isAfterContent
+    title="Digital Services"
+    subtitle="Replace fragmented systems with a single, cohesive platform"
+    items={[
+      {
+        title: 'Digital Services Catalogue',
+        description:
+          'Digitize manual processes, from fire inspections to mental health surveys, transform every routine into a streamlined digital flow.',
+      },
+      {
+        title: 'Mail Room Management',
+        description:
+          'Track, notify, and manage incoming and outgoing parcels with ease. Automated updates ensure faster collections and a better experience.',
+      },
+      {
+        title: 'Reimbursements',
+        description:
+          'Automate your reimbursement workflow. Track expenses, ensure compliance, and get approvals in record time.',
+      },
+      {
+        title: 'Travel Requests and Timesheets',
+        description:
+          'Streamline time management and travel planning with a built-in authorization workflow.',
+      },
+    ]}
+    image={{
+      src: bookingBackground,
+      alt: 'Astronauts Image',
+    }}
+        iphone={{
+          img: 'images/screens/service_catalogue.jpg',
+          color: ['#000000'],
+          enableOrbitControls: true,
+          enableAutoRotation: true,
+          start: { x: 9.17, y: -13.1, z: 12 },
+          end: { x: -9, y: 13, z: 8 },
+        }}
   >
     <Fragment slot="content">Designed to foster growth and success.</Fragment>
 
@@ -264,66 +348,30 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <Content
-  isAfterContent
-  items={[
-    {
-      title: 'Enhanced user engagement',
-      description:
-        'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-    },
-    {
-      title: 'Continuous improvement',
-      description:
-        'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-    },
-    {
-      title: 'Time and resource efficiency',
-      description:
-        'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with New Wave Workspace.',
-    },
-    {
-      title: 'Community support',
-      description: `Join the growing New Wave Workspace community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-    },
-  ]}
-  image={{
-    src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    alt: 'Astronauts Image',
-  }}
->
-  <Fragment slot="content">Designed to foster growth and success.</Fragment>
-
-  <Fragment slot="bg">
-    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-  </Fragment>
-</Content>
-
   <!-- Steps Widget ****************** -->
 
   <Steps
     title="Get your dream hybrid workspace experience up and running in no time with New Wave Workspace."
     items={[
       {
-        title: 'Step 1: <span class="font-medium"><a class="underline hover:text-primary" href="/book-a-demo">Book a Demo</a></span>',
+        title:
+          'Step 1: <span class="font-medium"><a class="underline hover:text-primary" href="/book-a-demo">Book a Demo</a></span>',
         description:
           "Seeing is believing. Book a demo now and experience the magic for yourself. We'll show you how New Wave Workspace can transform your hybrid work experience, from the basics to advanced features.",
         icon: 'tabler:presentation',
       },
       {
         title: 'Step 2: <span class="font-medium">Preparation</span>',
-        description:
-          "We work closely with your procurement and security teams to ensure a smooth transition.",
+        description: 'We work closely with your procurement and security teams to ensure a smooth transition.',
         icon: 'tabler:list-check',
       },
       {
         title: 'Step 3: <span class="font-medium">Onboarding</span>',
-        description:
-          'We\'ll onboard your digital twin based on your needs. All part of our concierge service.',
+        description: "We'll onboard your digital twin based on your needs. All part of our concierge service.",
         icon: 'tabler:transfer-in',
       },
       {
-        title: 'You\'re all set!',
+        title: "You're all set!",
         description:
           'Start using New Wave Workspace to manage your hybrid work experience with ease, with us as your partner to help when you need us.',
         icon: 'tabler:check',
@@ -335,11 +383,11 @@ const metadata = {
     }}
   />
 
-    <!-- Customers Widget **************** -->
+  <!-- Customers Widget **************** -->
 
-    <Customers 
-    title="Trusted by industry leaders" 
-    subtitle="Join financial institutions, legal firms, educational institutions and corporations around the globe." 
+  <Customers
+    title="Trusted by industry leaders"
+    subtitle="Join financial institutions, legal firms, educational institutions and corporations around the globe."
   />
 
   <!-- Features2 Widget ************** -->
@@ -418,7 +466,7 @@ const metadata = {
 
   <!-- FAQs Widget ******************* -->
 
-  <FAQs
+  <!-- <FAQs
     title="Frequently Asked Questions"
     subtitle="Dive into the following questions to gain insights into the powerful features that New Wave Workspace offers and how it can elevate your web development journey."
     tagline="FAQs"
@@ -455,15 +503,15 @@ const metadata = {
           "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
       },
     ]}
-  />
+  /> -->
 
   <!-- Stats Widget ****************** -->
 
   <Stats
     stats={[
-      { title: 'Downloads', amount: '132K' },
-      { title: 'Stars', amount: '24.8K' },
-      { title: 'Forks', amount: '10.3K' },
+      { title: 'Bookings', amount: '132K' },
+      { title: 'Activities', amount: '524.8K' },
+      // { title: 'Forks', amount: '10.3K' },
       { title: 'Users', amount: '48.4K' },
     ]}
   />
@@ -481,9 +529,7 @@ const metadata = {
       },
     ]}
   >
-    <Fragment slot="title">
-      New Wave Workspace
-    </Fragment>
+    <Fragment slot="title"> New Wave Workspace </Fragment>
 
     <Fragment slot="subtitle">
       Find out how New Wave Workspace can transform your hybrid work experience today.
