@@ -200,22 +200,23 @@ const metadata = {
         },
         keyframes: [
           {
-            position: { x: 90, y: 90, z: 10 },
-            duration: 1
+            from: {
+              position: { x: 90, y: 90, z: 10 },
+            },
+            to: {
+              position: { x: 0, y: 0, z: 10 },
+            },
+            duration: 2
           },
           {
-            position: { x: 0, y: 0, z: 10 },
-            duration: 1
-          },
-          {
-            position: { x: 0, y: 0, z: 10 },
-            rotation: { x: 0, y: 0, z: 0 },
-            duration: 1
-          },
-          {
-            position: { x: 0, y: 0, z: 5 },
-            rotation: { x: Math.PI * 0.25, y: Math.PI * 0.1, z: 0 },
-            duration: 1
+            from: {
+              position: { x: 0, y: 0, z: 10 },
+            },
+            to: {
+              position: { x: 0, y: 0, z: 5 },
+              rotation: { x: Math.PI * 0.25, y: Math.PI * 0.1, z: 0 },
+            },
+            duration: 1.5
           }
         ]
       }

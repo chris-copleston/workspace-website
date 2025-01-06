@@ -41,7 +41,15 @@ interface Props {
         markers?: boolean;
       };
       keyframes: Array<{
-        position: { x: number; y: number; z: number };
+        from?: {
+          position?: { x: number; y: number; z: number };
+          rotation?: { x: number; y: number; z: number };
+        };
+        to?: {
+          position?: { x: number; y: number; z: number };
+          rotation?: { x: number; y: number; z: number };
+        };
+        position?: { x: number; y: number; z: number };
         rotation?: { x: number; y: number; z: number };
         duration: number;
       }>;

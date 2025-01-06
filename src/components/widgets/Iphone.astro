@@ -23,7 +23,15 @@ interface Props {
       markers?: boolean;
     };
     keyframes: Array<{
-      position: { x: number; y: number; z: number };
+      from?: {
+        position?: { x: number; y: number; z: number };
+        rotation?: { x: number; y: number; z: number };
+      };
+      to?: {
+        position?: { x: number; y: number; z: number };
+        rotation?: { x: number; y: number; z: number };
+      };
+      position?: { x: number; y: number; z: number };
       rotation?: { x: number; y: number; z: number };
       duration: number;
     }>;
@@ -157,25 +165,27 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
         // Add keyframe animations
         timelineData.keyframes.forEach((keyframe, index) => {
           console.log('Adding keyframe:', index, keyframe);
+          const from = keyframe.from || {};
+          const to = keyframe.to || {};
           const position = {
-            x: keyframe.position.x,
-            y: keyframe.position.y,
-            z: keyframe.position.z,
+            x: to.position ? to.position.x : keyframe.position ? keyframe.position.x : 0,
+            y: to.position ? to.position.y : keyframe.position ? keyframe.position.y : 0,
+            z: to.position ? to.position.z : keyframe.position ? keyframe.position.z : 0,
             duration: keyframe.duration,
             ease: "power1.inOut"
           };
 
-          tl.to(camera.position, position);
+          tl.fromTo(camera.position, from.position, position);
 
-          if (keyframe.rotation) {
+          if (from.rotation || to.rotation) {
             const rotation = {
-              x: THREE.MathUtils.degToRad(keyframe.rotation.x),
-              y: THREE.MathUtils.degToRad(keyframe.rotation.y),
-              z: THREE.MathUtils.degToRad(keyframe.rotation.z),
+              x: to.rotation ? THREE.MathUtils.degToRad(to.rotation.x) : keyframe.rotation ? THREE.MathUtils.degToRad(keyframe.rotation.x) : 0,
+              y: to.rotation ? THREE.MathUtils.degToRad(to.rotation.y) : keyframe.rotation ? THREE.MathUtils.degToRad(keyframe.rotation.y) : 0,
+              z: to.rotation ? THREE.MathUtils.degToRad(to.rotation.z) : keyframe.rotation ? THREE.MathUtils.degToRad(keyframe.rotation.z) : 0,
               duration: keyframe.duration,
               ease: "power1.inOut"
             };
-            tl.to(camera.rotation, rotation, "<");
+            tl.fromTo(camera.rotation, from.rotation, rotation, "<");
           }
         });
       } else {
