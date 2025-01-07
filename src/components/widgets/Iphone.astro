@@ -47,7 +47,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
 <div class="relative w-full h-full">
   <div class="absolute inset-0 flex items-center justify-center">
     <div 
-      class="w-full h-full iphone-canvas-container" 
+      class="w-full h-full iphone-canvas-container opacity-0 transition-opacity duration-300" 
       data-screen-img={item.img} 
       data-phone-color={item.color[0]}
       data-start-x={start.x}
@@ -86,9 +86,9 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
       // Create camera
       const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
       const startPos = { 
-        x: parseFloat(container.dataset.startX || '0'),
-        y: parseFloat(container.dataset.startY || '0'),
-        z: parseFloat(container.dataset.startZ || '10')
+        x: parseFloat(container.dataset.startX),
+        y: parseFloat(container.dataset.startY),
+        z: parseFloat(container.dataset.startZ)
       };
       
       // Set initial camera position from start values
@@ -137,9 +137,9 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
 
       // Set up scroll-based animation
       const endPos = {
-        x: parseFloat(container.dataset.endX || '0'),
-        y: parseFloat(container.dataset.endY || '0'),
-        z: parseFloat(container.dataset.endZ || '10')
+        x: parseFloat(container.dataset.endX),
+        y: parseFloat(container.dataset.endY),
+        z: parseFloat(container.dataset.endZ)
       };
 
       // Check if a timeline is provided
@@ -157,17 +157,22 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
             end: timelineData.scrollTrigger.end,
             scrub: timelineData.scrollTrigger.scrub,
             markers: timelineData.scrollTrigger.markers || false,
-            onEnter: () => console.log('Timeline entered'),
+            onEnter: () => {
+              console.log('Timeline entered');
+              container.classList.remove('opacity-0');
+            },
             onLeave: () => {
               console.log('Timeline left');
               if (timelineData.scrollTrigger.resetOnLeave) {
                 console.log('Resetting animation');
+                container.classList.add('opacity-0');
                 tl.progress(0);
                 tl.pause();
               }
             },
             onEnterBack: () => {
               console.log('Timeline entered back');
+              container.classList.remove('opacity-0');
               if (timelineData.scrollTrigger.resetOnLeave) {
                 tl.play();
               }
@@ -176,6 +181,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
               console.log('Timeline left back');
               if (timelineData.scrollTrigger.resetOnLeave) {
                 console.log('Resetting animation');
+                container.classList.add('opacity-0');
                 tl.progress(0);
                 tl.pause();
               }
@@ -210,22 +216,34 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
             tl.fromTo(camera.rotation, from.rotation, rotation, "<");
           }
         });
-      } else {
-        // Create default scroll trigger animation using start/end positions
-        gsap.to(camera.position, {
+      } else if (endPos.x !== startPos.x || endPos.y !== startPos.y || endPos.z !== startPos.z) {
+        // Create a simple scroll-based animation for start/end positions
+        gsap.timeline({
           scrollTrigger: {
             trigger: container,
             start: "top bottom",
             end: "bottom top",
-            scrub: 2,
-            onUpdate: (self) => {
-              const progress = self.progress;
-              camera.position.x = startPos.x + (endPos.x - startPos.x) * progress;
-              camera.position.y = startPos.y + (endPos.y - startPos.y) * progress;
-              camera.position.z = startPos.z + (endPos.z - startPos.z) * progress;
+            scrub: 1,
+            onEnter: () => {
+              container.classList.remove('opacity-0');
+            },
+            onLeave: () => {
+              container.classList.add('opacity-0');
+            },
+            onEnterBack: () => {
+              container.classList.remove('opacity-0');
+            },
+            onLeaveBack: () => {
+              container.classList.add('opacity-0');
             }
           }
-        });
+        }).fromTo(camera.position, 
+          { x: startPos.x, y: startPos.y, z: startPos.z },
+          { x: endPos.x, y: endPos.y, z: endPos.z }
+        );
+      } else {
+        // If no animation is needed, just show the iPhone
+        container.classList.remove('opacity-0');
       }
       
       // Set up DRACO loader
