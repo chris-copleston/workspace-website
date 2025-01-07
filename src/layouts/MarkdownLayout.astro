@@ -3,13 +3,14 @@ import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import type { MetaData } from '~/types';
 import { Icon } from 'astro-icon/components';
+import type { ImageMetadata } from 'astro';
 
 export interface Props {
   frontmatter: {
     title?: string;
-    image?: string | any;
+    image?: string | ImageMetadata;
     excerpt?: string;
-    icon?: string;
+    icon?: `tabler:${string}`;
   };
 }
 
@@ -17,8 +18,12 @@ const { frontmatter } = Astro.props;
 
 const metadata: MetaData = {
   title: frontmatter?.title,
-  image: frontmatter?.image,
   description: frontmatter?.excerpt,
+  openGraph: frontmatter?.image ? {
+    images: [{
+      url: typeof frontmatter.image === 'string' ? frontmatter.image : frontmatter.image.src,
+    }],
+  } : undefined,
 };
 
 const isRemoteImage = typeof frontmatter.image === 'string' && 
@@ -30,7 +35,7 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
     <div>
       <div class="flex items-center gap-4 mb-12">
         {frontmatter.icon && (
-          <Icon name={frontmatter.icon} class="w-12 h-12 text-primary-600" />
+          <Icon name={frontmatter.icon} class="w-12 h-12 text-primary article-icon" />
         )}
         <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter">{frontmatter.title}</h1>
       </div>
