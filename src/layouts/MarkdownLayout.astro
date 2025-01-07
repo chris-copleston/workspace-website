@@ -2,12 +2,14 @@
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import type { MetaData } from '~/types';
+import { Icon } from 'astro-icon/components';
 
 export interface Props {
   frontmatter: {
     title?: string;
     image?: string | any;
     excerpt?: string;
+    icon?: string;
   };
 }
 
@@ -26,7 +28,12 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
 <Layout metadata={metadata}>
   <section class="mt-8 px-0 sm:px-4 mx-auto max-w-4xl">
     <div>
-      <h1 class="mb-12 font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter">{frontmatter.title}</h1>
+      <div class="flex items-center gap-4 mb-12">
+        {frontmatter.icon && (
+          <Icon name={frontmatter.icon} class="w-12 h-12 text-primary-600" />
+        )}
+        <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter">{frontmatter.title}</h1>
+      </div>
       {frontmatter.excerpt && (
         <div class="-mt-8 mb-8">
           <p class="text-xl text-gray-600 dark:text-gray-400">{frontmatter.excerpt}</p>
