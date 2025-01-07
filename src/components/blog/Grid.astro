@@ -4,11 +4,20 @@ import type { Post } from '~/types';
 
 export interface Props {
   posts: Array<Post>;
+  maxColumns?: number;
 }
 
-const { posts } = Astro.props;
+const { posts, maxColumns = 4 } = Astro.props;
+
+// Calculate actual number of columns based on posts length and maxColumns
+const columnsToUse = Math.min(posts.length, maxColumns);
+const gridCols = columnsToUse <= 2 
+  ? 'md:grid-cols-2' 
+  : columnsToUse === 3 
+    ? 'md:grid-cols-2 lg:grid-cols-3' 
+    : 'md:grid-cols-2 lg:grid-cols-4';
 ---
 
-<div class="grid gap-6 row-gap-5 md:grid-cols-2 lg:grid-cols-4 -mb-6">
+<div class={`grid gap-6 row-gap-5 ${gridCols} -mb-6`}>
   {posts.map((post) => <Item post={post} />)}
 </div>

@@ -31,7 +31,7 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
 ---
 
 <Layout metadata={metadata}>
-  <section class="mt-8 px-0 sm:px-4 mx-auto max-w-4xl">
+  <section class="mt-8 px-4 sm:px-6 mx-auto max-w-4xl [&>.not-prose]:-mx-4 [&>.not-prose]:sm:-mx-6">
     <div>
       <div class="flex items-center gap-4 mb-12">
         {frontmatter.icon && (
