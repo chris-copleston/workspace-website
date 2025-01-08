@@ -1,5 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import type { ImageMetadata } from 'astro';
 
 const metadataDefinition = () =>
   z
@@ -55,7 +56,7 @@ const postCollection = defineCollection({
 
     title: z.string(),
     excerpt: z.string().optional(),
-    image: z.string().optional(),
+    image: z.union([z.string(), z.custom<ImageMetadata>()]).optional(),
 
     category: z.string().optional(),
     tags: z.array(z.string()).optional(),
