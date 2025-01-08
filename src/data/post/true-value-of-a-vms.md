@@ -1,9 +1,9 @@
 ---
 publishDate: 2023-08-12T00:00:00Z
 author: Nica Faustino
-title: The true value of a VMS
+title: The True Value of a VMS
 excerpt: As we approach the end of 2024, digital transformation is more relevant than ever before. New Wave Workspace company-specific visitor management system "VMS" can play a key role for companies.
-image: https://images.unsplash.com/photo-1516996087931-5ae405802f9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
+image: https://images.unsplash.com/photo-1507207611509-ec012433ff52?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 category: Tutorials
 tags:
   - vms
