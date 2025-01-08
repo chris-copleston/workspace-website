@@ -29,6 +29,32 @@ export default {
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },
+      typography: theme => ({
+        DEFAULT: {
+          css: {
+            color: 'var(--aw-color-text-default)',
+            h1: { color: 'var(--aw-color-text-heading)' },
+            h2: { color: 'var(--aw-color-text-heading)' },
+            h3: { color: 'var(--aw-color-text-heading)' },
+            h4: { color: 'var(--aw-color-text-heading)' },
+            'h1, h2, h3, h4, h5, h6': {
+              color: 'var(--aw-color-text-heading)',
+            },
+          },
+        },
+        dark: {
+          css: {
+            color: 'var(--aw-color-text-default)',
+            h1: { color: 'var(--aw-color-text-heading)' },
+            h2: { color: 'var(--aw-color-text-heading)' },
+            h3: { color: 'var(--aw-color-text-heading)' },
+            h4: { color: 'var(--aw-color-text-heading)' },
+            'h1, h2, h3, h4, h5, h6': {
+              color: 'var(--aw-color-text-heading)',
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [
