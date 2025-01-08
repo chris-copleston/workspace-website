@@ -31,15 +31,15 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
 ---
 
 <Layout metadata={metadata}>
-  <section class="mt-8 px-4 sm:px-6 mx-auto max-w-4xl [&>.not-prose]:-mx-4 [&>.not-prose]:sm:-mx-6">
+  <section class="my-8 px-4 sm:px-6 mx-auto max-w-4xl [&>.not-prose]:-mx-4 [&>.not-prose]:sm:-mx-6">
     <div>
-      <div class="flex items-center gap-4 mb-12">
+      <div class="flex items-center gap-4 mb-12 border-b-8 dark:border-slate-800">
         {frontmatter.icon && (
           <div class="intersect-once motion-safe:opacity-0 motion-safe:intersect:animate-fade">
-            <Icon name={frontmatter.icon} class="w-12 h-12 text-primary" />
+            <Icon name={frontmatter.icon} class="w-12 h-12 mb-3 text-primary" />
           </div>
         )}
-        <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter">{frontmatter.title}</h1>
+        <h1 class="pb-3 font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter">{frontmatter.title}</h1>
       </div>
       {frontmatter.excerpt && (
         <div class="-mt-8 mb-8">
