@@ -1,0 +1,23 @@
+<!-- Calendly inline widget begin -->
+<div id="calendly-widget" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script is:inline>
+  function initCalendly() {
+    if (window.Calendly) {
+      // Clean up existing instances
+      const widget = document.querySelector('#calendly-widget');
+      widget.innerHTML = '';
+      
+      window.Calendly.initInlineWidget({
+        url: 'https://calendly.com/nica_faustino/45min?hide_gdpr_banner=1&hide_event_type_details=1&text_color=475569&primary_color=4f46e5',
+        parentElement: widget,
+        prefill: {},
+        utm: {}
+      });
+    }
+  }
+
+  // Only initialize on page navigation
+  document.addEventListener('astro:page-load', initCalendly);
+</script>
+<!-- Calendly inline widget end -->

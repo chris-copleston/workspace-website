@@ -131,7 +131,7 @@ export const headerData = {
       href: getBlogPermalink(),
     },
   ],
-  actions: [{ text: 'Book a Demo', href: '#', target: '_blank' }],
+  actions: [{ text: 'Book a Demo', href: '/contact' }],
 };
 
 export const footerData = {
@@ -180,13 +180,15 @@ export const footerData = {
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
+    { text: 'EULA', href: getPermalink('/eula') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Security', href: getPermalink('/security') },
   ],
   socialLinks: [
     { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: '#' },
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://linkedin.com/company/newwaveworkspace' },
+    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/newwaveworkspace' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
-  footNote: '',
+  footNote: 'Copyright &copy; 2025 New Wave Workspace, all rights reserved.',
 };
