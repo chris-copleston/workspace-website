@@ -43,44 +43,44 @@ export const headerData = {
       href: '#',
       links: [
         {
+          text: 'Resource Booking',
+          icon: 'tabler:calendar-clock',
+          href: getPermalink('/features/resource-booking'),
+        },
+        {
           text: 'Digital Services',
           icon: 'tabler:automation',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Resource Booking',
-          icon: 'tabler:calendar',
-          href: getPermalink('/booking'),
-        },
-        {
-          text: 'ESG' ,
-          icon: 'tabler:leaf',
-          href: getPermalink('/esg'),
-        },
-        {
-          text: 'Smart Analytics',
-          icon: 'tabler:chart-histogram',
-          href: getPermalink('/analytics'),
-        },
-        {
-          text: 'Catering',
-          icon: 'tabler:tools-kitchen-2',
-          href: getPermalink('/catering'),
+          href: getPermalink('/features/digital-services'),
         },
         {
           text: 'Ticket Tracker',
           icon: 'tabler:ticket',
-          href: getPermalink('/ticket-tracker'),
+          href: getPermalink('/features/ticket-tracker'),
+        },
+        {
+          text: 'ESG',
+          icon: 'tabler:leaf',
+          href: getPermalink('/features/esg'),
+        },
+        {
+          text: 'Smart Analytics',
+          icon: 'tabler:chart-histogram',
+          href: getPermalink('/features/smart-analytics'),
+        },
+        {
+          text: 'Catering',
+          icon: 'tabler:tools-kitchen-2',
+          href: getPermalink('/features/catering'),
         },
         {
           text: 'Visitor Management',
           icon: 'tabler:users',
-          href: getPermalink('/vms'),
+          href: getPermalink('/features/visitor-management'),
         },
         {
-          text: 'Integrations',
+          text: 'Vendor Integrations',
           icon: 'tabler:plug',
-          href: getPermalink('/integrations'),
+          href: getPermalink('/features/vendor-integrations'),
         }
 
       ]
@@ -92,37 +92,37 @@ export const headerData = {
         {
           text: 'Video Conferencing',
           icon: 'tabler:video',
-          href: getPermalink('/#features'),
+          href: getPermalink('/integrations/video-conferencing'),
         },
         {
           text: 'Access Control',
           icon: 'tabler:door-off',
-          href: getPermalink('/services'),
+          href: getPermalink('/integrations/access-control'),
         },
         {
           text: 'HVAC / Electricity',
           icon: 'tabler:air-conditioning',
-          href: getPermalink('/pricing'),
+          href: getPermalink('/integrations/hvac-electricity'),
         },
-        {
-          text: 'Building Management Systems',
-          icon: 'tabler:home-hand',
-          href: getPermalink('/about'),
-        },
+          // {
+          //   text: 'Building Management Systems',
+          //   icon: 'tabler:home-hand',
+          //   href: getPermalink('/integrations/building-management-systems'),
+          // },
         {
           text: 'Smart Lockers',
           icon: 'tabler:cooker',
-          href: getPermalink('/contact'),
+          href: getPermalink('/integrations/smart-lockers'),
         },
         {
           text: 'ITSM',
           icon: 'tabler:server',
-          href: getPermalink('/terms'),
+          href: getPermalink('/integrations/itsm'),
         },
         {
           text: 'IoT Sensors',
           icon: 'tabler:alarm-smoke',
-          href: getPermalink('/privacy'),
+          href: getPermalink('/integrations/iot-sensors'),
         },
       ],
     },
