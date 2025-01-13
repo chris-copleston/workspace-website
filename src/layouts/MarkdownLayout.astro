@@ -26,8 +26,10 @@ const metadata: MetaData = {
   } : undefined,
 };
 
-const isRemoteImage = typeof frontmatter.image === 'string' && 
+const isRemoteImage = frontmatter.image && typeof frontmatter.image === 'string' && 
   (frontmatter.image.startsWith('http://') || frontmatter.image.startsWith('https://'));
+
+const isLocalImage = frontmatter.image && typeof frontmatter.image === 'object' && 'src' in frontmatter.image;
 ---
 
 <Layout metadata={metadata}>
@@ -48,7 +50,7 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
       )}
       {frontmatter.image && (
         <div class="mb-8">
-          {isRemoteImage ? (
+          {isRemoteImage && typeof frontmatter.image === 'string' && (
             <img 
               src={frontmatter.image} 
               alt={frontmatter.title || ''} 
@@ -58,7 +60,8 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
               loading="eager"
               decoding="async"
             />
-          ) : frontmatter.image && typeof frontmatter.image === 'object' && 'src' in frontmatter.image ? (
+          )}
+          {isLocalImage && (
             <Image 
               src={frontmatter.image as ImageMetadata}
               alt={frontmatter.title || ''}
@@ -70,7 +73,7 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
               loading="eager"
               decoding="async"
             />
-          ) : null}
+          )}
         </div>
       )}
     </div>
