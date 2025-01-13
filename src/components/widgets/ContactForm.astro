@@ -108,7 +108,7 @@
       body: json,
     })
       .then(async (response) => {
-        let json = await response.json();
+        const json = await response.json();
         if (response.status == 200) {
           result.innerHTML = json.message;
           result.classList.remove('text-gray-500');
