@@ -49,6 +49,16 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
       {frontmatter.image && (
         <div class="mb-8">
           {isRemoteImage ? (
+            <img 
+              src={frontmatter.image} 
+              alt={frontmatter.title || ''} 
+              class="w-full max-h-[506px] object-cover rounded-lg shadow-lg bg-gray-400 dark:bg-slate-700"
+              width="1060"
+              height="506"
+              loading="eager"
+              decoding="async"
+            />
+          ) : (
             <Image 
               src={frontmatter.image}
               alt={frontmatter.title || ''}
@@ -57,16 +67,6 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
               class="w-full max-h-[506px] object-cover rounded-lg shadow-lg bg-gray-400 dark:bg-slate-700"
               widths={[400, 1060]}
               sizes="(max-width: 1060px) 400px, 1060px"
-              loading="eager"
-              decoding="async"
-            />
-          ) : (
-            <img 
-              src={frontmatter.image} 
-              alt={frontmatter.title || ''} 
-              class="w-full max-h-[506px] object-cover rounded-lg shadow-lg bg-gray-400 dark:bg-slate-700"
-              width="1060"
-              height="506"
               loading="eager"
               decoding="async"
             />
