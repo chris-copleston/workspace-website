@@ -146,8 +146,8 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
       const timelineData = container.dataset.timeline ? JSON.parse(container.dataset.timeline) : null;
 
       if (timelineData) {
-        console.log('Timeline data:', timelineData);
-        console.log('Trigger element:', document.querySelector(timelineData.scrollTrigger.trigger));
+        // console.log('Timeline data:', timelineData);
+        // console.log('Trigger element:', document.querySelector(timelineData.scrollTrigger.trigger));
 
         // Create timeline animation using provided configuration
         const tl = gsap.timeline({
@@ -158,41 +158,40 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
             scrub: timelineData.scrollTrigger.scrub,
             markers: timelineData.scrollTrigger.markers || false,
             onEnter: () => {
-              console.log('Timeline entered');
+              // console.log('Timeline entered');
               container.classList.remove('opacity-0');
             },
             onLeave: () => {
-              console.log('Timeline left');
+              // console.log('Timeline left');
               if (timelineData.scrollTrigger.resetOnLeave) {
-                console.log('Resetting animation');
+                // console.log('Resetting animation');
                 container.classList.add('opacity-0');
                 tl.progress(0);
                 tl.pause();
               }
             },
             onEnterBack: () => {
-              console.log('Timeline entered back');
+              // console.log('Timeline entered back');
               container.classList.remove('opacity-0');
               if (timelineData.scrollTrigger.resetOnLeave) {
                 tl.play();
               }
             },
             onLeaveBack: () => {
-              console.log('Timeline left back');
+              // console.log('Timeline left back');
               if (timelineData.scrollTrigger.resetOnLeave) {
-                console.log('Resetting animation');
+                // console.log('Resetting animation');
                 container.classList.add('opacity-0');
                 tl.progress(0);
                 tl.pause();
               }
-            },
-            onUpdate: (self) => console.log('Timeline progress:', self.progress)
+            }
           }
         });
 
         // Add keyframe animations
         timelineData.keyframes.forEach((keyframe, index) => {
-          console.log('Adding keyframe:', index, keyframe);
+          // console.log('Adding keyframe:', index, keyframe);
           const from = keyframe.from || {};
           const to = keyframe.to || {};
           const position = {
@@ -324,7 +323,6 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
                   textureLoader.load(
                     screenImagePath,
                     (texture) => {
-                      texture.encoding = THREE.LinearEncoding;
                       texture.colorSpace = THREE.SRGBColorSpace;
                       texture.flipY = true;
                       child.material = new THREE.MeshStandardMaterial({
