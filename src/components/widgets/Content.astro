@@ -13,7 +13,13 @@ interface Props {
   subtitle?: string;
   tagline?: string;
   content?: string;
-  callToAction?: string;
+  callToAction?: {
+    text: string;
+    href: string;
+    icon?: string;
+    target?: string;
+    rel?: string;
+  };
   items?: Array<any>;
   columns?: number;
   image?: any;
@@ -75,7 +81,6 @@ const {
   iphone,
   isReversed = false,
   isAfterContent = false,
-
   id,
   isDark = false,
   classes = {},
@@ -109,7 +114,10 @@ const {
         {
           callToAction && (
             <div class="mt-[-40px] mb-8 text-primary">
-              <Button variant="link" {...callToAction} />
+              <Button variant="link" href={callToAction.href} target={callToAction.target} rel={callToAction.rel}>
+                {callToAction.icon && <i class={callToAction.icon} />}
+                {callToAction.text}
+              </Button>
             </div>
           )
         }
