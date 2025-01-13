@@ -1,5 +1,4 @@
 ---
-import FormContainer from '~/components/ui/Form.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import ContactForm from './ContactForm.astro';
@@ -10,10 +9,6 @@ const {
   subtitle = await Astro.slots.render('subtitle'),
   tagline = await Astro.slots.render('tagline'),
   inputs,
-  textarea,
-  disclaimer,
-  button,
-  description,
 
   id,
   isDark = false,
