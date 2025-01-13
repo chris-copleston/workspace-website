@@ -193,8 +193,8 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
         });
 
         // Add keyframe animations
-        timelineData.keyframes.forEach((keyframe, index) => {
-          // console.log('Adding keyframe:', index, keyframe);
+        timelineData.keyframes.forEach((keyframe, _index) => {
+          // console.log('Adding keyframe:', _index, keyframe);
           const from = keyframe.from || {};
           const to = keyframe.to || {};
           const position = {
@@ -257,7 +257,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
       pmremGenerator.compileEquirectangularShader();
       
       const cubeRenderTarget = pmremGenerator.fromScene(new THREE.Scene());
-      const envMap = cubeRenderTarget.texture;
+      const _envMap = cubeRenderTarget.texture;
       
       // Load model
       const loader = new GLTFLoader();
@@ -294,7 +294,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
               const materialName = child.name;
               
               // Create a new material based on the phone color
-              const phoneMaterial = new THREE.MeshStandardMaterial({
+              const _phoneMaterial = new THREE.MeshStandardMaterial({
                 color: new THREE.Color(container.dataset.phoneColor || '#000000'),
                 roughness: 0.2,
                 metalness: 0.8,
