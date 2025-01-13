@@ -287,17 +287,21 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
           
           // Update materials
           model.traverse((child) => {
-            if (child.isMesh) {
-              // console.log('Processing mesh:', child.name);
-              const materialName = child.material.name;
+            if (child instanceof THREE.Mesh) {
+              // Get the material name from the mesh
+              const materialName = child.name;
               
-              // Create titanium material for the edges
+              // Create a new material based on the phone color
+              const phoneMaterial = new THREE.MeshStandardMaterial({
+                color: new THREE.Color(container.dataset.phoneColor || '#000000'),
+                roughness: 0.2,
+                metalness: 0.8,
+              });
+
               const titaniumMaterial = new THREE.MeshStandardMaterial({
-                color: 0xD3D3D3,  // Light gray base color
-                metalness: 0.9,    // High metalness for metallic look
-                roughness: 0.3,    // Lower roughness for slight shine
-                envMap: envMap,    // Add environment map
-                envMapIntensity: 1.2  // Enhance environment reflections
+                color: 0x808080,
+                roughness: 0.5,
+                metalness: 0.8,
               });
               
               if (
@@ -313,7 +317,6 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
               
               // Apply texture to specific mesh
               if (child.name === "xXDHkMplTIDAXLN") {
-                // console.log('Found screen mesh:', child.name);
                 const textureLoader = new THREE.TextureLoader();
                 const screenImagePath = container.dataset.screenImg;
                 
