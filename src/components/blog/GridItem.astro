@@ -24,12 +24,12 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
 >
   <div class="relative md:h-64 bg-gray-400 dark:bg-slate-700 rounded shadow-lg mb-6">
     {
-      image &&
-        (link ? (
+      image && (
+        link ? (
           <a href={link} class="block w-full h-full">
             {isRemoteImage ? (
               <Image
-                src={image}
+                src={image as string}
                 alt={post.title}
                 width={900}
                 height={506}
@@ -56,7 +56,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
         ) : (
           isRemoteImage ? (
             <Image
-              src={image}
+              src={image as string}
               alt={post.title}
               width={900}
               height={506}
@@ -79,7 +79,8 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
               decoding="async"
             />
           )
-        ))
+        )
+      )
     }
   </div>
 
