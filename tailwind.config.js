@@ -29,7 +29,7 @@ export default {
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },
-      typography: theme => ({
+      typography: {
         DEFAULT: {
           css: {
             color: 'var(--aw-color-text-default)',
@@ -54,7 +54,7 @@ export default {
             },
           },
         },
-      }),
+      },
     },
   },
   plugins: [
