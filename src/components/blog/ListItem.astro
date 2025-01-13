@@ -16,25 +16,29 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const image = await findImage(post.image);
+const imageResult = await findImage(post.image);
 
-const isRemoteImage = typeof image === 'string' && 
-  (image.startsWith('http://') || image.startsWith('https://'));
+// Type guard to check if the image is a remote URL
+const isRemoteImage = typeof imageResult === 'string' && 
+  (imageResult.startsWith('http://') || imageResult.startsWith('https://'));
+
+// Type guard to check if the image is a local image metadata
+const isLocalImage = imageResult && typeof imageResult === 'object' && 'src' in imageResult;
 
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 ---
 
 <article
-  class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${image ? 'md:grid-cols-2' : ''}`}
+  class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${imageResult ? 'md:grid-cols-2' : ''}`}
 >
   {
-    image &&
-      (link ? (
+    imageResult && (
+      link ? (
         <a class="relative block group" href={link ?? 'javascript:void(0)'}>
           <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
-            {isRemoteImage ? (
+            {isRemoteImage && (
               <Image
-                src={image}
+                src={imageResult as string}
                 alt={post.title}
                 width={900}
                 height={506}
@@ -44,9 +48,10 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
                 loading="eager"
                 decoding="async"
               />
-            ) : (
+            )}
+            {isLocalImage && (
               <Image
-                src={image}
+                src={imageResult as ImageMetadata}
                 alt={post.title}
                 width={900}
                 height={506}
@@ -61,9 +66,9 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
         </a>
       ) : (
         <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
-          {isRemoteImage ? (
+          {isRemoteImage && (
             <Image
-              src={image}
+              src={imageResult as string}
               alt={post.title}
               width={900}
               height={506}
@@ -73,9 +78,10 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
               loading="eager"
               decoding="async"
             />
-          ) : (
+          )}
+          {isLocalImage && (
             <Image
-              src={image}
+              src={imageResult as ImageMetadata}
               alt={post.title}
               width={900}
               height={506}
@@ -87,7 +93,8 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
             />
           )}
         </div>
-      ))
+      )
+    )
   }
   <div>
     <header>
