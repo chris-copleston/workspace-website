@@ -252,13 +252,6 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
       const dracoLoader = new DRACOLoader();
       dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
       
-      // Add environment map
-      const pmremGenerator = new THREE.PMREMGenerator(renderer);
-      pmremGenerator.compileEquirectangularShader();
-      
-      const cubeRenderTarget = pmremGenerator.fromScene(new THREE.Scene());
-      const _envMap = cubeRenderTarget.texture;
-      
       // Load model
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
@@ -290,11 +283,7 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
           // Update materials
           model.traverse((child) => {
             if (child instanceof THREE.Mesh) {
-              // Get the material name from the mesh
-              const materialName = child.name;
-              
-              // Create a new material based on the phone color
-              const _phoneMaterial = new THREE.MeshStandardMaterial({
+              const baseMaterial = new THREE.MeshStandardMaterial({
                 color: new THREE.Color(container.dataset.phoneColor || '#000000'),
                 roughness: 0.2,
                 metalness: 0.8,
@@ -307,14 +296,16 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
               });
               
               if (
-                materialName !== "zFdeDaGNRwzccye" &&
-                materialName !== "ujsvqBWRMnqdwPx" &&
-                materialName !== "hUlRcbieVuIiOXG" &&
-                materialName !== "jlzuBkUzuJqgiAK" &&
-                materialName !== "xNrofRCqOXXHVZt"
+                child.name !== "zFdeDaGNRwzccye" &&
+                child.name !== "ujsvqBWRMnqdwPx" &&
+                child.name !== "hUlRcbieVuIiOXG" &&
+                child.name !== "jlzuBkUzuJqgiAK" &&
+                child.name !== "xNrofRCqOXXHVZt"
               ) {
                 // Apply titanium material to the edges
                 child.material = titaniumMaterial;
+              } else {
+                child.material = baseMaterial;
               }
               
               // Apply texture to specific mesh
