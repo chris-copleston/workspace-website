@@ -1,0 +1,199 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import PhoneScreens from '~/components/widgets/PhoneScreens.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+// import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Customers from '~/components/widgets/Customers.astro';
+import homeBackground from '~/assets/images/bg/home-bg.jpg';
+import roomAndAppImage from '~/assets/images/mockups/room-and-app.jpg';
+import crestronRoomsImage from '~/assets/images/mockups/crestron-rooms.jpg';
+import analyticsImage from '~/assets/images/mockups/analytics.jpg';
+import deskQdeskTouchImage from '~/assets/images/mockups/desk-q-desk-touch.jpg';
+
+const metadata = {
+  title: 'New Wave Workspace — The Super App for Hybrid Work',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Demo',
+        href: '/contact',
+        icon: 'tabler:calendar',
+      },
+      { text: 'Watch the interview', href: '#interview', icon: 'tabler:video' },
+    ]}
+  >
+    <Fragment slot="title">
+      <span
+        class="bg-gradient-to-r from-blue-600 via-pink-500 to-indigo-600 inline-block text-transparent bg-clip-text selection:text-primary"
+        >Crestron</span
+      >
+      Flex Scheduling
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="font-semibold">Native integration</span>. Leverage Crestron panels, RFID, occupancy sensor, and
+      availability indicators to eliminate zombie meetings, maximise room utilisation.
+    </Fragment>
+  </Hero>
+
+  <Content
+    title="Room Booking"
+    subtitle="Book your meeting room with ease and convenience with New Wave Workspace and Crestron panels."
+    items={[
+      {
+        title: 'Use our One App to book from anywhere',
+        description: 'Leverage our One App to book and manage your desk and room bookings on the go.',
+      },
+      {
+        title: 'Walk-in meetings',
+        description: 'Book directly on the Crestron enterprise-grade scheduling panel.',
+      },
+      {
+        title: 'Flexible',
+        description: 'A truly flexible workspace platform that adapts to the way you work.',
+      },
+    ]}
+    image={{
+      src: roomAndAppImage,
+      alt: 'One App',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2 one-app-advantage">
+        Book from anywhere
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    isReversed
+    items={[
+      {
+        title: 'Locate your room',
+        description: 'Benefit from Crestron illuminated indicators to help people to quickly locate available rooms.',
+      },
+      {
+        title: 'Easy check-in',
+        description:
+          'Creston panels outside rooms allow for easy meeting check-in with RFID badge scan, a few taps on the panel or directly within our One App..',
+      },
+    ]}
+    image={{
+      src: crestronRoomsImage,
+      alt: 'One App',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2 one-app-advantage">
+        Locate your room and check-in
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    items={[
+      {
+        title: 'Utilisation insights',
+        description: 'Obtain meeting room utilisation insights, how they are being used.',
+      },
+      {
+        title: 'Right-size office space',
+        description: 'Right-size offices based on real-time utilisation data.',
+      },
+    ]}
+    image={{
+      src: analyticsImage,
+      alt: 'One App',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2 one-app-advantage">
+        Manage Room Occupancy
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    title="Desk Scheduling"
+    subtitle="Transform your desks spaces into fully bookable hot-desking, hotelling workstations with New Wave Workspace and Crestron."
+    items={[
+      {
+        title: 'Transform multiple spaces',
+        description: 'Improve visibility and accessibility of your desks, phone booths, huddleroom signage.',
+      },
+      {
+        title: 'With Crestron Desk Touch',
+        description:
+          'Book directly on the Crestron Desk Touch panel, check-in to pre-booked desks and huddle rooms. Call for service, show you are not to be distrubed and more.',
+      },
+      {
+        title: 'With Crestron Desk Q',
+        description: 'Easily see desk availability to reduce waiting times and booking conflicts.',
+      },
+    ]}
+    image={{
+      src: deskQdeskTouchImage,
+      alt: 'One App',
+    }}
+  >
+    <Fragment slot="content"> </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <a id="interview"></a>
+  <div class="container mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div class="prose dark:prose-invert max-w-none">
+        <h2 class="text-3xl font-bold mb-4">Modern Work Interview</h2>
+        <p class="mt-4 mx-auto
+       text-xl text-muted dark:text-slate-400">
+          Watch <strong>Neil Fluester</strong>, Global Director Technology Alliances at Crestron interview <strong
+            >Nica Faustino</strong
+          >, Chief Commercial Officer.
+        </p>
+      </div>
+      <div class="relative w-full aspect-video">
+        <iframe
+          class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+          src="https://www.youtube.com/embed/WJQBPgQPqEg"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+</Layout>
