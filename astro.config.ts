@@ -23,6 +23,8 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
+  site: 'https://chris-copleston.github.io',
+  base: '/workspace-website',
 
   image: {
     domains: ['cdn.pixabay.com', 'images.unsplash.com'],
