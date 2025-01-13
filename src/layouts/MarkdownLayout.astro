@@ -58,9 +58,9 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
               loading="eager"
               decoding="async"
             />
-          ) : (
+          ) : frontmatter.image && typeof frontmatter.image === 'object' && 'src' in frontmatter.image ? (
             <Image 
-              src={frontmatter.image}
+              src={frontmatter.image as ImageMetadata}
               alt={frontmatter.title || ''}
               width={1060}
               height={506}
@@ -70,7 +70,7 @@ const isRemoteImage = typeof frontmatter.image === 'string' &&
               loading="eager"
               decoding="async"
             />
-          )}
+          ) : null}
         </div>
       )}
     </div>
