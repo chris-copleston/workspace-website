@@ -19,9 +19,17 @@ export interface Props {
     target?: string;
     rel?: string;
   };
-  items?: Array<any>;
+  items?: Array<{
+    title?: string;
+    description?: string;
+    icon?: string;
+    href?: string;
+  }>;
   columns?: number;
-  image?: any;
+  image?: {
+    src: string;
+    alt?: string;
+  };
   iphone?: {
     img: string;
     color: string[];
