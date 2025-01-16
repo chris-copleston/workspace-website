@@ -159,16 +159,20 @@ const getZIndex = (index: number) => {
 </div>
 
 <script>
-  import anime from 'animejs/lib/anime.es.js';
-  anime({
-    targets: '.container',
-    scale: [0.8, 1],
-    easing: 'easeInOutQuad',
-    duration: 800,
-  });
-</script>
+  import gsap from 'gsap';
+  
+  function initAnimation() {
+    gsap.to('.container', {
+      scale: 0.8,
+      duration: 1
+    });
+  }
 
-<script>
+  // Run on page load
+  document.addEventListener('DOMContentLoaded', initAnimation);
+  // Run on view transitions
+  document.addEventListener('astro:page-load', initAnimation);
+
   function updateZIndices() {
     const triggers = document.querySelectorAll('.trigger');
     triggers.forEach(trigger => {
