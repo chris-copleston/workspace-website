@@ -37,7 +37,10 @@ const {
     </div>
     {
       image && (
-        <div class="relative md:basis-1/2">
+        <div class:list={[
+          "relative md:basis-1/2", 
+          classes?.imageContainer ?? ''
+        ]}>
           {typeof image === 'string' ? (
             <Fragment set:html={image} />
           ) : (

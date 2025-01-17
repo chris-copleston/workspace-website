@@ -104,11 +104,6 @@ export const headerData = {
           icon: 'tabler:air-conditioning',
           href: getPermalink('/integrations/hvac-electricity'),
         },
-          // {
-          //   text: 'Building Management Systems',
-          //   icon: 'tabler:home-hand',
-          //   href: getPermalink('/integrations/building-management-systems'),
-          // },
         {
           text: 'Smart Lockers',
           icon: 'tabler:cooker',
@@ -139,43 +134,90 @@ export const footerData = {
     {
       title: 'Solutions',
       links: [
-        { text: 'Banking', href: '#' },
-        { text: 'Legal', href: '#' },
-        { text: 'Universities', href: '#' },
-        { text: 'Hospitality', href: '#' },
-        { text: 'Health and Life Sciences', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        
+        { text: 'Banking', href: '/solutions/banking' },
+        { text: 'Legal', href: '/solutions/legal' },
+        { text: 'Universities', href: '/solutions/universities' },
+        { text: 'Hospitality', href: '/solutions/hospitality' },
+        { text: 'Healthcare', href: '/solutions/healthcare' },
+        { text: 'Corporate', href: '/solutions/corporate' },
       ],
     },
     {
-      title: 'Platform',
+      title: 'Features',
       links: [
-        { text: 'Modules', href: '#' },
-        { text: 'Video Conferencing', href: '#' },
-        { text: 'Access Control', href: '#' },
-        { text: 'HAVC / Electricity', href: '#' },
-        { text: 'BMS', href: '#' },
-        { text: 'Smart Lockers', href: '#' },
-        { text: 'ITSM', href: '#' },
-        { text: 'IoT Sensors', href: '#' },
+        {
+          text: 'Resource Booking',
+          href: getPermalink('/features/resource-booking'),
+        },
+        {
+          text: 'Digital Services',
+          href: getPermalink('/features/digital-services'),
+        },
+        {
+          text: 'Ticket Tracker',
+          href: getPermalink('/features/ticket-tracker'),
+        },
+        {
+          text: 'ESG',
+          href: getPermalink('/features/esg'),
+        },
+        {
+          text: 'Smart Analytics',
+          href: getPermalink('/features/smart-analytics'),
+        },
+        {
+          text: 'Catering',
+          href: getPermalink('/features/catering'),
+        },
+        {
+          text: 'Visitor Management',
+          href: getPermalink('/features/visitor-management'),
+        },
+        {
+          text: 'Vendor Integrations',
+          href: getPermalink('/features/vendor-integrations'),
+        }
       ],
     },
     {
-      title: 'Support',
+      title: 'Integrations',
       links: [
-        { text: 'Hive Concierge Support', href: '#' },
-        { text: 'Partner Portal', href: '#' },
-        { text: 'API Docs', href: '#' },
+        {
+          text: 'Video Conferencing',
+          href: getPermalink('/integrations/video-conferencing'),
+        },
+        {
+          text: 'Access Control',
+          href: getPermalink('/integrations/access-control'),
+        },
+        {
+          text: 'HVAC / Electricity',
+          href: getPermalink('/integrations/hvac-electricity'),
+        },
+        {
+          text: 'Smart Lockers',
+          href: getPermalink('/integrations/smart-lockers'),
+        },
+        {
+          text: 'ITSM',
+          href: getPermalink('/integrations/itsm'),
+        },
+        {
+          text: 'IoT Sensors',
+          href: getPermalink('/integrations/iot-sensors'),
+        },
       ],
     },
     {
       title: 'Company',
       links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Become a Partner', href: '#' },
+        // { text: 'About', href: '/about' },
+        // { text: 'Careers', href: '/careers' },
+        { text: 'Become a Partner', href: '/partners' },
+        { text: 'Customer Support', href: '#' },
+        { text: 'Partner Portal', href: '#' },
+        { text: 'API Docs', href: 'https://docs.newwaveworkspace.com', target: '_blank' },
+        { text: 'Blog', href: '/blog' },
       ],
     },
   ],
@@ -185,7 +227,7 @@ export const footerData = {
     { text: 'Security', href: getPermalink('/security') },
   ],
   socialLinks: [
-    { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: '#' },
+    { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@newwaveworkspace' },
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://linkedin.com/company/newwaveworkspace' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/newwaveworkspace' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
