@@ -76,10 +76,6 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
 
   class IPhoneRenderer {
     constructor(container) {
-      // console.log('Initializing iPhone renderer');
-      // console.log('Screen image path:', container.dataset.screenImg);
-      // console.log('Phone color:', container.dataset.phoneColor);
-      
       // Initialize Three.js scene
       const scene = new THREE.Scene();
       
@@ -109,33 +105,16 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
       const enableOrbitControls = container.dataset.enableOrbitControls === 'true';
       const enableAutoRotation = container.dataset.enableAutoRotation === 'true';
       let controls;
-      if (enableOrbitControls) {
-        controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.enableZoom = false;
-        
-        // Log initial control settings
-        // console.log('Orbital Controls Settings:', {
-        //   enableDamping: controls.enableDamping,
-        //   dampingFactor: controls.dampingFactor,
-        //   enableZoom: controls.enableZoom,
-        //   enabled: controls.enabled
-        // });
-
-        // Add event listeners for control changes
-        // controls.addEventListener('change', () => {
-        //   console.log('Camera Position:', {
-        //     x: camera.position.x.toFixed(2),
-        //     y: camera.position.y.toFixed(2),
-        //     z: camera.position.z.toFixed(2)
-        //   });
-        //   console.log('Controls Target:', {
-        //     x: controls.target.x.toFixed(2),
-        //     y: controls.target.y.toFixed(2),
-        //     z: controls.target.z.toFixed(2)
-        //   });
-        // });
+      
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.enableZoom = false;
+      
+      // Disable controls and pointer events if enableOrbitControls is false
+      if (!enableOrbitControls) {
+        controls.enabled = false;
+        renderer.domElement.style.pointerEvents = 'none';
       }
 
       // Set up scroll-based animation
@@ -341,12 +320,20 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
           // Animation loop
           const animate = () => {
             requestAnimationFrame(animate);
-            // console.log('enableOrbitControls', enableOrbitControls);
             
-            if (enableOrbitControls && controls) {
-              controls.update();
-            } else if (enableAutoRotation && model) {
-              // Auto rotation only when enabled and no orbit controls
+            // Always update controls if they exist
+            if (controls) {
+              if (enableOrbitControls) {
+                controls.update();
+              } else {
+                // Ensure camera follows the same path even without active orbit controls
+                controls.update();
+                controls.enabled = false;
+              }
+            }
+            
+            // Fallback auto-rotation if no other animation
+            if (!timelineData && enableAutoRotation && model) {
               model.rotation.y += 0.005;
             }
             
