@@ -59,7 +59,7 @@ const isRemoteImage = typeof post.image === 'string' &&
         </div>
       )}
 
-      {post.image && (
+      {(!post.hideImage && post.image) && (
         <div class="mb-8">
           {isRemoteImage ? (
             <Image

@@ -62,6 +62,8 @@ const postCollection = defineCollection({
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
 
+    hideImage: z.boolean().optional(),
+
     metadata: metadataDefinition(),
   }),
 });

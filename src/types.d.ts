@@ -42,6 +42,9 @@ export interface Post {
 
   /**  */
   readingTime?: number;
+
+  /**  */
+  hideImage?: boolean;
 }
 
 export interface Taxonomy {

@@ -56,6 +56,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     author,
     draft = false,
     metadata = {},
+    hideImage = false,
   } = data;
 
   const slug = cleanSlug(id);
@@ -96,9 +97,11 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
 
     metadata,
 
-    Content: Content,
-
     readingTime: remarkPluginFrontmatter?.readingTime,
+
+    hideImage: hideImage,
+
+    Content: Content,
   };
 };
 

@@ -13,9 +13,10 @@ import { getFormattedDate } from '~/utils/utils';
 
 export interface Props {
   post: Post;
+  isSinglePost?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, isSinglePost = false } = Astro.props;
 const imageResult = await findImage(post.image);
 
 // Type guard to check if the image is a remote URL
@@ -29,14 +30,14 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
 ---
 
 <article
-  class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${imageResult ? 'md:grid-cols-2' : ''}`}
+  class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${imageResult && !post.hideImage && !isSinglePost ? 'md:grid-cols-2' : ''}`}
 >
   {
     imageResult && (
       link ? (
         <a class="relative block group" href={link ?? 'javascript:void(0)'}>
           <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
-            {isRemoteImage && (
+            {!isSinglePost && !post.hideImage && isRemoteImage && (
               <Image
                 src={imageResult as string}
                 alt={post.title}
@@ -49,7 +50,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
                 decoding="async"
               />
             )}
-            {isLocalImage && (
+            {!isSinglePost && !post.hideImage && isLocalImage && (
               <Image
                 src={imageResult as ImageMetadata}
                 alt={post.title}
@@ -66,7 +67,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
         </a>
       ) : (
         <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
-          {isRemoteImage && (
+          {!isSinglePost && !post.hideImage && isRemoteImage && (
             <Image
               src={imageResult as string}
               alt={post.title}
@@ -79,7 +80,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
               decoding="async"
             />
           )}
-          {isLocalImage && (
+          {!isSinglePost && !post.hideImage && isLocalImage && (
             <Image
               src={imageResult as ImageMetadata}
               alt={post.title}

@@ -11,6 +11,7 @@ export interface Props {
     image?: string | ImageMetadata;
     excerpt?: string;
     icon?: `tabler:${string}`;
+    hideImage?: boolean;
   };
 }
 
@@ -19,7 +20,7 @@ const { frontmatter } = Astro.props;
 const metadata: MetaData = {
   title: frontmatter?.title,
   description: frontmatter?.excerpt,
-  openGraph: frontmatter?.image ? {
+  openGraph: frontmatter?.image && !frontmatter?.hideImage ? {
     images: [{
       url: typeof frontmatter.image === 'string' ? frontmatter.image : frontmatter.image.src,
     }],
@@ -30,6 +31,7 @@ const isRemoteImage = frontmatter.image && typeof frontmatter.image === 'string'
   (frontmatter.image.startsWith('http://') || frontmatter.image.startsWith('https://'));
 
 const isLocalImage = frontmatter.image && typeof frontmatter.image === 'object' && 'src' in frontmatter.image;
+
 ---
 
 <Layout metadata={metadata}>
@@ -48,7 +50,7 @@ const isLocalImage = frontmatter.image && typeof frontmatter.image === 'object' 
           <p class="text-xl text-gray-600 dark:text-gray-400">{frontmatter.excerpt}</p>
         </div>
       )}
-      {frontmatter.image && (
+      {frontmatter.image && !frontmatter.hideImage && (
         <div class="mb-8">
           {isRemoteImage && typeof frontmatter.image === 'string' && (
             <img 
