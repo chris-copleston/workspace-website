@@ -7,6 +7,7 @@ image: https://images.unsplash.com/photo-1507207611509-ec012433ff52?q=80&w=3456&
 category: VMS
 tags:
   - vms
+  - en
 ---
 
 ## The advantages of our VMS versus a building's lobby visitor registration system "VRS".
