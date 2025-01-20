@@ -18,15 +18,27 @@ type ImageType = {
 const props = Astro.props;
 
 if (props.alt === undefined || props.alt === null) {
-  throw new Error();
+  throw new Error('Alt text is required for images');
 }
 
+// Ensure width and height are always numbers
 if (typeof props.width === 'string') {
   props.width = parseInt(props.width);
 }
 
 if (typeof props.height === 'string') {
   props.height = parseInt(props.height);
+}
+
+// If width or height is not provided, try to get from the image
+if (!props.width || !props.height) {
+  try {
+    const imageModule = await import(/* @vite-ignore */ props.src);
+    props.width = imageModule.default.width;
+    props.height = imageModule.default.height;
+  } catch (error) {
+    console.warn('Could not automatically determine image dimensions', error);
+  }
 }
 
 if (!props.loading) {
