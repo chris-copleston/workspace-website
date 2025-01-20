@@ -10,6 +10,10 @@ tags:
   - cfmo
   - en
 ---
+import Image from '~/components/common/Image.astro';
+import bmsImage from '~/assets/images/blog/bms.jpg';
+import hybridImage from '~/assets/images/blog/hybrid.jpg';
+
 As a Chief Facility Management Officer (CFMO), the transition to a hybrid work model presents both challenges and opportunities. With employees working three days in the office and two days from home, it’s crucial to leverage technology to create a flexible, efficient, and comfortable work environment. This not only maximizes productivity but also enhances employee satisfaction and well-being. Here, we explore the top technologies and their associated benefits, with a focus on the importance of a flexible workspace platform like New Wave Workspace that adapts to evolving needs and integrates seamlessly with other systems.
 
 ## 1. Smart HVAC Systems
@@ -24,7 +28,10 @@ Occupancy sensors play a critical role in optimizing space utilization. By detec
 
 <div class="flex flex-col md:flex-row items-center md:space-x-5">
   <div class="w-full md:w-1/3 mb-4 md:mb-0">
-    <img src="/src/assets/images/blog/bms.jpg" alt="Building Management System" class="w-full h-auto object-cover rounded-lg shadow-md">
+    <Image 
+      src={bmsImage}
+      alt="Building Management System"
+    />
   </div>
   <div class="w-full md:w-2/3">
     A comprehensive Building Management System (BMS) integrates various building operations into a single, centralized platform. For CFMOs, this means have a x-ray streamlined view of your building to better monitor and control of all critical systems, from HVAC to security. A BMS enables predictive maintenance, reducing downtime and prolonging the lifespan of building infrastructure. Additionally, the centralized data collection and analysis facilitate informed decision-making, driving operational efficiency and cost savings.
@@ -39,12 +46,14 @@ Digital signage and wayfinding solutions are indispensable in managing the flow 
 
 <div class="flex flex-col md:flex-row items-center md:space-x-5">
   <div class="w-full md:w-1/3 mb-4 md:mb-0">
-    <img src="/src/assets/images/blog/hybrid.jpg" alt="Building Management System" class="w-full h-auto object-cover rounded-lg shadow-md">
+    <Image 
+      src={hybridImage}
+      alt="Hot Desking"
+    />
   </div>
   <div class="w-full md:w-2/3">
-    In a hybrid work environment, flexibility is key. Hot desking and room booking software allow employees to reserve desks and meeting rooms on-demand. This not only optimizes the use of available space but also supports the dynamic nature of hybrid schedules. Employees can choose their workspace based on their needs for the day, fostering collaboration and productivity. <br><br>
+    In a hybrid work environment, flexibility is key. Hot desking and room booking software allow employees to reserve desks and meeting rooms on-demand. This not only optimizes the use of available space but also supports the dynamic nature of hybrid schedules. Employees can choose their workspace based on their needs for the day, fostering collaboration and productivity. <br /><br />
     Implementing such a system requires a platform that can seamlessly adapt to changes and scale with organizational needs.
-
   </div>
 </div>
 
