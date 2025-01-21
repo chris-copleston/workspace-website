@@ -5,7 +5,9 @@ excerpt: Optimizing Patient Care and Operations
 image: https://images.unsplash.com/photo-1517120026326-d87759a7b63b?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 icon: tabler:heartbeat
 ---
-
+import Image from '~/components/common/Image.astro';
+import CapabilitiesImage from '~/assets/images/pages/healthcare-capabilities.svg';
+import BenefitsImage from '~/assets/images/pages/healthcare-benefits.svg';
 
 ## The Problem
 
@@ -15,12 +17,26 @@ Hospitals and clinics face significant challenges with outdated manual processes
 
 New Wave Workspace offers a comprehensive, digital solution to streamline and automate key processes across healthcare facilities:
 
+<Image
+    src={CapabilitiesImage}
+    alt="New Wave Workspace Healthcare Capabilities"
+    class="not-prose mx-auto"
+    width={600}
+/>
+
 - **Patient Visits & Check-Ups:** Use our Visitor Management System to enhance patient registration, improve check-in experiences, and provide a seamless flow of information.
 - **Operation Room Management:** The Bookings Management module enables efficient scheduling of operation rooms, ensuring that resources, equipment, and staff are optimized for each procedure.
 - **Staff Scheduling:** Intelligent scheduling features match medical staff with required skills, availability, and expertise, reducing downtime and ensuring timely treatment.
 - **QR Code Integration:** Leverage our QR Code module for real-time updates on bed changes, cleaning schedules, and patient room readiness, improving facility cleanliness and turnover rates.
 
 ## Expected Benefits
+
+<Image
+    src={BenefitsImage}
+    alt="New Wave Workspace Healthcare Benefits"
+    class="not-prose mx-auto"
+    width={800}
+/>
 
 - **Increased Efficiency:** Automating manual processes saves time, reduces human error, and ensures that resources are allocated effectively.
 - **Optimized Resource Utilization:** Through intelligent scheduling and real-time updates, New Wave Workspace maximizes the use of available operation rooms and medical staff, improving patient care.
