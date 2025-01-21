@@ -115,14 +115,14 @@ const getZIndex = (index: number) => {
                   <Icon name={phone.icon} class="icon" />
                 </div>
                 <p>{phone.title}</p>
-                <h3>
+                <h2>
                   {phone.subtitle}<br /><b>{phone.boldText}</b>
                   <span class="dots">
                     <span />
                     <span />
                     <span />
                   </span>
-                </h3>
+                </h2>
                 <hr />
                 <p>
                   {phone.description.map((line) => (
@@ -314,13 +314,13 @@ const getZIndex = (index: number) => {
     letter-spacing: 1px;
   }
 
-  .phone-screen h3 {
+  .phone-screen h2 {
     font-weight: 300;
     font-size: 30px;
     line-height: 1;
   }
 
-  .phone-screen h3 b {
+  .phone-screen h2 b {
     font-weight: 500;
   }
 
