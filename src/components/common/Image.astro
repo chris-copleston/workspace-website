@@ -9,7 +9,10 @@ import {
   type ImageProps,
 } from '~/utils/images-optimization';
 
-type Props = ImageProps;
+type Props = ImageProps & {
+  invertInDarkMode?: boolean;
+};
+
 type ImageType = {
   src: string;
   attributes: HTMLAttributes<'img'>;
@@ -68,6 +71,15 @@ if (
   !image ? (
     <Fragment />
   ) : (
-    <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+    <img 
+      src={image.src} 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" 
+      class:list={[
+        props.class,
+        props.invertInDarkMode && 'dark:invert'
+      ]}
+      {...image.attributes} 
+    />
   )
 }
