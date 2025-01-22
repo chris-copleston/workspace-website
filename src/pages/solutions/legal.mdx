@@ -8,6 +8,7 @@ icon: tabler:gavel
 import Image from '~/components/common/Image.astro';
 import CapabilitiesImage from '~/assets/images/pages/general-capabilities.svg';
 import BenefitsImage from '~/assets/images/pages/general-benefits.svg';
+import Features from '~/components/widgets/Features.astro';
 
 ## The Problem
 
@@ -39,21 +40,56 @@ New Wave Workspace provides a tailored solution to help law firms modernize oper
 - **Smart Analytics for Space Utilization**: Leverage data to understand employee attendance patterns and optimize the use of meeting rooms, desks, and collaborative spaces for maximum efficiency and comfort.
 - **Enhanced Meeting Room Experience**: Fully integrated catering and IT support systems ensure that lawyers and clients receive VIP-level services in meetings, maintaining the high expectations of service and professionalism.
 
-## Expected Benefits
-
-<Image
-   src={BenefitsImage}
-   alt="Benefits"
-   class="not-prose mx-auto"
-   invertInDarkMode={true}
-   width={800}
-/>
-
-- **Improved Employee Flexibility**: By using flexible work policies, employees can benefit from a better work-life balance, improving productivity and employee satisfaction.
-- **Enhanced Client Satisfaction**: The visitor management system ensures that clients are treated to a truly exceptional experience, reinforcing the law firm’s commitment to excellence.
-- **Increased Space Utilization**: Smarter workplace policies and real-time analytics ensure that space is optimized, reducing wasted resources and increasing operational efficiency.
-- **Streamlined Operations**: Automated systems for attendance monitoring, meeting room bookings, and visitor management reduce administrative overhead, allowing staff to focus on high-value tasks.
-- **Boosted Firm Prestige**: A more modern, data-driven approach to workplace management enhances the firm’s reputation as a leader in innovation and client care.
+  <Features
+    id="features"
+    title="Expected Benefits"
+    classes={{
+      headline: {
+        container: 'text-left md:mx-0'
+      }
+    }}
+    items={[
+      {
+        title: 'Improved Employee Flexibility',
+        description:
+          'By using flexible work policies, employees can benefit from a better work-life balance, improving productivity and employee satisfaction.',
+        icon: 'tabler:building-community',
+      },
+      {
+        title: 'Enhanced Client Satisfaction',
+        description:
+          'The visitor management system ensures that clients are treated to a truly exceptional experience, reinforcing the law firm’s commitment to excellence.', 
+        icon: 'tabler:user-heart',
+      },
+      {
+        title: 'Increased Space Utilization',
+        description:
+          'Smarter workplace policies and real-time analytics ensure that space is optimized, reducing wasted resources and increasing operational efficiency.',
+        icon: 'tabler:building-skyscraper',
+      },
+      {
+        title: 'Streamlined Operations',
+        description:
+          'Automated systems for attendance monitoring, meeting room bookings, and visitor management reduce administrative overhead, allowing staff to focus on high-value tasks.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'Boosted Firm Prestige',
+        description:
+          'A more modern, data-driven approach to workplace management enhances the firm’s reputation as a leader in innovation and client care.',
+        icon: 'tabler:heart-handshake',
+      }
+    ]}
+  >
+    <Image
+      src={BenefitsImage}
+      alt="Benefits"
+      class="not-prose mx-auto"
+      invertInDarkMode={true}
+      width={800}
+      slot="subtitle"
+    />
+  </Features>
 
 ## Time frame for Return on Investment (ROI)
 

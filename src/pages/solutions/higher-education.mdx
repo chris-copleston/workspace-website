@@ -5,10 +5,12 @@ excerpt: New Wave Workspace for Higher Education - Maximizing Resources and Digi
 image: https://images.unsplash.com/photo-1520545221203-f6ca6a8e3252?q=80&w=4331&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 icon: tabler:school
 ---
+
 import Image from '~/components/common/Image.astro';
 import BenefitsImage from '~/assets/images/pages/education-benefits.svg';
 import ResultsImage from '~/assets/images/pages/education-results.svg';
 import ROIImage from '~/assets/images/pages/education-roi.svg';
+import Features from '~/components/widgets/Features.astro';
 
 ## Challenges in Higher Education
 
@@ -20,45 +22,63 @@ Further compounding the issue, many universities continue to rely on manual and 
 
 New Wave Workspace offers a robust digital platform that addresses these key challenges, helping higher education institutions maximize their potential and stay competitive in an increasingly digital world.
 
-<Image
-   src={BenefitsImage}
-   alt="Benefits"
-   class="not-prose mx-auto"
-   invertInDarkMode={true}
-   width={800}
-/>
+<Image src={BenefitsImage} alt="Benefits" class="not-prose mx-auto" invertInDarkMode={true} width={800} />
 
 - **Space Optimization**: Maximize the utilization of academic and non-academic spaces. Whether it's faculty offices, classrooms, or meeting rooms, New Wave Workspace offers real-time tracking and booking of spaces, ensuring that resources are used efficiently and effectively.
 - **Digital Transformation**: New Wave Workspace digitizes manual and scattered processes, integrating them into one seamless app. Whether it's mail-room management, digital checklists, or managing administrative workflows, New Wave ensures universities are operating at peak efficiency.
 - **Visitor Experience**: Attracting international students and their families begins with a smooth, modern visitor experience. New Wave's Visitor Management System ensures a seamless, personalized check-in process, helping to create a lasting impression for potential students and their families visiting campuses.
 - **Co-op Program Management**: Link students with local employers by managing co-op programs more effectively. The New Wave Workspace platform simplifies communication, tracking, and scheduling for co-op opportunities, ensuring a positive experience for students and employers alike.
 
-## Expected Benefits
-Implementing New Wave Workspace provides numerous benefits to universities.
-
-<Image
-   src={ResultsImage}
-   alt="Results"
-   class="not-prose mx-auto"
-   invertInDarkMode={true}
-   width={800}
-/>
-
-- **Increased Revenue**: By efficiently managing and monetizing campus spaces, universities can generate additional revenue from underutilized areas, whether for events, short-term leases, or services.
-- **Improved Operational Efficiency**: Digitalizing workflows, mail-room management, and administrative processes results in significant time and cost savings, reducing overhead and improving operational performance.
-- **Enhanced Student and Visitor Experience**: Streamlining campus visits for prospective students and their families creates a positive first impression, directly influencing recruitment outcomes.
-- **Stronger Industry Partnerships**: The efficient management of co-op programs strengthens the relationship between universities and local employers, offering students more valuable career opportunities and enhancing the institution's reputation.
+<Features
+id="features"
+title="Expected Benefits"
+classes={{
+    headline: {
+    container: 'text-left md:mx-0'
+    }
+}}
+    items={[
+        {
+        title: 'Increased Revenue',
+        description:
+            'By efficiently managing and monetizing campus spaces, universities can generate additional revenue from underutilized areas, whether for events, short-term leases, or services.',
+        icon: 'tabler:building-bank',
+        },
+        {
+        title: 'Improved Operational Efficiency',
+        description:
+            'Digitalizing workflows, mail-room management, and administrative processes results in significant time and cost savings, reducing overhead and improving operational performance.',
+        icon: 'tabler:brand-mastercard',
+        },
+        {
+        title: 'Enhanced Student and Visitor Experience',
+        description:
+            'Streamlining campus visits for prospective students and their families creates a positive first impression, directly influencing recruitment outcomes.',
+        icon: 'tabler:chart-line',
+        },
+        {
+        title: 'Stronger Industry Partnerships',
+        description:
+            'The efficient management of co-op programs strengthens the relationship between universities and local employers, offering students more valuable career opportunities and enhancing the institution\'s reputation.',
+        icon: 'tabler:user-bolt',
+        }
+    ]}
+>
+    <Image
+        src={ResultsImage}
+        alt="Results"
+        class="not-prose mx-auto"
+        invertInDarkMode={true}
+        width={800}
+        slot="subtitle"
+    />
+</Features>
 
 ## Time frame for Return on Investment (ROI)
+
 Universities can expect a quick and measurable return on investment through the adoption of New Wave Workspace. While specific ROI depends on the institution's scale and adoption rate, typical universities will begin seeing tangible benefits within 3–6 months.
 
-<Image
-   src={ROIImage}
-   alt="ROI"
-   class="not-prose mx-auto"
-   invertInDarkMode={true}
-   width={600}
-/>
+<Image src={ROIImage} alt="ROI" class="not-prose mx-auto" invertInDarkMode={true} width={600} />
 
 - **Space optimization**: Within 3 months, universities can begin to optimize and monetize underutilized spaces, potentially generating new revenue streams.
 - **Operational efficiency**: Digital transformation can lead to immediate reductions in operational costs, often within 4–6 months.
