@@ -136,7 +136,7 @@ export const footerData = {
       links: [
         { text: 'Banking', href: '/solutions/banking' },
         { text: 'Legal', href: '/solutions/legal' },
-        { text: 'Universities', href: '/solutions/universities' },
+        { text: 'Higher Education', href: '/solutions/higher-education' },
         { text: 'Hospitality', href: '/solutions/hospitality' },
         { text: 'Healthcare', href: '/solutions/healthcare' },
         { text: 'Corporate', href: '/solutions/corporate' },
