@@ -9,6 +9,7 @@ import Image from '~/components/common/Image.astro';
 import BankingROIImage from '~/assets/images/pages/banking-roi.svg';
 import BankingCapabilitiesImage from '~/assets/images/pages/banking-capabilities.svg';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import Features from '~/components/widgets/Features.astro';
 
 ## Challenges Facing Retail Banking in Today's Market
 
@@ -47,12 +48,41 @@ The financial services industry, especially retail banking, is facing a unique s
    tailored financial services, leading to increased customer satisfaction and
    loyalty.
 
-## Expected Benefits
-
-- **Maximized Use of Branch Investments:** Drive customer visits and increase foot traffic, ensuring that bank branches are seen as valuable assets and key touchpoints for customer engagement.
-- **Increased Service Acquisition:** By improving the customer experience at the branch, banks can increase the uptake of additional services, such as personal banking consultations, loans, and financial advisory.
-- **Operational Efficiency:** Streamline operations across hybrid and in-branch settings, leading to cost savings, better resource allocation, and improved employee productivity.
-- **Customer Loyalty and Retention:** Enhanced customer experiences at the branch can foster deeper connections, leading to increased retention and customer loyalty.
+  <Features
+    id="features"
+    title="Expected Benefits"
+    classes={{
+      headline: {
+        container: 'text-left md:mx-0'
+      }
+    }}
+    items={[
+      {
+        title: 'Maximized Use of Branch Investments',
+        description:
+          'Drive customer visits and increase foot traffic, ensuring that bank branches are seen as valuable assets and key touchpoints for customer engagement.',
+        icon: 'tabler:building-bank',
+      },
+      {
+        title: 'Increased Service Acquisition',
+        description:
+          'By improving the customer experience at the branch, banks can increase the uptake of additional services, such as personal banking consultations, loans, and financial advisory.',
+        icon: 'tabler:brand-mastercard',
+      },
+      {
+        title: 'Operational Efficiency',
+        description:
+          'Streamline operations across hybrid and in-branch settings, leading to cost savings, better resource allocation, and improved employee productivity.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'Customer Loyalty and Retention',
+        description:
+          'Enhanced customer experiences at the branch can foster deeper connections, leading to increased retention and customer loyalty.',
+        icon: 'tabler:user-bolt',
+      }
+    ]}
+  />
 
 ## Time frame for Return on Investment (ROI)
 
