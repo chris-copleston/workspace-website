@@ -202,8 +202,8 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
         gsap.timeline({
           scrollTrigger: {
             trigger: container,
-            start: "top bottom",
-            end: "bottom top",
+            start: "top 75%",
+            end: "top -25%",
             scrub: 1,
             onEnter: () => {
               container.classList.remove('opacity-0');
