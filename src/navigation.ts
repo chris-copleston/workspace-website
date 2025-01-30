@@ -230,7 +230,7 @@ export const footerData = {
     { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@newwaveworkspace', target: '_blank' },
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/newwaveapps/posts/?feedView=all&viewAsMember=true', target: '_blank' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/newwaveworkspace/?hl=en', target: '_blank' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+    // { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: 'Copyright &copy; 2025 New Wave Workspace, all rights reserved.',
 };
