@@ -5,13 +5,31 @@ excerpt:
 image: https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2301&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 icon: tabler:calendar-clock
 ---
+import Iphone from '~/components/widgets/Iphone.astro';
+import Image from '~/components/common/Image.astro';
+import BookingManagementImage from '~/assets/images/pages/booking-management.jpg';
+import SchedulerAssistantImage from '~/assets/images/pages/scheduler-assistant.jpg';
 
 ## Centralized Booking Management
 Revolutionise how your team manages resource scheduling with a single, flexible, intelligent workspace platform. Built for companies that prioritize efficiency, New Wave Workspace handles your routine and complex bookings with ease.
 
-Say goodbye to no-shows, double bookings and scheduling chaos — with our workspace platform, and your workplace policies.
+<div className="relative my-8 group">
+  <div className="absolute -left-12 -top-8 h-96 w-96 rounded-full blur-2xl bg-indigo-500/40"></div>
+  <div className="absolute -right-8 -top-12 h-80 w-80 rounded-full blur-2xl bg-sky-400/40"></div>
+  <div className="absolute left-1/3 -bottom-8 h-72 w-96 rounded-full blur-2xl bg-purple-500/40"></div>
+  <Image src={BookingManagementImage} alt="Booking management" className="relative z-10 rounded-lg shadow-lg w-full" />
+</div>
+
+Say goodbye to no-shows, double bookings and scheduling chaos - with our workspace platform, and your workplace policies.
+
+<div class="relative w-[400px] h-[700px] float-right">
+  <Iphone item={{ img: SchedulerAssistantImage.src, color: ['#fffffff'] }} start={{ x: -4, y: 0, z: 12 }} end={{ x: 4, y: 0, z: 9 }} enableOrbitControls={false} enableAutoRotation={false} />
+</div>
 
 ## Intelligent Meeting Room Scheduling
+
+
+
 Empower your team with dynamic scheduling intelligence that adapts to last-minute changes, ensuring no conflicts and seamless collaboration across your organization.
 
 Simplify meeting planning with our Scheduling Assistant that aligns organizers', attendees', and Office 365 meeting room calendar availability into one intuitive view. It’s smart, fast, and effortless.
