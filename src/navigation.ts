@@ -213,10 +213,9 @@ export const footerData = {
       links: [
         // { text: 'About', href: '/about' },
         // { text: 'Careers', href: '/careers' },
-        { text: 'Become a Partner', href: '/partners' },
+        { text: 'Become a Partner', href: '/docs/channel-partner-program-2025.pdf', target: '_blank' },
         { text: 'Customer Support', href: '#' },
-        { text: 'Partner Portal', href: '#' },
-        { text: 'API Docs', href: 'https://docs.newwaveworkspace.com', target: '_blank' },
+        // { text: 'Partner Portal', href: '#' },
         { text: 'Blog', href: '/blog' },
       ],
     },
