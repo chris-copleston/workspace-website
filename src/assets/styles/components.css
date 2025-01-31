@@ -1,0 +1,17 @@
+.more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.more-link::after {
+  content: '›';
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.more-link:hover::after {
+  transform: translateX(4px);
+}
