@@ -45,7 +45,10 @@ const {
                 )}
               </div>
               <div class="mt-0.5">
-                {title && <h3 class={twMerge('text-xl font-bold group-hover:text-primary transition-colors', titleClass, itemClasses?.title)}>{title}</h3>}
+                {title && <h3 class={twMerge('text-xl font-bold group-hover:text-primary transition-colors relative', titleClass, itemClasses?.title)}>
+                  {title}
+                  <span class="absolute opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300 ml-1">›</span>
+                </h3>}
                 {description && (
                   <p
                     class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
@@ -70,7 +73,10 @@ const {
                 )}
               </div>
               <div class="mt-0.5">
-                {title && <h3 class={twMerge('text-xl font-bold group-hover:text-primary transition-colors', titleClass, itemClasses?.title)}>{title}</h3>}
+                {title && <h3 class={twMerge('text-xl font-bold group-hover:text-primary transition-colors relative', titleClass, itemClasses?.title)}>
+                  {title}
+                  <span class="absolute opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300 ml-1">›</span>
+                </h3>}
                 {description && (
                   <p
                     class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
