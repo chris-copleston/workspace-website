@@ -76,11 +76,6 @@ export const headerData = {
           text: 'Visitor Management',
           icon: 'tabler:users',
           href: getPermalink('/features/visitor-management'),
-        },
-        {
-          text: 'Vendor Integrations',
-          icon: 'tabler:plug',
-          href: getPermalink('/features/vendor-integrations'),
         }
 
       ]
@@ -89,6 +84,11 @@ export const headerData = {
     {
       text: 'Integrations',
       links: [
+        {
+          text: 'Technology Partners',
+          icon: 'tabler:plug',
+          href: getPermalink('/integrations/technology-partners'),
+        },
         {
           text: 'Video Conferencing',
           icon: 'tabler:video',
@@ -172,16 +172,16 @@ export const footerData = {
         {
           text: 'Visitor Management',
           href: getPermalink('/features/visitor-management'),
-        },
-        {
-          text: 'Vendor Integrations',
-          href: getPermalink('/features/vendor-integrations'),
         }
       ],
     },
     {
       title: 'Integrations',
       links: [
+        {
+          text: 'Technology Partners',
+          href: getPermalink('/integrations/technology-partners'),
+        },
         {
           text: 'Video Conferencing',
           href: getPermalink('/integrations/video-conferencing'),
