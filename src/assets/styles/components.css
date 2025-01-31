@@ -15,3 +15,23 @@
 .more-link:hover::after {
   transform: translateX(4px);
 }
+
+.more-hover {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.more-hover::after {
+  content: '›';
+  display: inline-block;
+  transition: all 0.4s ease;
+  opacity: 0;
+}
+
+.more-hover:hover::after {
+  transform: translateX(4px);
+  opacity: 1;
+}
