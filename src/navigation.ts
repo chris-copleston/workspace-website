@@ -214,7 +214,7 @@ export const footerData = {
         // { text: 'About', href: '/about' },
         // { text: 'Careers', href: '/careers' },
         { text: 'Become a Partner', href: '/docs/channel-partner-program-2025.pdf', target: '_blank' },
-        { text: 'Customer Support', href: '#' },
+        { text: 'Customer Support', href: 'https://newwaveworkspace.atlassian.net/servicedesk/customer/portals', target: '_blank' },
         // { text: 'Partner Portal', href: '#' },
         { text: 'Blog', href: '/blog' },
       ],
