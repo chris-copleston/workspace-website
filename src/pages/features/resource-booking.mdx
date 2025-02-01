@@ -9,7 +9,8 @@ icon: tabler:calendar-clock
 import Iphone from '~/components/widgets/Iphone.astro';
 import Image from '~/components/common/Image.astro';
 import BookingManagementImage from '~/assets/images/pages/booking-management.jpg';
-import SchedulerAssistantImage from '~/assets/images/pages/scheduler-assistant.jpg';
+import FloorPlanImage from '~/assets/images/pages/floor-plan.jpg';
+import ParkingImage from '~/assets/images/pages/parking.jpg';
 
 ## Centralized Booking Management
 
@@ -28,7 +29,7 @@ Say goodbye to no-shows, double bookings and scheduling chaos - with our workspa
   <div className="absolute -right-8 top-52 h-80 w-80 rounded-full blur-2xl bg-indigo-400/40"></div>
   <div class="relative w-[400px] h-[700px] float-right">
     <Iphone
-      item={{ img: SchedulerAssistantImage.src, color: ['#fffffff'] }}
+      item={{ img: FloorPlanImage.src, color: ['#fffffff'] }}
       start={{ x: -4, y: 0, z: 12 }}
       end={{ x: 4, y: 0, z: 9 }}
       enableOrbitControls={false}
@@ -52,6 +53,20 @@ At New Wave Workspace, we believe that every desk has a purpose. Whether it is f
 ## Smart Locker Booking
 
 An essential part of modern workplace management. Self-service smart lockers are perfect for hybrid teams requiring personal storage and for companies offering secure mailroom package deliveries. Your space, your rules — organised and automated for today’s modern workplace. We integrate with top solution vendors.
+
+<div className="relative my-8 group">
+  <div className="absolute -right-8 top-52 h-80 w-80 rounded-full blur-2xl bg-indigo-400/40"></div>
+  <div class="relative w-[400px] h-[700px] float-right">
+    <Iphone
+      item={{ img: ParkingImage.src, color: ['#fffffff'] }}
+      start={{ x: -4, y: 0, z: 12 }}
+      end={{ x: 4, y: 0, z: 9 }}
+      enableOrbitControls={false}
+      enableAutoRotation={false}
+    />
+  </div>
+</div>
+
 
 ## Parking Management
 
