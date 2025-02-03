@@ -202,20 +202,30 @@ const { item, start = { x: 0, y: 0, z: 10 }, end = { x: 0, y: 0, z: 10 }, timeli
         gsap.timeline({
           scrollTrigger: {
             trigger: container,
-            start: "top 75%",
-            end: "top -25%",
+            start: "top 80%",
+            end: "bottom -50%",
             scrub: 1,
             onEnter: () => {
               container.classList.remove('opacity-0');
             },
             onLeave: () => {
-              container.classList.add('opacity-0');
+              // Only hide when completely off screen
+              if (ScrollTrigger.isInViewport(container, 0)) {
+                container.classList.remove('opacity-0');
+              } else {
+                container.classList.add('opacity-0');
+              }
             },
             onEnterBack: () => {
               container.classList.remove('opacity-0');
             },
             onLeaveBack: () => {
-              container.classList.add('opacity-0');
+              // Only hide when completely off screen
+              if (ScrollTrigger.isInViewport(container, 0)) {
+                container.classList.remove('opacity-0');
+              } else {
+                container.classList.add('opacity-0');
+              }
             }
           }
         }).fromTo(camera.position, 
