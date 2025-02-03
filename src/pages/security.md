@@ -116,7 +116,7 @@ New Wave Workspace syncs all calendar data with your existing system (e.g. Offic
 continue to use audit logs generated there to monitor activity between New Wave Workspace and your
 system. Activity logs are available for download upon request from your New Wave Workspace
 commercial contact. System availability and status updates are also available on demand.
-We also leverage Amazon Web Services Cloud Trail to continuously monitor, and retain account activity
+We also leverage Amazon Web Services Cloud Trail to continuously monitor and retain account activity
 across all AWS infrastructure. Additional information on Cloud Trail can be found here.
 
 ### 11. IP Addresses for Whitelists

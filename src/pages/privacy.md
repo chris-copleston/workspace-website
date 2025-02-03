@@ -38,7 +38,7 @@ is different, so check the ‘Help’ menu of your web browser to learn how to c
 preferences.
 
 ### 5. What is a cookie and how to manage them
-A cookie consists of information sent by a web server to a web browser, and stored by the browser. The
+A cookie consists of information sent by a web server to a web browser and stored by the browser. The
 information is then sent back to the server each time the browser requests a page from the server. This
 enables the web server to identify and track the web browser.
 We use session cookies on the website. Session cookies will be deleted from your computer when you
@@ -47,7 +47,7 @@ contact form resubmissions and to save user search preferences to improve the us
 Copyright New Wave Workspace 4
 Each browser is different, so check the ‘Help’ menu of your web browser to learn how to change your
 cookie preferences. For example, in Microsoft Edge you can refuse all cookies by clicking Tools, Internet
-Options, Privacy, and selecting Block all cookies using the sliding selector. Blocking all cookies will,
+Options, Privacy and selecting Block all cookies using the sliding selector. Blocking all cookies will,
 however, have a negative impact upon the usability of many websites and Apps.
 
 ### 6. Inquiries
