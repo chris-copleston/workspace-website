@@ -4,9 +4,12 @@
 
 @layer base {
   html {
-    @apply overflow-x-hidden;
+    @apply overflow-y-scroll;
   }
   body {
+    @apply relative;
+  }
+  main {
     @apply overflow-x-hidden;
   }
 }
