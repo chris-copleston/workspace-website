@@ -12,13 +12,13 @@ tags:
 
 ## The advantages of our VMS versus a building's lobby visitor registration system "VRS".
 
-- **Customisation**: A lobby visitor registration system can only offer a standardised lobby solution for all tenants in the building. A company-specific VMS can be tailored for your company's specific workflows, branding, and visitor requirements.
+- **Customisation**: A lobby visitor registration system can only offer a standardised lobby solution for all tenants in the building. A company-specific VMS can be tailored for your company's specific workflows, branding and visitor requirements.
 
-- **Visitor Experience**: A lobby VRS can be generalised and potentially impersonal. Companies using New Wave Workspace VMS can personalise welcome messages, customise the check-in experience for their visitors, and pre-register faster, and enable a VIP-like welcome to their visitors. 
+- **Visitor Experience**: A lobby VRS can be generalised and potentially impersonal. Companies using New Wave Workspace VMS can personalise welcome messages, customise the check-in experience for their visitors and pre-register faster and enable a VIP-like welcome to their visitors. 
 
 - **Security & Compliance**: A lobby VRS is limited to building-wide policies and protocols, while a company-specific VMS has the ability to enforce company-specific security policies (NDA signing, ID verification, white-lists) and compliance with internal regulations. 
 
-- **Data Ownership & Control**: Data is managed by building administration, potentially less control over data security under a lobby VRS. Company-specific VMS offers full control over visitor data, enabling the company to manage, store, and secure it according to internal policies and regulations. 
+- **Data Ownership & Control**: Data is managed by building administration, potentially less control over data security under a lobby VRS. Company-specific VMS offers full control over visitor data, enabling the company to manage, store and secure it according to internal policies and regulations. 
 
 - **Visitor Pre-screening**: A lobby VRS doesn't offer pre-screening; visitors typically register upon arrival. A VMS solution has the ability to pre-screen visitors (criminal background, vaccination status, etc.) before arrival, improving security and safety.
 
@@ -26,7 +26,7 @@ tags:
 
 - **Analytics & Reporting**: A lobby VRS usually provides basic reports, often shared accross tenants. A VMS can offer detailed visitor analytics (frequency, visitor type, visit purpose) and custom reporting tailored to your needs. 
 
-- **Emergency Evacuation**: Evacuation lists cover all building visitors, and may not differentiate by tenant in a lobby VRS. A VMS offers company-specific emergency evacuation lists and notifications to ensure all visitors and employees are accounted for.
+- **Emergency Evacuation**: Evacuation lists cover all building visitors and may not differentiate by tenant in a lobby VRS. A VMS offers company-specific emergency evacuation lists and notifications to ensure all visitors and employees are accounted for.
 
 - **Branding & Professionalism**: Typically, a VRS offers no branding; visitors encounter a generic building branding. VMS offers fully branded interface (logos, messages, kiosks, hands-free pre-registration) to enhance the company's image and make a strong first impression. 
 
@@ -38,6 +38,6 @@ tags:
 
 - **Language & Localisation**: VRS may not offer support to multiple languages or localised preferences. VMS is fully localised with more than 11 languages, based on visitor preferences. 
 
-- **Visitor Feedback & Follow-up**:  VRS don't offer to collect visitor feedback or track post-visit interactions. New Wave Workspace VMS enables post-visit feedback, surveys, and tracking of follow-up actions, improving visitor satisfaction and business outcomes.
+- **Visitor Feedback & Follow-up**:  VRS don't offer to collect visitor feedback or track post-visit interactions. New Wave Workspace VMS enables post-visit feedback, surveys and tracking of follow-up actions, improving visitor satisfaction and business outcomes.
 
-- **Cost Efficiency**: VRS are usually included into building services, potentially at a low direct cost to companies. VMS have a greater long-term ROI through improved efficiency, productivity, and enhanced visitor relationships tailored to the company's needs.
+- **Cost Efficiency**: VRS are usually included into building services, potentially at a low direct cost to companies. VMS have a greater long-term ROI through improved efficiency, productivity and enhanced visitor relationships tailored to the company's needs.

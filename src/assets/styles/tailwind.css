@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply overflow-y-scroll;
+  }
+  body {
+    @apply relative;
+  }
+  main {
+    @apply overflow-x-hidden;
+  }
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
