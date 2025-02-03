@@ -11,6 +11,8 @@ import Image from '~/components/common/Image.astro';
 import BookingManagementImage from '~/assets/images/pages/booking-management.jpg';
 import FloorPlanImage from '~/assets/images/pages/floor-plan.jpg';
 import ParkingImage from '~/assets/images/pages/parking.jpg';
+import PeopleFinderImage from '~/assets/images/pages/people-finder.jpg';
+import BenefitsImage from '~/assets/images/pages/resource-booking-benefits.svg';
 
 ## Centralized Booking Management
 
@@ -23,12 +25,12 @@ Revolutionise how your team manages resource scheduling with a single, flexible,
   <Image src={BookingManagementImage} alt="Booking management" className="relative z-10 rounded-lg shadow-lg w-full" />
 </div>
 
-<div className="relative my-8 group">
+<div className="relative group">
   <div className="absolute -right-8 top-52 h-80 w-80 rounded-full blur-2xl bg-indigo-400/40"></div>
-  <div class="relative w-[400px] h-[700px] float-right">
+  <div class="relative w-full md:w-[350px] h-[650px] mx-auto md:float-right">
     <Iphone
       item={{ img: FloorPlanImage.src, color: ['#fffffff'] }}
-      start={{ x: -4, y: 0, z: 12 }}
+      start={{ x: -6, y: 0, z: 12 }}
       end={{ x: 4, y: 0, z: 9 }}
       enableOrbitControls={false}
       enableAutoRotation={false}
@@ -38,26 +40,26 @@ Revolutionise how your team manages resource scheduling with a single, flexible,
 
 ## Intelligent Meeting Room Scheduling
 
-Simplify meeting planning with our Scheduling Assistant that aligns organisers', attendees', and Office 365 meeting room calendar availability into one intuitive view. It’s smart, fast, and effortless.
+Simplify meeting planning with our Scheduling Assistant that aligns organisers', attendees' and Office 365 meeting room calendar availability into one intuitive view. It’s smart, fast and effortless.
 
-Say goodbye to no-shows, double bookings and scheduling chaos - with our workspace platform, and your workplace policies.
+Say goodbye to no-shows, double bookings and scheduling chaos - with our workspace platform and your workplace policies.
 
 ## Desk Booking
 
 Transform your office into a dynamic, productivity-boosting workplace.
 
-At New Wave Workspace, we believe that every desk has a purpose. Whether it is for activity-based work, task-oriented work, agile work or group work; our platform helps employees quickly find the right desk with the right amenities. Custom tags can be assigned to resources and utilized when searching for available desks.  Search criteria and booking data can be used by admins to glean insights on what employees are looking for.
+At New Wave Workspace, we believe that every desk has a purpose. Whether it is for activity-based work, task-oriented work, agile work or group work; our platform helps employees quickly find the right desk with the right amenities. Custom tags can be assigned to resources and utilized for searching, as well as insightful analytics on what employees are looking for.
 
 ## Smart Locker Booking
 
 An essential part of modern workplace management. Self-service smart lockers are perfect for hybrid teams requiring personal storage and for companies offering secure mailroom package deliveries. Your space, your rules — organised and automated for today’s modern workplace. We integrate with top solution vendors.
 
-<div className="relative my-8 group">
+<div className="relative group">
   <div className="absolute -right-8 top-52 h-80 w-80 rounded-full blur-2xl bg-indigo-400/40"></div>
-  <div class="relative w-[400px] h-[700px] float-right">
+  <div class="relative w-full md:w-[350px] h-[650px] mx-auto md:float-right">
     <Iphone
       item={{ img: ParkingImage.src, color: ['#fffffff'] }}
-      start={{ x: -4, y: 0, z: 12 }}
+      start={{ x: -6, y: 0, z: 12 }}
       end={{ x: 4, y: 0, z: 9 }}
       enableOrbitControls={false}
       enableAutoRotation={false}
@@ -65,14 +67,26 @@ An essential part of modern workplace management. Self-service smart lockers are
   </div>
 </div>
 
-
 ## Parking Management
 
 Maximize parking efficiency, achieve better insight on utilisation and provide real-time availability with parking management. New Wave Workspace helps reduce commuting headaches by empowering employees to find and book spaces effortlessly.
 
 ## Flexible Workplace Policies
 
-Flexibility is essential in a modern workplace. Your workspace platform should adapt to your needs, not the other way around. With over 50 configurable policies—such as in-office booking limits, restricted zones, max booking lead times, no-show auto-cancellations, early check-ins, and booking extension limits—New Wave Workspace has you covered. Need something unique? We can tailor rules to your needs and apply them intelligently at any step in the booking workflow.
+Flexibility is essential in a modern workplace. Your workspace platform should adapt to your needs, not the other way around. With over 50 configurable policies — such as in-office booking limits, restricted zones, max booking lead times, no-show auto-cancellations, early check-ins and booking extension limits — New Wave Workspace has you covered. Need something unique? We can tailor rules to your needs and apply them intelligently at any step in the booking workflow.
+
+<div className="relative group">
+  <div className="absolute -right-8 top-52 h-80 w-80 rounded-full blur-2xl bg-indigo-400/40"></div>
+  <div class="relative w-full md:w-[350px] h-[650px] mx-auto md:float-right">
+    <Iphone
+      item={{ img: PeopleFinderImage.src, color: ['#fffffff'] }}
+      start={{ x: -6, y: 0, z: 12 }}
+      end={{ x: 4, y: 0, z: 9 }}
+      enableOrbitControls={false}
+      enableAutoRotation={false}
+    />
+  </div>
+</div>
 
 ## Find Colleagues
 
@@ -82,7 +96,15 @@ Easily locate where your colleagues are sitting; enabiling agility, enhancing pr
 
 Enhance Workplace Safety & Compliance by easily locating people with specific job titles or roles, such as Floor Wardens, MHFAs or First Aid Responders.
 
-## Benefits for facility managers, including:
+<h2 class="clear-both">Benefits for facility managers</h2>
+
+<Image
+   src={BenefitsImage}
+   alt="Benefits"
+   class="not-prose mx-auto"
+   invertInDarkMode={true}
+   width={800}
+/>
 
 1. **Optimized Space Utilization**
    - Facility managers gain insights into meeting room usage, helping them optimize space allocation and reduce unused areas.
@@ -95,6 +117,6 @@ Enhance Workplace Safety & Compliance by easily locating people with specific jo
 5. **Reduced No-Shows**
    - With automated, rich notifications sent to attendees, meetings are well-informed and less prone to cancellations or no-shows.
 6. **Data-Driven Decisions**
-   - Gain actionable insights into booking patterns, peak usage times, and preferred resources, empowering better planning and decision-making.
+   - Gain actionable insights into booking patterns, peak usage times and preferred resources, empowering better planning and decision-making.
 7. **Improved ROI on Facilities**
    - Maximize the value of your office real estate by ensuring every square foot works effectively for your team.
