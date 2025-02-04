@@ -52,6 +52,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   class:list={[
     { sticky: isSticky, relative: !isSticky, dark: isDark },
     'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out',
+    'max-[929px]:fixed max-[929px]:bg-white max-[929px]:dark:bg-slate-900'
   ]}
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
   {...id ? { id } : {}}
@@ -80,12 +81,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
     <nav
-      class="items-center w-full min-[930px]:w-auto hidden min-[930px]:flex min-[930px]:mx-5 text-default overflow-y-auto overflow-x-hidden min-[930px]:overflow-y-visible min-[930px]:overflow-x-auto min-[930px]:justify-self-center"
+      class="items-center w-full min-[930px]:w-auto min-[930px]:flex min-[930px]:mx-5 text-default min-[930px]:justify-self-center"
       aria-label="Main navigation"
     >
-      <ul
-        class="flex flex-col min-[930px]:flex-row min-[930px]:self-center w-full min-[930px]:w-auto text-xl min-[930px]:text-[0.9375rem] tracking-[0.01rem] font-medium min-[930px]:justify-center"
-      >
+      {/* Desktop Menu */}
+      <ul class="hidden min-[930px]:flex min-[930px]:flex-row min-[930px]:self-center min-[930px]:w-auto text-xl min-[930px]:text-[0.9375rem] tracking-[0.01rem] font-medium min-[930px]:justify-center">
         {
           links.map(({ text, href, links, icon }) => (
             <li class={links?.length ? 'dropdown' : ''}>
@@ -101,7 +101,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                       </div>
                     )}
                     {text}{' '}
-                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden min-[930px]:inline" />
+                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 min-[930px]:inline" />
                   </button>
                   <ul class="dropdown-menu min-[930px]:backdrop-blur-md dark:min-[930px]:bg-dark rounded min-[930px]:absolute pl-4 min-[930px]:pl-0 min-[930px]:hidden font-medium min-[930px]:bg-white/90 min-[930px]:min-w-[200px] min-[930px]:shadow-lg border border-gray-100/20 min-[930px]:opacity-0">
                     {links.map(({ text: text2, href: href2, icon: icon2 }) => (
@@ -144,11 +144,74 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           ))
         }
       </ul>
+
+      {/* Mobile Menu */}
+      <div id="mobile-menu" class="max-[929px]:fixed max-[929px]:inset-0 max-[929px]:top-[57px] bg-white dark:bg-slate-900 z-40 hidden">
+        <ul class="flex flex-col w-full text-xl tracking-[0.01rem] font-medium overflow-y-auto h-[calc(100vh-120px)]">
+          {
+            links.map(({ text, href, links, icon }) => (
+              <li class={links?.length ? 'dropdown' : ''}>
+                {links?.length ? (
+                  <>
+                    <button
+                      type="button"
+                      class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
+                    >
+                      {icon && (
+                        <div class="icon-wrapper">
+                          <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />
+                        </div>
+                      )}
+                      {text}
+                    </button>
+                    <ul class="pl-4 font-medium border border-gray-100/20">
+                      {links.map(({ text: text2, href: href2, icon: icon2 }) => (
+                        <li>
+                          <a
+                            class:list={[
+                              'hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap flex items-center',
+                              { 'aw-link-active': href2 === currentPath },
+                            ]}
+                            href={href2}
+                          >
+                            {icon2 && (
+                              <div class="icon-wrapper">
+                                <Icon name={icon2} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />
+                              </div>
+                            )}
+                            {text2}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <a
+                    class:list={[
+                      'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
+                      { 'aw-link-active': href === currentPath },
+                    ]}
+                    href={href}
+                  >
+                    {icon && (
+                      <div class="icon-wrapper">
+                        <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 text-blue-600 dark:text-blue-400" />
+                      </div>
+                    )}
+                    {text}
+                  </a>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </nav>
     <div
       class:list={[
         { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
         'hidden min-[930px]:self-center min-[930px]:flex items-center min-[930px]:mb-0 fixed w-full min-[930px]:w-auto min-[930px]:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 min-[930px]:p-0 min-[930px]:justify-self-end',
+        'max-[929px]:fixed max-[929px]:bottom-0 max-[929px]:left-0 max-[929px]:bg-white max-[929px]:dark:bg-slate-900 max-[929px]:border-t max-[929px]:border-gray-200 max-[929px]:dark:border-gray-700 max-[929px]:z-50'
       ]}
     >
       <div class="items-center flex justify-between w-full min-[930px]:w-auto">
@@ -190,6 +253,24 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       font-weight: bold;
       border-top: 1px solid rgb(219 234 254);
     }
+
+    /* Fixed header padding */
+    :global(body) {
+      padding-top: 57px;
+    }
+
+    /* Prevent scroll when menu is open */
+    :global(body:has(#mobile-menu:not(.hidden))) {
+      overflow: hidden !important;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Menu visibility */
+    #mobile-menu:not(.hidden) {
+      display: block;
+    }
   }
   @media (min-width: 930px) {
     .dropdown:hover .dropdown-menu {
@@ -225,47 +306,58 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 <script>
   document.addEventListener(
-  "astro:page-load",
-  () => {
-    console.log('header');
-    initIconAnimations();
-  },
-  { once: false }
-);
+    "astro:page-load",
+    () => {
+      console.log('header');
+      initMobileMenu();
+      initIconAnimations();
+    },
+    { once: false }
+  );
 
-const initIconAnimations = () => {  // Select all icon elements within menu items
-  const menuIcons = document.querySelectorAll('nav a .w-5, nav button .w-5');
-  
-  // Wrap each icon in a container div
-  menuIcons.forEach(icon => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'icon-wrapper';
-    icon.parentNode?.insertBefore(wrapper, icon);
-    wrapper.appendChild(icon);
-  });
-
-  // Add hover animations for each icon wrapper
-  const iconWrappers = document.querySelectorAll('.icon-wrapper');
-  iconWrappers.forEach(wrapper => {
-    const parentElement = wrapper.closest('a, button');
+  const initMobileMenu = () => {
+    const nav = document.querySelector('nav');
+    const menuButton = document.querySelector('[data-aw-toggle-menu]');
     
-    parentElement?.addEventListener('mouseenter', () => {
-      gsap.to(wrapper, {
-        scale: 1.2,
-        rotate: -4,
-        duration: 0.3,
-        ease: 'power2.out'
-      });
+    menuButton?.addEventListener('click', () => {
+      nav?.querySelector('#mobile-menu')?.classList.toggle('hidden');
+    });
+  };
+
+  const initIconAnimations = () => {
+    // Select all icon elements within menu items
+    const menuIcons = document.querySelectorAll('nav a .w-5, nav button .w-5');
+    
+    // Wrap each icon in a container div
+    menuIcons.forEach(icon => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'icon-wrapper';
+      icon.parentNode?.insertBefore(wrapper, icon);
+      wrapper.appendChild(icon);
     });
 
-    parentElement?.addEventListener('mouseleave', () => {
-      gsap.to(wrapper, {
-        scale: 1,
-        rotate: 0,
-        duration: 0.3,
-        ease: 'power2.out'
+    // Add hover animations for each icon wrapper
+    const iconWrappers = document.querySelectorAll('.icon-wrapper');
+    iconWrappers.forEach(wrapper => {
+      const parentElement = wrapper.closest('a, button');
+      
+      parentElement?.addEventListener('mouseenter', () => {
+        gsap.to(wrapper, {
+          scale: 1.2,
+          rotate: -4,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      parentElement?.addEventListener('mouseleave', () => {
+        gsap.to(wrapper, {
+          scale: 1,
+          rotate: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
       });
     });
-  });
-}
+  };
 </script>
