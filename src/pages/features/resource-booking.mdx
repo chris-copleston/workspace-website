@@ -13,6 +13,7 @@ import FloorPlanImage from '~/assets/images/pages/floor-plan.jpg';
 import ParkingImage from '~/assets/images/pages/parking.jpg';
 import PeopleFinderImage from '~/assets/images/pages/people-finder.jpg';
 import BenefitsImage from '~/assets/images/pages/resource-booking-benefits.svg';
+import Features from '~/components/widgets/Features.astro';
 
 ## Centralized Booking Management
 
@@ -30,7 +31,7 @@ Revolutionise how your team manages resource scheduling with a single, flexible,
   <div class="relative w-full md:w-[350px] h-[650px] mx-auto md:float-right">
     <Iphone
       item={{ img: FloorPlanImage.src, color: ['#fffffff'] }}
-      start={{ x: -4, y: 0, z: 12 }}
+      start={{ x: -6, y: 0, z: 12 }}
       end={{ x: 4, y: 0, z: 9 }}
       enableOrbitControls={false}
       enableAutoRotation={false}
@@ -61,7 +62,7 @@ For employers, this integrated approach not only boosts employee satisfaction by
   <div class="relative w-full md:w-[350px] h-[650px] mx-auto md:float-right">
     <Iphone
       item={{ img: ParkingImage.src, color: ['#fffffff'] }}
-      start={{ x: -4, y: 0, z: 12 }}
+      start={{ x: -6, y: 0, z: 12 }}
       end={{ x: 4, y: 0, z: 9 }}
       enableOrbitControls={false}
       enableAutoRotation={false}
@@ -108,3 +109,56 @@ Enhance Workplace Safety & Compliance by quickly locating people with specific j
    invertInDarkMode={true}
    width={800}
 />
+
+  <Features
+    id="features"
+    classes={{
+      headline: {
+        container: 'text-left md:mx-0'
+      }
+    }}
+    items={[
+      {
+        title: 'Optimized Space Utilization',
+        description:
+          'Facility managers gain insights into meeting room usage, helping them optimize space allocation and reduce unused areas.',
+        icon: 'tabler:building-cog',
+      },
+      {
+        title: 'Streamlined Room Management',
+        description:
+          'Automates the process of room scheduling, reducing administrative overhead and ensuring efficient use of available resources.',
+        icon: 'tabler:door',
+      },
+      {
+        title: 'Conflict Resolution Made Simple',
+        description:
+          'Quickly resolve double bookings or conflicts with built-in tools for communication between meeting organisers.',
+        icon: 'tabler:arrows-exchange',
+      },
+      {
+        title: 'Enhanced User Experience',
+        description:
+          'Happy users lead to fewer complaints and queries, as the booking process becomes seamless and intuitive.',
+        icon: 'tabler:user-heart',
+      },
+      {
+        title: 'Reduced No-Shows',
+        description:
+          'With automated, rich notifications sent to attendees, meetings are well-informed and less prone to cancellations or no-shows.',
+        icon: 'tabler:hand-stop',
+      },
+      {
+        title: 'Data-Driven Decisions',
+        description:
+          'Gain actionable insights into where your colleagues are sitting, enabling more informed decisions about how to optimize your workplace.',
+        icon: 'tabler:chart-pie',
+      },
+      {
+        title: 'Improved ROI on Facilities',
+        description:
+          'Maximize the value of your office real estate by ensuring every square foot works effectively for your team.',
+        icon: 'tabler:coins'
+      }
+    ]}
+  />
