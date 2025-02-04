@@ -1,10 +1,31 @@
 ---
 title: Digital Services
 layout: ~/layouts/MarkdownLayout.astro
-excerpt: 
+excerpt:
 image: https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 icon: tabler:automation
 ---
+
+import Iphone from '~/components/widgets/Iphone.astro';
+import Image from '~/components/common/Image.astro';
+import ServiceCatalogueImage from '~/assets/images/pages/service-catalogue.jpg';
+import MailRoomImage from '~/assets/images/pages/mail-room.jpg';
+import DigitalServicesBenefitsEmployeesImage from '~/assets/images/pages/digital-services-benefits-employees.svg';
+import DigitalServicesBenefitsManagementImage from '~/assets/images/pages/digital-services-benefits-management.svg';
+import Features from '~/components/widgets/Features.astro';
+
+<div className="relative group">
+  <div className="absolute -right-8 top-52 h-80 w-80 rounded-full blur-2xl bg-indigo-400/40"></div>
+  <div class="relative w-full md:w-[350px] h-[650px] mx-auto md:float-right">
+    <Iphone
+      item={{ img: ServiceCatalogueImage.src, color: ['#fffffff'] }}
+      start={{ x: -6, y: 0, z: 12 }}
+      end={{ x: 4, y: 0, z: 9 }}
+      enableOrbitControls={false}
+      enableAutoRotation={false}
+    />
+  </div>
+</div>
 
 ## Why One App Matters
 
@@ -16,24 +37,37 @@ Digitise manual processes and inconsistent workflows with an all-in-one solution
 
 Empower your team to focus on what matters most.
 
+<div className="relative group clear-right">
+  <div className="absolute -right-8 top-52 h-80 w-80 rounded-full blur-2xl bg-indigo-400/40"></div>
+  <div class="relative w-full md:w-[350px] h-[650px] mx-auto md:float-right">
+    <Iphone
+      item={{ img: MailRoomImage.src, color: ['#fffffff'] }}
+      start={{ x: -6, y: 0, z: 12 }}
+      end={{ x: 4, y: 0, z: 9 }}
+      enableOrbitControls={false}
+      enableAutoRotation={false}
+    />
+  </div>
+</div>
+
 ## Mail Room Management
 
 Make your mail-room a productivity powerhouse with intelligent automation.
 
 Track, notify and manage incoming and outgoing parcels with ease. Automated updates ensure faster collections and a hassle-free experience.
- 
+
 ## Expense Reimbursement
 
 Simplify the tedious.
 
 Automate your reimbursement workflow with digital forms and a clear approval process. Track expenses, ensure compliance and get approvals in record time.
- 
+
 ## Travel Requests
 
 Streanline Travel Management.
 
 Designed for speed and accountability, with clear request forms and automated workflows. Employees can request, managers can review / approve and everything stays transparent and organized.
- 
+
 ## Time Sheet Reporting
 
 Keep teams focused on their work, not the admin.
@@ -44,24 +78,94 @@ Take the guesswork out of time sheet reporting with our intuitive platform. Log 
 
 ### For Employees
 
-1.	Simplified User Experience
-   - Access all workplace services through a single, unified platform, eliminating the hassle of juggling multiple apps or platforms.
-2.	Personalized and Intuitive
-   - Customizable service catalog and forms ensure employees have tailored access to resources they need most, improving satisfaction and productivity.
-3.	Faster Resolutions
-   - Conditional workflows streamline processes, allowing employees to submit requests efficiently and receive quicker responses.
-4.	Centralized Access
-   - One App serves as a one-stop hub for forms, services and communication, reducing confusion and saving time.
+<Image
+  src={DigitalServicesBenefitsEmployeesImage}
+  alt="Employee Benefits"
+  class="not-prose mx-auto"
+  invertInDarkMode={true}
+  width={800}
+/>
+
+<Features
+  classes={{
+    headline: {
+      container: 'text-left md:mx-0',
+    },
+  }}
+  items={[
+    {
+      title: 'Simplified User Experience',
+      description:
+        'Access all workplace services through a single, unified platform, eliminating the hassle of juggling multiple apps or platforms.',
+      icon: 'tabler:user-heart',
+    },
+    {
+      title: 'Personalized and Intuitive',
+      description:
+        'Customizable service catalog and forms ensure employees have tailored access to resources they need most, improving satisfaction and productivity.',
+      icon: 'tabler:user-check',
+    },
+    {
+      title: 'Faster Resolutions',
+      description:
+        'Conditional workflows streamline processes, allowing employees to submit requests efficiently and receive quicker responses.',
+      icon: 'tabler:brand-speedtest',
+    },
+    {
+      title: 'Centralized Access',
+      description:
+        'One App serves as a one-stop hub for forms, services and communication, reducing confusion and saving time.',
+      icon: 'tabler:topology-star-3',
+    },
+  ]}
+/>
 
 ### For Management
 
-1.	Operational Efficiency
-   - Consolidates multiple third-party or in-house mini-apps into a single platform, reducing maintenance costs and IT overhead.
-2.	Data-Driven Decisions
-   - Centralized analytics provide actionable insights into service usage, employee needs and workflow bottlenecks, empowering managers to optimize processes.
-3.	Enhanced Productivity
-   - Streamlined services and automated workflows free up managers to focus on strategic initiatives rather than operational tasks.
-4.	Customizable and Scalable
-   - Easily adapt the service catalog and workflows to meet evolving organizational needs, ensuring future-proof flexibility.
-5.	Cost Reduction
-   - Replace multiple third-party applications with a single solution, lowering licensing and integration costs while reducing complexity.
+<Image
+  src={DigitalServicesBenefitsManagementImage}
+  alt="Management Benefits"
+  class="not-prose mx-auto"
+  invertInDarkMode={true}
+  width={800}
+/>
+
+<Features
+  classes={{
+    headline: {
+      container: 'text-left md:mx-0',
+    },
+  }}
+  items={[
+    {
+      title: 'Operational Efficiency',
+      description:
+        'Consolidates multiple third-party or in-house mini-apps into a single platform, reducing maintenance costs and IT overhead.',
+      icon: 'tabler:building-bank',
+    },
+    {
+      title: 'Data-Driven Decisions',
+      description:
+        'Centralized analytics provide actionable insights into service usage, employee needs and workflow bottlenecks, empowering managers to optimize processes.',
+      icon: 'tabler:chart-line',
+    },
+    {
+      title: 'Enhanced Productivity',
+      description:
+        'Streamlined services and automated workflows free up managers to focus on strategic initiatives rather than operational tasks.',
+      icon: 'tabler:user-bolt',
+    },
+    {
+      title: 'Customizable and Scalable',
+      description:
+        'Easily adapt the service catalog and workflows to meet evolving organizational needs, ensuring future-proof flexibility.',
+      icon: 'tabler:table-options',
+    },
+    {
+      title: 'Cost Reduction',
+      description:
+        'Replace multiple third-party applications with a single solution, lowering licensing and integration costs while reducing complexity.',
+      icon: 'tabler:coins',
+    },
+  ]}
+/>
