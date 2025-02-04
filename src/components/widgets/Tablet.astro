@@ -124,17 +124,22 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       
-      // Add lights
-      const ambientLight = new THREE.AmbientLight(0xffffff, 2); 
+      // Set up lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);  // Reduced intensity
       scene.add(ambientLight);
 
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 3); 
-      directionalLight.position.set(5, 5, 5);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);  // Reduced intensity
+      directionalLight.position.set(0, 1, 2);
       scene.add(directionalLight);
 
-      const backLight = new THREE.DirectionalLight(0xffffff, 2); 
-      backLight.position.set(-5, 5, -5);
-      scene.add(backLight);
+      // Add point lights
+      const pointLight1 = new THREE.PointLight(0xffffff, 0.2);  // Reduced intensity
+      pointLight1.position.set(2, 2, 2);
+      scene.add(pointLight1);
+
+      const pointLight2 = new THREE.PointLight(0xffffff, 0.2);  // Reduced intensity
+      pointLight2.position.set(-2, 2, 2);
+      scene.add(pointLight2);
       
       // Add renderer to container
       container.appendChild(renderer.domElement);
@@ -256,7 +261,8 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
                 // Set texture properties for landscape orientation
                 texture.rotation = Math.PI / 2;  // Rotate texture 90 degrees
                 texture.center.set(0.5, 0.5);    // Set rotation center
-                texture.repeat.set(1, 1);        // Maintain aspect ratio
+                texture.offset.set(0.005, -0.01);  // Keep current position
+                texture.repeat.set(1.05, 1.03);    // Smaller scale to make content larger
                 texture.encoding = THREE.sRGBEncoding;
                 
                 // Find the screen material
@@ -268,10 +274,16 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
                         child.name.toLowerCase().includes('screen') ||
                         child.name.toLowerCase().includes('display')) {
                       console.log('Applying texture to:', child.name);
-                      child.material = new THREE.MeshBasicMaterial({
+                      child.material = new THREE.MeshStandardMaterial({
                         map: texture,
+                        roughness: 0,
+                        metalness: 0.0,
                         transparent: true,
-                        side: THREE.DoubleSide
+                        opacity: 1,
+                        color: 0x444444,  // Darker base
+                        emissive: 0xffffff,
+                        emissiveMap: texture,
+                        emissiveIntensity: 0.7  // Much lower intensity
                       });
                       child.material.needsUpdate = true;
                     }
