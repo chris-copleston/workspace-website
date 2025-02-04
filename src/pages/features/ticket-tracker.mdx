@@ -10,7 +10,7 @@ import Iphone from '~/components/widgets/Iphone.astro';
 import Tablet from '~/components/widgets/Tablet.astro';
 import Image from '~/components/common/Image.astro';
 import ServiceRequestsImage from '~/assets/images/pages/service-requests.jpg';
-import HomeTabletImage from '~/assets/images/pages/ipad-wallpaper.jpg';
+import AdminServicesImage from '~/assets/images/pages/admin-services.png';
 
 ## Benefits of Ticket Tracker by Audience
 
@@ -40,11 +40,11 @@ import HomeTabletImage from '~/assets/images/pages/ipad-wallpaper.jpg';
    - Ability for users and assigned service provider to easily communicate over the phone or Microsoft Teams.
 
 
-    <div class="tablet relative w-full h-[600px] mx-auto">
+    <div class="tablet relative w-full h-[700px] mx-auto">
       <Tablet
-        item={{ img: HomeTabletImage.src, color: ['#ffffff'] }}
-        start={{ x: 0, y: -1, z: 2, rotationX: 45, rotationY: 0, rotationZ: 0 }}
-        end={{ x: 0, y: 0, z: 1.5, rotationX: -180, rotationY: 0, rotationZ: 0 }}
+        item={{ img: AdminServicesImage.src, color: ['#ffffff'] }}
+        start={{ x: 0, y: -1, z: 2, rotationX: -150, rotationY: 0, rotationZ: 0 }}
+        end={{ x: 0, y: -0.8, z: 2, rotationX: 14, rotationY: 0, rotationZ: 0 }}
         enableOrbitControls={false}
         enableAutoRotation={false}
       />

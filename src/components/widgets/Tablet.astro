@@ -54,8 +54,7 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
   <div class="absolute inset-0 flex items-center justify-center">
     <div
       class="tablet-container w-full h-full opacity-0 transition-opacity duration-500"
-      data-screen-img={item.img}
-      data-phone-color={item.color ? item.color[0] : '#ffffff'}
+      data-item={JSON.stringify(item)}
       data-start-x={start?.x}
       data-start-y={start?.y}
       data-start-z={start?.z}
@@ -242,52 +241,53 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
           });
           
           // Update materials
-          const screenImg = container.dataset.screenImg;
-          const phoneColor = container.dataset.phoneColor || '#ffffff';
+          const itemData = JSON.parse(container.dataset.item);
+          console.log('Item data:', itemData);
+          const { img, color } = itemData;
+          const phoneColor = color[0] || '#ffffff';
           
-          console.log('Looking for meshes in iPad model...');
-          
-          model.traverse((child) => {
-            if (child.isMesh) {
-              console.log('Found mesh:', child.name);
-              
-              // If this is the screen mesh, apply the screen texture
-              if (child.name.toLowerCase().includes('screen') || 
-                  child.name.toLowerCase().includes('display') ||
-                  child.name.toLowerCase().includes('glass')) {
-                console.log('Found potential screen mesh:', child.name);
+          if (img) {
+            console.log('Loading image:', img);
+            const textureLoader = new THREE.TextureLoader();
+            textureLoader.load(img, 
+              // Success callback
+              (texture) => {
+                console.log('Texture loaded successfully');
+                // Set texture properties for landscape orientation
+                texture.rotation = Math.PI / 2;  // Rotate texture 90 degrees
+                texture.center.set(0.5, 0.5);    // Set rotation center
+                texture.repeat.set(1, 1);        // Maintain aspect ratio
+                texture.encoding = THREE.sRGBEncoding;
                 
-                // Create a basic material for the screen
-                const screenMaterial = new THREE.MeshBasicMaterial({
-                  color: 0xffffff,
-                  side: THREE.DoubleSide,
+                // Find the screen material
+                model.traverse((child) => {
+                  if (child.isMesh) {
+                    console.log('Found mesh:', child.name, 'Material:', child.material.name);
+                    // Look for screen material by various possible names
+                    if (child.material.name === 'Screen' || 
+                        child.name.toLowerCase().includes('screen') ||
+                        child.name.toLowerCase().includes('display')) {
+                      console.log('Applying texture to:', child.name);
+                      child.material = new THREE.MeshBasicMaterial({
+                        map: texture,
+                        transparent: true,
+                        side: THREE.DoubleSide
+                      });
+                      child.material.needsUpdate = true;
+                    }
+                  }
                 });
-                
-                // Load and apply texture
-                const textureLoader = new THREE.TextureLoader();
-                textureLoader.load(screenImg, (texture) => {
-                  console.log('Texture loaded for:', child.name);
-                  texture.colorSpace = THREE.SRGBColorSpace;
-                  texture.flipY = true;  
-                  texture.center.set(0.5, 0.5);  
-                  texture.rotation = Math.PI;  
-                  screenMaterial.map = texture;
-                  screenMaterial.needsUpdate = true;
-                  child.material = screenMaterial;  
-                });
-                
-                // Apply screen material immediately
-                child.material = screenMaterial;
-              } else {
-                // Apply default material for non-screen parts
-                child.material = new THREE.MeshStandardMaterial({
-                  color: phoneColor,
-                  roughness: 0.2,
-                  metalness: 0.8,
-                });
+              },
+              // Progress callback
+              undefined,
+              // Error callback
+              (error) => {
+                console.error('Error loading texture:', error);
               }
-            }
-          });
+            );
+          } else {
+            console.warn('No image provided in item data');
+          }
           
           // Add model to scene
           console.log('Added tablet model to scene');
