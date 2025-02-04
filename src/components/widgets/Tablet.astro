@@ -1,0 +1,342 @@
+---
+interface Props {
+  item: {
+    img: string;
+    color: string[];
+  };
+  start?: {
+    x: number;
+    y: number;
+    z: number;
+    rotationX?: number;
+    rotationY?: number;
+    rotationZ?: number;
+  };
+  end?: {
+    x: number;
+    y: number;
+    z: number;
+    rotationX?: number;
+    rotationY?: number;
+    rotationZ?: number;
+  };
+  timeline?: {
+    scrollTrigger: {
+      trigger: string;
+      start: string;
+      end: string;
+      scrub?: number | boolean;
+      markers?: boolean;
+      resetOnLeave?: boolean;
+    };
+    keyframes: Array<{
+      from?: {
+        position?: { x: number; y: number; z: number };
+        rotation?: { x: number; y: number; z: number };
+      };
+      to?: {
+        position?: { x: number; y: number; z: number };
+        rotation?: { x: number; y: number; z: number };
+      };
+      position?: { x: number; y: number; z: number };
+      rotation?: { x: number; y: number; z: number };
+      duration: number;
+    }>;
+  };
+  enableOrbitControls?: boolean;
+  enableAutoRotation?: boolean;
+}
+
+const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ: 0 }, end = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ: 0 }, timeline, enableOrbitControls = false, enableAutoRotation = false } = Astro.props;
+---
+
+<div class="relative w-full h-full">
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div
+      class="tablet-container w-full h-full opacity-0 transition-opacity duration-500"
+      data-screen-img={item.img}
+      data-phone-color={item.color ? item.color[0] : '#ffffff'}
+      data-start-x={start?.x}
+      data-start-y={start?.y}
+      data-start-z={start?.z}
+      data-start-rotation-x={start?.rotationX}
+      data-start-rotation-y={start?.rotationY}
+      data-start-rotation-z={start?.rotationZ}
+      data-end-x={end?.x}
+      data-end-y={end?.y}
+      data-end-z={end?.z}
+      data-end-rotation-x={end?.rotationX}
+      data-end-rotation-y={end?.rotationY}
+      data-end-rotation-z={end?.rotationZ}
+      data-enable-orbit-controls={enableOrbitControls}
+      data-enable-auto-rotation={enableAutoRotation}
+      data-timeline={timeline ? JSON.stringify(timeline) : ''}>
+    </div>
+  </div>
+</div>
+
+<script>
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+  import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  // Register ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  class TabletRenderer {
+    constructor(container) {
+      // Initialize Three.js scene
+      const scene = new THREE.Scene();
+      
+      // Create camera
+      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+      
+      // Set up initial position and rotation
+      const startPos = {
+        x: parseFloat(container.dataset.startX) || 0,
+        y: parseFloat(container.dataset.startY) || 0,
+        z: parseFloat(container.dataset.startZ) || 4
+      };
+
+      const startRotation = {
+        // Convert degrees to radians
+        x: THREE.MathUtils.degToRad(parseFloat(container.dataset.startRotationX) || 0),
+        y: THREE.MathUtils.degToRad(parseFloat(container.dataset.startRotationY) || 0),
+        z: THREE.MathUtils.degToRad(parseFloat(container.dataset.startRotationZ) || 0)
+      };
+
+      // Set initial camera position
+      camera.position.set(startPos.x, startPos.y, startPos.z);
+      camera.lookAt(0, 0, 0);
+
+      // Create scene and model container
+      const modelContainer = new THREE.Group();
+      scene.add(modelContainer);
+      
+      // Create renderer
+      const renderer = new THREE.WebGLRenderer({ 
+        antialias: true,
+        alpha: true 
+      });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      
+      // Add lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 2); 
+      scene.add(ambientLight);
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 3); 
+      directionalLight.position.set(5, 5, 5);
+      scene.add(directionalLight);
+
+      const backLight = new THREE.DirectionalLight(0xffffff, 2); 
+      backLight.position.set(-5, 5, -5);
+      scene.add(backLight);
+      
+      // Add renderer to container
+      container.appendChild(renderer.domElement);
+      
+      // Add orbit controls if enabled
+      let controls;
+      if (container.dataset.enableOrbitControls === 'true') {
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+      }
+
+      // Show the container immediately
+      container.classList.remove('opacity-0');
+
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Set up DRACO loader
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+      
+      // Load model
+      const loader = new GLTFLoader();
+      loader.setDRACOLoader(dracoLoader);
+      
+      console.log('Loading tablet model...');
+      
+      loader.load('/models/apple_ipad_pro.glb', 
+        // Success callback
+        (gltf) => {
+          console.log('Tablet model loaded successfully');
+          const model = gltf.scene;
+          
+          // Create a pivot point for rotation
+          const pivot = new THREE.Group();
+          scene.add(pivot);
+          
+          // Add model to pivot instead of directly to scene
+          pivot.add(model);
+          
+          // Center the model first
+          const box = new THREE.Box3().setFromObject(model);
+          const center = box.getCenter(new THREE.Vector3());
+          const size = box.getSize(new THREE.Vector3());
+          
+          // Adjust scale based on size
+          const maxDim = Math.max(size.x, size.y, size.z);
+          const scale = 2 / maxDim;
+          model.scale.setScalar(scale);
+          
+          // Set initial orientation
+          model.rotation.x = Math.PI / 2;  // Lay flat first
+          model.rotation.z = Math.PI / 2;  // Then rotate to landscape
+          
+          // Position model relative to pivot
+          model.position.set(1, 0, 0);
+          
+          // Store references for animation
+          this.pivot = pivot;
+          
+          // Set up end position and rotation
+          const endPos = {
+            x: parseFloat(container.dataset.endX) || 0,
+            y: parseFloat(container.dataset.endY) || 0,
+            z: parseFloat(container.dataset.endZ) || startPos.z
+          };
+
+          const endRotation = {
+            x: THREE.MathUtils.degToRad(parseFloat(container.dataset.endRotationX) || 0),
+            y: THREE.MathUtils.degToRad(parseFloat(container.dataset.endRotationY) || 0),
+            z: THREE.MathUtils.degToRad(parseFloat(container.dataset.endRotationZ) || 0)
+          };
+          
+          // Set initial rotation
+          pivot.rotation.x = startRotation.x;
+          
+          // Create scroll animation
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: container,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+              onUpdate: (self) => {
+                if (this.pivot) {
+                  const progress = self.progress;
+                  const currentRotation = startRotation.x + (endRotation.x - startRotation.x) * progress;
+                  this.pivot.rotation.x = currentRotation;
+                  console.log('Progress:', progress, 'Rotation:', THREE.MathUtils.radToDeg(currentRotation));
+                }
+              }
+            }
+          })
+          .to(camera.position, {
+            x: endPos.x,
+            y: endPos.y,
+            z: endPos.z,
+            duration: 1,
+            ease: "none"
+          });
+          
+          // Update materials
+          const screenImg = container.dataset.screenImg;
+          const phoneColor = container.dataset.phoneColor || '#ffffff';
+          
+          console.log('Looking for meshes in iPad model...');
+          
+          model.traverse((child) => {
+            if (child.isMesh) {
+              console.log('Found mesh:', child.name);
+              
+              // If this is the screen mesh, apply the screen texture
+              if (child.name.toLowerCase().includes('screen') || 
+                  child.name.toLowerCase().includes('display') ||
+                  child.name.toLowerCase().includes('glass')) {
+                console.log('Found potential screen mesh:', child.name);
+                
+                // Create a basic material for the screen
+                const screenMaterial = new THREE.MeshBasicMaterial({
+                  color: 0xffffff,
+                  side: THREE.DoubleSide,
+                });
+                
+                // Load and apply texture
+                const textureLoader = new THREE.TextureLoader();
+                textureLoader.load(screenImg, (texture) => {
+                  console.log('Texture loaded for:', child.name);
+                  texture.colorSpace = THREE.SRGBColorSpace;
+                  texture.flipY = true;  
+                  texture.center.set(0.5, 0.5);  
+                  texture.rotation = Math.PI;  
+                  screenMaterial.map = texture;
+                  screenMaterial.needsUpdate = true;
+                  child.material = screenMaterial;  
+                });
+                
+                // Apply screen material immediately
+                child.material = screenMaterial;
+              } else {
+                // Apply default material for non-screen parts
+                child.material = new THREE.MeshStandardMaterial({
+                  color: phoneColor,
+                  roughness: 0.2,
+                  metalness: 0.8,
+                });
+              }
+            }
+          });
+          
+          // Add model to scene
+          console.log('Added tablet model to scene');
+        },
+        // Progress callback
+        (xhr) => {
+          console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        // Error callback
+        (error) => {
+          console.error('Error loading tablet model:', error);
+        }
+      );
+      
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+    }
+  }
+  
+  // Initialize the renderer when the page loads
+  document.addEventListener('astro:page-load', () => {
+    const containers = document.querySelectorAll('.tablet-container');
+    containers.forEach(container => {
+      if (container) {
+        new TabletRenderer(container);
+      }
+    });
+  });
+</script>
+
+<style>
+  #tablet-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .tablet-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .tablet-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>

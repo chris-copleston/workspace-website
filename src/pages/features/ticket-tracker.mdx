@@ -6,7 +6,27 @@ image: https://images.unsplash.com/photo-1718778449026-fc05939d7650?q=80&w=3000&
 icon: tabler:ticket
 ---
 
+import Iphone from '~/components/widgets/Iphone.astro';
+import Tablet from '~/components/widgets/Tablet.astro';
+import Image from '~/components/common/Image.astro';
+import ServiceRequestsImage from '~/assets/images/pages/service-requests.jpg';
+import HomeTabletImage from '~/assets/images/pages/ipad-wallpaper.jpg';
+
 ## Benefits of Ticket Tracker by Audience
+
+
+<div className="relative group">
+  <div className="absolute -right-8 top-52 h-80 w-80 rounded-full blur-2xl bg-indigo-400/40"></div>
+  <div class="relative w-full md:w-[350px] h-[650px] mx-auto md:float-right">
+    <Iphone
+      item={{ img: ServiceRequestsImage.src, color: ['#ffffff'] }}
+      start={{ x: -6, y: 0, z: 12 }}
+      end={{ x: 4, y: 0, z: 9 }}
+      enableOrbitControls={false}
+      enableAutoRotation={false}
+    />
+  </div>
+</div>
 
 ### For Users
 
@@ -19,6 +39,17 @@ icon: tabler:ticket
 4.	Direct communication channel
    - Ability for users and assigned service provider to easily communicate over the phone or Microsoft Teams.
 
+
+    <div class="tablet relative w-full h-[600px] mx-auto">
+      <Tablet
+        item={{ img: HomeTabletImage.src, color: ['#ffffff'] }}
+        start={{ x: 0, y: -1, z: 2, rotationX: 45, rotationY: 0, rotationZ: 0 }}
+        end={{ x: 0, y: 0, z: 1.5, rotationX: -180, rotationY: 0, rotationZ: 0 }}
+        enableOrbitControls={false}
+        enableAutoRotation={false}
+      />
+    </div>
+    
 ### For Facility Managers
 
 1.	Centralized Request Handling
