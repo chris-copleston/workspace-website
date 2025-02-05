@@ -169,12 +169,12 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       
-      console.log('Loading tablet model...');
+      // console.log('Loading tablet model...');
       
       loader.load('/models/apple_ipad_pro.glb', 
         // Success callback
         (gltf) => {
-          console.log('Tablet model loaded successfully');
+          // console.log('Tablet model loaded successfully');
           const model = gltf.scene;
           
           // Create a pivot point for rotation
@@ -232,7 +232,7 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
                   const progress = self.progress;
                   const currentRotation = startRotation.x + (endRotation.x - startRotation.x) * progress;
                   this.pivot.rotation.x = currentRotation;
-                  console.log('Progress:', progress, 'Rotation:', THREE.MathUtils.radToDeg(currentRotation));
+                  // console.log('Progress:', progress, 'Rotation:', THREE.MathUtils.radToDeg(currentRotation));
                 }
               }
             }
@@ -247,17 +247,17 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
           
           // Update materials
           const itemData = JSON.parse(container.dataset.item);
-          console.log('Item data:', itemData);
+          // console.log('Item data:', itemData);
           const { img, color } = itemData;
           const phoneColor = color[0] || '#ffffff';
           
           if (img) {
-            console.log('Loading image:', img);
+            // console.log('Loading image:', img);
             const textureLoader = new THREE.TextureLoader();
             textureLoader.load(img, 
               // Success callback
               (texture) => {
-                console.log('Texture loaded successfully');
+                // console.log('Texture loaded successfully');
                 // Set texture properties for landscape orientation
                 texture.rotation = Math.PI / 2;  // Rotate texture 90 degrees
                 texture.center.set(0.5, 0.5);    // Set rotation center
@@ -268,12 +268,12 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
                 // Find the screen material
                 model.traverse((child) => {
                   if (child.isMesh) {
-                    console.log('Found mesh:', child.name, 'Material:', child.material.name);
+                    // console.log('Found mesh:', child.name, 'Material:', child.material.name);
                     // Look for screen material by various possible names
                     if (child.material.name === 'Screen' || 
                         child.name.toLowerCase().includes('screen') ||
                         child.name.toLowerCase().includes('display')) {
-                      console.log('Applying texture to:', child.name);
+                      // console.log('Applying texture to:', child.name);
                       child.material = new THREE.MeshStandardMaterial({
                         map: texture,
                         roughness: 0,
@@ -302,11 +302,11 @@ const { item, start = { x: 0, y: 0, z: 2, rotationX: 0, rotationY: 0, rotationZ:
           }
           
           // Add model to scene
-          console.log('Added tablet model to scene');
+          // console.log('Added tablet model to scene');
         },
         // Progress callback
         (xhr) => {
-          console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+          // console.log((xhr.loaded / xhr.total * 100) + '% loaded');
         },
         // Error callback
         (error) => {
