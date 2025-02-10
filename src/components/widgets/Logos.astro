@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+
+interface LogoItem {
+  name: string;
+  logo: ImageMetadata;
+  href?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  logos: LogoItem[];
+}
+
+const {
+  title = 'Our Partners',
+  subtitle = 'Trusted by leading organizations',
+  logos = [],
+} = Astro.props;
+---
+
+<section class="not-prose py-16 sm:py-16 bg-blue-50 dark:bg-transparent">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="text-center">
+      {title && <h2 class="font-bold leading-tighter tracking-tighter font-heading text-heading text-3xl lg:text-4xl">{title}</h2>}
+      {subtitle && <p class="mt-4 text-lg text-gray-600">{subtitle}</p>}
+    </div>
+    <div class="mt-12 logo-grid">
+      {
+        logos.map((item) => (
+          <div class="logo-item bg-white rounded-md">
+            {item.href ? (
+              <a href={item.href} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={item.logo}
+                  alt={`${item.name} logo`}
+                  class="w-auto h-10 mx-auto object-contain"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <Image
+                src={item.logo}
+                alt={`${item.name} logo`}
+                class="w-auto h-10 mx-auto object-contain"
+                loading="lazy"
+              />
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .logo-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .logo-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .logo-item {
+    padding: 0.75rem;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .logo-item:hover {
+    transform: translateY(-2px);
+  }
+</style>
