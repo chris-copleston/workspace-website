@@ -12,14 +12,26 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 // import FAQs from '~/components/widgets/FAQs.astro';
 // import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import Customers from '~/components/widgets/Customers.astro';
+import Logos from '~/components/widgets/Logos.astro';
 import homeBackground from '~/assets/images/bg/home-bg.jpg';
 import bookingBackground from '~/assets/images/bg/booking-bg.jpg';
+import logoImage from '~/assets/images/logo.svg';
+
+// Import customer logos
+import qualicorpLogo from '~/assets/images/customers/qualicorp.png';
+import logicalisLogo from '~/assets/images/customers/logicalis.png';
+import icatuLogo from '~/assets/images/customers/icatu.png';
+import perfettiLogo from '~/assets/images/customers/perfetti.png';
+import eloparLogo from '~/assets/images/customers/elopar.png';
+import georgeBrownLogo from '~/assets/images/customers/george-brown.png';
+import sivaleLogo from '~/assets/images/customers/sivale.png';
+import valeLogo from '~/assets/images/customers/vale.png';
 
 const metadata = {
   title: 'New Wave Workspace — The Super App for Hybrid Work',
   ignoreTitleTemplate: true,
 };
+
 ---
 
 <Layout metadata={metadata}>
@@ -166,7 +178,6 @@ const metadata = {
     isAfterContent
     title="Resource Booking"
     subtitle="Transform your workplace with a smart scheduling platform that optimises space, enhances collaboration and gives every employee access to the workspaces and resources they need to do their best work. <a class='more-link text-primary' href='/features/resource-booking'>Learn&nbsp;more</a>"
-
     items={[
       {
         title: 'Intelligent Meeting Room Scheduling',
@@ -394,9 +405,19 @@ const metadata = {
 
   <!-- Customers Widget **************** -->
 
-  <Customers
+  <Logos
     title="Trusted by industry leaders"
     subtitle="Join financial institutions, legal firms, educational institutions and corporations around the globe."
+    logos={[
+      { name: 'Elopar', logo: eloparLogo },
+      { name: 'George Brown', logo: georgeBrownLogo },
+      { name: 'Sivale', logo: sivaleLogo },
+      { name: 'Icatu', logo: icatuLogo },
+      { name: 'Perfetti', logo: perfettiLogo },
+      { name: 'Qualicorp', logo: qualicorpLogo },
+      { name: 'Logicalis', logo: logicalisLogo },
+      { name: 'Vale', logo: valeLogo }
+    ]}
   />
 
   <!-- HighlightedPosts Widget ******* -->
