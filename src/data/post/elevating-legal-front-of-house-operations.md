@@ -1,6 +1,6 @@
 ---
 publishDate: 2025-08-14T00:00:00Z
-author: Nica Faustino
+author: Marcelo Almeida
 title: Elevating Legal Front-of-House Operations
 excerpt: When clients step into a law firm, the first few minutes shape their entire perception. A warm welcome, a seamless check-in, the right meeting space prepared to perfection - these details aren’t just nice to have; they’re critical to reinforcing trust, professionalism, and brand reputation.
 image: https://images.unsplash.com/photo-1570215170761-f056128eda48?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
