@@ -214,17 +214,25 @@ import { UI } from 'astrowind:config';
 
             if (intersectionRatio >= threshold) {
               if (!target.hasAttribute('data-animated')) {
-                target.removeAttribute('no-intersect');
                 target.setAttribute('data-animated', 'true');
 
-                const delay = this.animationCounter * this.delayBetweenAnimations;
+                let delay = this.animationCounter * this.delayBetweenAnimations;
                 this.animationCounter++;
 
-                target.style.transitionDelay = `${delay}ms`;
-                target.style.animationDelay = `${delay}ms`;
+                const minDelay = parseInt(target.dataset.minDelay || '0', 10);
+                if (minDelay > delay) delay = minDelay;
 
-                if (target.classList.contains('intersect-once')) {
-                  this.observer.unobserve(target);
+                const reveal = () => {
+                  target.removeAttribute('no-intersect');
+                  if (target.classList.contains('intersect-once')) {
+                    this.observer.unobserve(target);
+                  }
+                };
+
+                if (delay > 0) {
+                  setTimeout(reveal, delay);
+                } else {
+                  reveal();
                 }
               }
             } else {
