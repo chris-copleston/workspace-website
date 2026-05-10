@@ -38,6 +38,8 @@ This is where the real change happens: the workplace stops being observed and st
 
 ### Run the "What If" Before the What Happened
 
+![Predictive what-if scenario](./predictive-Intelligence-redict.gif)
+
 With New Wave NextGen, that understanding becomes usable. Human data, IoT signals, and external factors are brought into one predictive layer that allows organisations to run real "what if" scenarios—before decisions are made, before space is redesigned, before policy is enforced.
 
 What if we change anchor days? What if we reduce space by 15%? What if air quality drops on certain floors? What if transport disruption becomes normal on key commuting routes? The workplace stops being static and starts behaving like a system you can test, stress, and shape.
