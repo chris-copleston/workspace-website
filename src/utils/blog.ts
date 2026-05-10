@@ -51,6 +51,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     title,
     excerpt,
     image: rawImage,
+    imageDark: rawImageDark,
     tags: rawTags = [],
     category: rawCategory,
     author,
@@ -64,6 +65,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
   
   const image = await findImage(rawImage);
+  const imageDark = await findImage(rawImageDark);
 
   const category = rawCategory
     ? {
@@ -88,6 +90,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     title: title,
     excerpt: excerpt,
     image: image,
+    imageDark: imageDark,
 
     category: category,
     tags: tags,
