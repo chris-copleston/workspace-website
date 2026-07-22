@@ -4,7 +4,7 @@ description: "Rooms booked but never used are one of the biggest hidden costs in
 excerpt: "Your calendar says every meeting room is booked. Your employees say they can't find anywhere to meet. Ghost meetings are draining productivity, wasting operational spend and undermining the return on your office investment."
 publishDate: 2026-07-22T00:00:00Z
 author: "Chris Copleston"
-image: ~/assets/images/blog/ghost-meetings-room-timeline.jpeg
+image: ~/assets/images/blog/ghost-meetings-crestron-panel.jpeg
 category: Meeting Room Booking
 tags: ["room-booking", "ghost-meetings", "workplace-management", "space-utilisation", "crestron", "hybrid-work"]
 ---
